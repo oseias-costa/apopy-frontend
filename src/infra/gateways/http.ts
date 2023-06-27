@@ -1,13 +1,14 @@
-import { OperationVariables, useQuery } from "@apollo/client";
+import { TypedDocumentNode, useQuery } from "@apollo/client";
+import { DocumentNode } from "graphql";
 
-export class ListSupliers {
-  static get(query: OperationVariables) {
-    const { data } = useQuery<OperationVariables>(query);
+export class GetList {
+  static get(query: DocumentNode | TypedDocumentNode<string>) {
+    const { data } = useQuery<DocumentNode | TypedDocumentNode<string>>(query);
     return { data };
   }
 }
 
-export const graphqlQuery = (query: OperationVariables) => {
-  const { data } = useQuery<OperationVariables>(query);
+export const graphqlQuery = (query: DocumentNode) => {
+  const { data } = useQuery<DocumentNode>(query);
   return data;
 };

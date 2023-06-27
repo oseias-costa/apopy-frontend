@@ -1,17 +1,16 @@
-import { ListSupliersUseCase } from "../../application/suplier/list-supliers.use-case";
-import { SuplierHttpGateway } from "../../infra/gateways/suplier-http.gateway";
+import { SuplierListFactory } from '../../infra/factory/suplier-list'
 
 export const SuplierList = () => {
-  const getSupliers = async () => {
-    const gateway = new SuplierHttpGateway();
-    const useCase = new ListSupliersUseCase(gateway);
-    const supliers = await useCase.execute();
-    return supliers.map((res) => res.props);
-  };
-  getSupliers().then((res) => console.log(res));
+  const supliers = async () => {
+    const data = await SuplierListFactory.get()
+    const res = await data.json()
 
+   return res }
+
+   console.log(supliers())
+  
   return (
-    <div>
+  <div>
       <h1>Supliers</h1>
     </div>
   );
