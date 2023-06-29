@@ -1,4 +1,3 @@
-
 // entitie
 export interface UserProps {
   id?: number;
@@ -26,7 +25,7 @@ export class User {
 // gateway entitie
 export interface UserGateway {
   findAll(): Promise<User[]>;
-  addUser(user: UserProps): Promise<User>;
+  addUser(user: UserProps): User;
 }
 
 // Application UserCase
@@ -42,7 +41,16 @@ export class FindAllUsersUserCase {
 // infra
 
 export class UserHttpGateway implements UserGateway {
-  constructor(private http: User[]) {}
+  http: UserProps[] = [
+    {
+      id: 23,
+      name: "Oséias",
+    },
+    {
+      id: 21,
+      name: "Costa",
+    },
+  ];
 
   async findAll(): Promise<User[]> {
     return this.http.map(
@@ -54,24 +62,14 @@ export class UserHttpGateway implements UserGateway {
     );
   }
 
-  addUser(user: UserProps): Promise<User> {
-    return this.http.addUser(user);
+  addUser(user: User): UserProps{
+    const newUser = new User(user)
+    return this.http.push(newUser);
   }
 }
 
-const http = [
-  {
-    id: 23,
-    name: "Oséias",
-  },
-  {
-    id: 21,
-    name: "Costa",
-  },
-];
-
 export async function getUser() {
-  const gateway = new UserHttpGateway(http);
+  const gateway = new UserHttpGateway();
   const useCase = new FindAllUsersUserCase(gateway);
   const user = await useCase.execute();
   return user;
