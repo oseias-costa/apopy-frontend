@@ -1,83 +1,83 @@
+
 // entitie
-export interface UserProps{
-    id?: number;
-    name: string;
+export interface UserProps {
+  id?: number;
+  name: string;
 }
 
-export class User{
-    constructor(public props: UserProps){}
+export class User {
+  constructor(public props: UserProps) {}
 
-    get id(){
-        return this.props.id
-    }
+  get id() {
+    return this.props.id;
+  }
 
-    get name(){
-        return this.props.name
-    }
+  get name() {
+    return this.props.name;
+  }
 
-    toJson(){
-        return {
-            id: this.id,
-            name: this.name
-        }
-    }
+  toJson() {
+    return {
+      id: this.id,
+      name: this.name,
+    };
+  }
 }
 // gateway entitie
-export interface UserGateway{
-    findAll(): Promise<User[]>
-    addUser(user: UserProps): Promise<User>
+export interface UserGateway {
+  findAll(): Promise<User[]>;
+  addUser(user: UserProps): Promise<User>;
 }
 
 // Application UserCase
 
-export class FindAllUsersUserCase{
-    constructor(private userGate: UserGateway ){}
+export class FindAllUsersUserCase {
+  constructor(private userGate: UserGateway) {}
 
-    async execute(): Promise<User[]> {
-        return this.userGate.findAll()
-    }
+  async execute(): Promise<User[]> {
+    return this.userGate.findAll();
+  }
 }
 
-// infra 
+// infra
 
-export class UserHttpGateway implements UserGateway{
-    constructor(private http: UserGateway){}
+export class UserHttpGateway implements UserGateway {
+  constructor(private http: User[]) {}
 
-   findAll(): Promise<User[]> {
-       return this.http.findAll()
-   }
+  async findAll(): Promise<User[]> {
+    return this.http.map(
+      (item) =>
+        new User({
+          name: item.name,
+          id: item.id,
+        })
+    );
+  }
 
-   addUser(user: UserProps): Promise<User> {
-       return this.http.addUser(user)
-   }
+  addUser(user: UserProps): Promise<User> {
+    return this.http.addUser(user);
+  }
 }
-
 
 const http = [
-    { 
-        id: 23,
-        name: 'Oséias'
-    },
-    { 
-        id: 21,
-        name: 'Costa'
-    },
+  {
+    id: 23,
+    name: "Oséias",
+  },
+  {
+    id: 21,
+    name: "Costa",
+  },
+];
 
-]
-
-async function httpFunction(){
-    const ht = new Promise(res, rej){
-        if(true){
-            resolve(http)
-        }
-    }
-    return ht
+export async function getUser() {
+  const gateway = new UserHttpGateway(http);
+  const useCase = new FindAllUsersUserCase(gateway);
+  const user = await useCase.execute();
+  return user;
 }
 
-function getUser(){
-    const gateway = new UserHttpGateway(httpFunction)
-    
-}
+console.log("test clean archi", getUser());
 
 // export class SuplierListFactory{
 //     static async get() {
