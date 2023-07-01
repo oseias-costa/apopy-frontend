@@ -1,6 +1,6 @@
-import { Suplier } from "../entities/suplier";
+import { SuplierProps } from "../entities/suplier";
 
 export interface SuplierGateway {
-  findAll(): Promise<Suplier[]>;
-  // findById(id: string): Promise<Suplier>
+  getAll(): SuplierProps[];
+  addNewSuplier(): SuplierProps;
 }
