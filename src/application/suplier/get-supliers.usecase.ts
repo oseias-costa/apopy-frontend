@@ -1,6 +1,12 @@
+import { AxiosResponse } from "axios";
+import { SuplierProps } from "../../domain/entities/suplier";
 import { getSupliersGateway } from "../../infra/gateways/suplier.gateway";
 
-export default function getSupliersUseCase(){
-  const [data, loading, error ] = getSupliersGateway()
-  return [ data, loading, error]
+type Suplier = {
+  supliers: SuplierProps[];
+};
+
+export default async function getSupliersUseCase() {
+  const data = await getSupliersGateway();
+  return data;
 }

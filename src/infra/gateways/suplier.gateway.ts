@@ -1,39 +1,72 @@
-import { useMutation, ApolloCache, DefaultContext, OperationVariables, useQuery } from "@apollo/client";
+import {
+  useMutation,
+  ApolloCache,
+  DefaultContext,
+  OperationVariables,
+} from "@apollo/client";
+import axios from "axios";
 import { insertItemOnCache } from "../cache/add-item.cache";
-import { updateItemOnCache } from "../cache/update-item.cache";
-import { CREATE_SUPLIER, SUPLIERS, UPDATE_SUPLIER } from "../http/suplier.query";
-import { SUPLIER_FRAGMENT } from "../queries/suplier";
+import { CREATE_SUPLIER } from "../http/suplier.query";
 
-
-export const getSupliersGateway = () => {
-    const { data, loading, error } = useQuery(SUPLIERS)
-    return [data, loading, error]
-}
+export const getSupliersGateway = async () => {
+  const data = await axios({
+    url: "https://apopy-api.vercel.app/graphql",
+    method: "post",
+    data: {
+      query: `
+            query Suplier {
+                supliers {
+                _id
+                name
+                userId
+                }
+            }
+            `,
+      variables: {},
+    },
+  });
+  return data;
+};
 
 export const createSuplierGateway = () => {
-    const [createSuplier, { error, data, loading }] =
-        useMutation<any, OperationVariables, DefaultContext, ApolloCache<any>>(
-            CREATE_SUPLIER, {
-            update: (cache, { data }) =>
-                insertItemOnCache(cache, data, createSuplier, 'supliers')
-        })
-    return [data, loading, error]
-}
+  const [createSuplier, { error, data, loading }] = useMutation<
+    any,
+    OperationVariables,
+    DefaultContext,
+    ApolloCache<any>
+  >(CREATE_SUPLIER, {
+    update: (cache, { data }) =>
+      insertItemOnCache(cache, data, createSuplier, "supliers"),
+  });
+  return [data, loading, error];
+};
 
-export const updateSuplierGateway = async ({_id, name} : { _id: string, name: string}) => {
-    const [ updateSuplier, { error, data, loading } ] = useMutation(UPDATE_SUPLIER, {
-        update: (_, { data: { updateSuplier } }) =>  
-            updateItemOnCache(updateSuplier, 'Suplier', SUPLIER_FRAGMENT)
-         })
-
-         await updateSuplier({
-            variables: {
-                suplierInput: {
-                    _id: _id,
-                    name: name
+export default async function updateSuplierGateway({
+  _id,
+  name,
+}: {
+  _id: string;
+  name: string;
+}) {
+  const data = await axios({
+    url: "https://apopy-api.vercel.app/graphql",
+    method: "post",
+    data: {
+      query: `
+            mutation UpdateSuplier($suplierInput: SuplierInput) {
+                updateSuplier(suplierInput: $suplierInput) {
+                _id
+                name
                 }
-            },
-         })
-    
-    return [ error, data, loading]
+            }
+            `,
+      variables: {
+        suplierInput: {
+          _id: _id,
+          name: name,
+        },
+      },
+    },
+  });
+  return data;
 }
