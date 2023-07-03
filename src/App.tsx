@@ -1,9 +1,7 @@
 import "./App.css";
-import { SuplierList } from "./presentation/components/SuplierList";
-import { getUser } from "./oldclean";
+import { SuplierList } from "./presentation/components/suplier/SuplierList";
 
 function App() {
-  console.log("1234", getUser());
   return (
     <>
       <div>
