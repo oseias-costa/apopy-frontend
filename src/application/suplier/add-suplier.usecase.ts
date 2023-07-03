@@ -1,5 +1,6 @@
-import SuplerGateway from './domain/gateway/suplier.gateway'
+import { createSuplierGateway } from '../../infra/gateways/suplier.gateway'
 
-export const addNewSuplier = () => {
-    return SuplerGateway
+export const createSuplierUseCase = () => {
+    const [ data, error, loading ] = createSuplierGateway()
+    return [ data, error, loading ]
 }

@@ -36,3 +36,10 @@ export const DELETE_SUPLIER = gql`
     }
   }
 `;
+
+export const SUPLIER_FRAGMENT = gql`
+  fragment MySuplier on Suplier {
+      _id
+      name
+    }
+`
