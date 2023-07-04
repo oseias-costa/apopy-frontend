@@ -94,7 +94,7 @@ export async function deleteSuplierGateway(id: string) {
               }
             `,
       variables: {
-        _id: id,
+        id: id,
       },
     },
   });
