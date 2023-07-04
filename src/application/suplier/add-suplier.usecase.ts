@@ -1,6 +1,5 @@
-import { createSuplierGateway } from '../../infra/gateways/suplier.gateway'
+import { createSuplierGateway } from "../../infra/gateways/suplier.gateway";
 
-export const createSuplierUseCase = () => {
-    const [ data, error, loading ] = createSuplierGateway()
-    return [ data, error, loading ]
+export async function createSuplierUseCase(name: string, userId: string) {
+  return await createSuplierGateway({ name, userId });
 }

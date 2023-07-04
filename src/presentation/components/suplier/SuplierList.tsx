@@ -1,12 +1,13 @@
 import { Modal } from "../global/Modal";
 import { UpdateSuplier } from "./UpdateSuplier";
+import { CreateSuplier } from "./CreateSuplier";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { fetchData } from "../../../infra/redux/slice/suplierSlice";
 import getSupliersUseCase from "../../../application/suplier/get-supliers.usecase";
 import { openModal } from "../../../infra/redux/slice/modalSlice";
 
-type ItemProps = {
+export type ItemProps = {
   id: string;
   name: string;
   type: string;
@@ -17,7 +18,9 @@ type typeModal = {
 };
 
 export const SuplierList = () => {
-  const [suplierState, setSuplierState] = useState<ItemProps>({
+  const [suplierState, setSuplierState] = useState<
+    React.SetStateAction<ItemProps>
+  >({
     id: "",
     name: "",
     type: "",
@@ -25,9 +28,9 @@ export const SuplierList = () => {
   const data = useSelector((state) => state.suplier.supliers);
   const dispatch = useDispatch();
 
-  console.log(data);
   const typeModal: typeModal = {
     update: <UpdateSuplier state={suplierState} setState={setSuplierState} />,
+    create: <CreateSuplier state={suplierState} setState={setSuplierState} />,
   };
 
   useEffect(() => {
@@ -48,7 +51,11 @@ export const SuplierList = () => {
         >
           Editar
         </button>
-        <button>Delete</button>
+        <button
+         onClick={() => {
+            setSuplierState({ id: item._id, name: item.name, type: "delete" });
+            dispatch(openModal());
+          }}>Delete</button>
       </div>
     );
   });
@@ -56,6 +63,14 @@ export const SuplierList = () => {
   return (
     <div>
       <h1>Supliers</h1>
+      <button
+        onClick={() => {
+          setSuplierState({ id: "", name: "", type: "create" });
+          return dispatch(openModal());
+        }}
+      >
+        Abrir
+      </button>
       <div>{supliersList}</div>
       <Modal children={typeModal[suplierState.type]} />
     </div>

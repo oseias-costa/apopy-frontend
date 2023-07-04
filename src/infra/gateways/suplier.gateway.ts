@@ -1,12 +1,4 @@
-import {
-  useMutation,
-  ApolloCache,
-  DefaultContext,
-  OperationVariables,
-} from "@apollo/client";
 import axios from "axios";
-import { insertItemOnCache } from "../cache/add-item.cache";
-import { CREATE_SUPLIER } from "../http/suplier.query";
 
 export const getSupliersGateway = async () => {
   const data = await axios({
@@ -28,18 +20,36 @@ export const getSupliersGateway = async () => {
   return data;
 };
 
-export const createSuplierGateway = () => {
-  const [createSuplier, { error, data, loading }] = useMutation<
-    any,
-    OperationVariables,
-    DefaultContext,
-    ApolloCache<any>
-  >(CREATE_SUPLIER, {
-    update: (cache, { data }) =>
-      insertItemOnCache(cache, data, createSuplier, "supliers"),
+export async function createSuplierGateway({
+  name,
+  userId,
+}: {
+  name: string;
+  userId: string;
+}) {
+  const data = await axios({
+    url: "https://apopy-api.vercel.app/graphql",
+    method: "post",
+    data: {
+      query: `
+            mutation CreateSuplier($suplierInput: SuplierInput) {
+              createSuplier(suplierInput: $suplierInput) {
+                _id
+                name
+                userId
+              }
+            }
+          `,
+      variables: {
+        suplierInput: {
+          name: name,
+          userid: userId,
+        },
+      },
+    },
   });
-  return [data, loading, error];
-};
+  return data;
+}
 
 export default async function updateSuplierGateway({
   _id,

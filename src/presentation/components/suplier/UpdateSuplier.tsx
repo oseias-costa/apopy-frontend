@@ -2,13 +2,14 @@ import updateSuplierUseCase from "../../../application/suplier/update-suplier.us
 import { useDispatch } from "react-redux";
 import { closeModal } from "../../../infra/redux/slice/modalSlice";
 import { updateSuplier } from "../../../infra/redux/slice/suplierSlice";
+import { ItemProps } from "./SuplierList";
 
 export const UpdateSuplier = ({
   state,
   setState,
 }: {
   state: { id: string; name: string; type: string };
-  setState: void;
+  setState: (value: ItemProps) => void;
 }) => {
   const dispatch = useDispatch();
 
