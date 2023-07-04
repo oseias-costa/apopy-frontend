@@ -1,11 +1,10 @@
 import { Modal } from "../global/Modal";
 import { UpdateSuplier } from "./UpdateSuplier";
-import { useSelector } from "react-redux";
-import { useState } from "react";
-import {
-  getSupliers,
-  initialState,
-} from "../../../infra/redux/slice/suplierSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { fetchData } from "../../../infra/redux/slice/suplierSlice";
+import getSupliersUseCase from "../../../application/suplier/get-supliers.usecase";
+import { openModal } from "../../../infra/redux/slice/modalSlice";
 
 type ItemProps = {
   _id: string;
@@ -13,26 +12,23 @@ type ItemProps = {
 };
 
 export const SuplierList = () => {
-  const test = getSupliers().then((res) => res);
-  console.log(test);
-  // const data = useSelector((state) => state);
+  const data = useSelector((state) => state.suplier.supliers);
+  const dispatch = useDispatch()
 
-  const [data, setData] = useState({
-    supliers: [],
-  });
+  console.log('data', data)
 
-  // useEffect(() => {
-  //   getSupliersUseCase().then((res) => setData(res.data.data));
-  // }, []);
+   useEffect(() => {
+    getSupliersUseCase().then(res => dispatch(fetchData(res.data.data.supliers)))
+},[])
 
-  const supliersList = data?.supliers.map((item: ItemProps) => {
+  const supliersList = data?.map((item: ItemProps) => {
     return (
       <div key={item._id}>
         <p>{item.name}</p>
         <button
           onClick={() => {
             // dispatchSuplier({ id: item._id, type: "update", name: item.name });
-            // dispatchModal({ openModal: true });
+            dispatch(openModal());
           }}
         >
           Editar

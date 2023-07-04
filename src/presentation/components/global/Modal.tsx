@@ -1,18 +1,19 @@
-import { useReactiveVar } from '@apollo/client'
 import styled from "styled-components";
-import { dispatchModal, initialValue } from '../../../infra/context/modal-reactiveVar';
+import { useSelector, useDispatch } from "react-redux";
+import { closeModal } from "../../../infra/redux/slice/modalSlice";
 
 export const Modal = ({ children }: { children: React.ReactNode }) => {
-const state = useReactiveVar(dispatchModal)
+const state = useSelector(state => state.modal.openModal)
+const dispatch = useDispatch()
 
 function handleClick(e: HTMLDivElement){
   if(e.target.id === 'modal'){
-    return dispatchModal(initialValue)
+    dispatch(closeModal())
   }
 }
 
   return (
-    <ModalContainer openModal={state.openModal} id="modal" name='oseias' onClick={(e: HTMLDivElement) => handleClick(e)}>
+    <ModalContainer openModal={state} id="modal" name='oseias' onClick={(e: HTMLDivElement) => handleClick(e)}>
       <ModalChildren>{children}</ModalChildren>
     </ModalContainer>
   );

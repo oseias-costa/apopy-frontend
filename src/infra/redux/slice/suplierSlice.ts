@@ -1,22 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
-import getSupliersUseCase from "../../../application/suplier/get-supliers.usecase";
-
-type SuplierProp = {
-  supliers: { _id: string; name: string }[];
-};
-
-export const getSupliers = async () => {
-  return getSupliersUseCase().then((res) => res.data.data.supliers);
-};
-
-export const initialState = {
-  supliers: [],
-};
 
 const suplierSlice = createSlice({
   name: "suplier",
-  initialState,
+  initialState: {
+    supliers: []
+  },
   reducers: {
+    fetchData: (state, action) => {
+      state.supliers = action.payload
+    },
     createSuplier: (state, action) => {
       state.supliers.push(action.payload);
     },
@@ -36,6 +28,6 @@ const suplierSlice = createSlice({
   },
 });
 
-export const { createSuplier, removeSuplier, updateSuplier } =
+export const { createSuplier, removeSuplier, updateSuplier, fetchData } =
   suplierSlice.actions;
 export default suplierSlice.reducer;
