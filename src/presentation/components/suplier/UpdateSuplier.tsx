@@ -1,14 +1,24 @@
-import { useReactiveVar } from "@apollo/client";
 import updateSuplierUseCase from "../../../application/suplier/update-suplier.usecase";
-import { dispatchSuplier } from "../../../infra/context/suplier-reactiveVar";
+import { useDispatch } from "react-redux";
+import { closeModal } from "../../../infra/redux/slice/modalSlice";
+import { updateSuplier } from "../../../infra/redux/slice/suplierSlice";
 
-export const UpdateSuplier = () => {
-  const suplierState = useReactiveVar(dispatchSuplier);
+export const UpdateSuplier = ({
+  state,
+  setState,
+}: {
+  state: { id: string; name: string; type: string };
+  setState: void;
+}) => {
+  const dispatch = useDispatch();
 
   const handleUpdate = async () => {
-    const data = await updateSuplierUseCase(suplierState.id, suplierState.name);
+    const data = await updateSuplierUseCase(state.id, state.name);
 
-    return console.log(`editado`, data);
+    if (data.status === 200) {
+      dispatch(updateSuplier({ _id: state.id, name: state.name }));
+      dispatch(closeModal());
+    }
   };
 
   return (
@@ -17,11 +27,9 @@ export const UpdateSuplier = () => {
       <div>
         <input
           type="text"
-          value={suplierState.name}
-          disabled={suplierState.type === "delete" ? true : false}
-          onChange={(e) =>
-            dispatchSuplier({ ...suplierState, name: e.target.value })
-          }
+          value={state.name}
+          disabled={state.type === "delete" ? true : false}
+          onChange={(e) => setState({ ...state, name: e.target.value })}
         />
         <button onClick={handleUpdate}>Editar</button>
       </div>
