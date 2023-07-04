@@ -80,3 +80,24 @@ export default async function updateSuplierGateway({
   });
   return data;
 }
+
+export async function deleteSuplierGateway(id: string) {
+  const data = axios({
+    url: "https://apopy-api.vercel.app/graphql",
+    method: "post",
+    data: {
+      query: `
+              mutation DeleteSuplier($id: ID) {
+                deleteSuplier(_id: $id) {
+                  _id
+                }
+              }
+            `,
+      variables: {
+        _id: id,
+      },
+    },
+  });
+
+  return data;
+}

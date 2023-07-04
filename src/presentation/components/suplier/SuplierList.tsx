@@ -1,6 +1,7 @@
 import { Modal } from "../global/Modal";
 import { UpdateSuplier } from "./UpdateSuplier";
 import { CreateSuplier } from "./CreateSuplier";
+import { DeleteSuplier } from "./DeleteSuplier";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { fetchData } from "../../../infra/redux/slice/suplierSlice";
@@ -31,6 +32,7 @@ export const SuplierList = () => {
   const typeModal: typeModal = {
     update: <UpdateSuplier state={suplierState} setState={setSuplierState} />,
     create: <CreateSuplier state={suplierState} setState={setSuplierState} />,
+    delete: <DeleteSuplier state={suplierState} setState={setSuplierState} />,
   };
 
   useEffect(() => {
@@ -52,10 +54,13 @@ export const SuplierList = () => {
           Editar
         </button>
         <button
-         onClick={() => {
+          onClick={() => {
             setSuplierState({ id: item._id, name: item.name, type: "delete" });
             dispatch(openModal());
-          }}>Delete</button>
+          }}
+        >
+          Delete
+        </button>
       </div>
     );
   });

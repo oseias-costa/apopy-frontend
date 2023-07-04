@@ -3,18 +3,18 @@ import { createSlice } from "@reduxjs/toolkit";
 const suplierSlice = createSlice({
   name: "suplier",
   initialState: {
-    supliers: []
+    supliers: [],
   },
   reducers: {
     fetchData: (state, action) => {
-      state.supliers = action.payload
+      state.supliers = action.payload;
     },
     createSuplier: (state, action) => {
       state.supliers.push(action.payload);
     },
     removeSuplier: (state, action) => {
       state.supliers = state.supliers.filter(
-        (suplier) => suplier._id !== action.payload
+        (suplier) => suplier._id !== action.payload._id
       );
     },
     updateSuplier: (state, action) => {
