@@ -1,99 +1,36 @@
-import axios from "axios";
+import { httpAxiosRequest } from "../http/httpAxiosRequest";
+import { CREATE_SUPLIER, DELETE_SUPLIER, GET_SUPLIERS, UPDATE_SUPLIER } from "../queries/suplier.query";
 
 export const getSupliersGateway = async () => {
-  const data = await axios({
-    url: "https://apopy-api.vercel.app/graphql",
-    method: "post",
-    data: {
-      query: `
-            query Suplier {
-                supliers {
-                _id
-                name
-                userId
-                }
-            }
-            `,
-      variables: {},
-    },
-  });
-  return data;
+  return await httpAxiosRequest(GET_SUPLIERS, {})
 };
 
 export async function createSuplierGateway(
   { name, userId }: { name: string; userId: string }) {
 
-  const data = await axios({
-    url: "https://apopy-api.vercel.app/graphql",
-    method: "post",
-    data: {
-      query: `
-            mutation CreateSuplier($suplierInput: SuplierInput) {
-              createSuplier(suplierInput: $suplierInput) {
-                _id
-                name
-                userId
-              }
-            }
-          `,
-      variables: {
+  const variables = {
         suplierInput: {
           name: name,
           userid: userId,
-        },
-      },
-    },
-  });
-  return data;
+        }
+  }
+  return await httpAxiosRequest(CREATE_SUPLIER, variables) 
 }
 
-export default async function updateSuplierGateway({
-  _id,
-  name,
-}: {
-  _id: string;
-  name: string;
-}) {
-  const data = await axios({
-    url: "https://apopy-api.vercel.app/graphql",
-    method: "post",
-    data: {
-      query: `
-            mutation UpdateSuplier($suplierInput: SuplierInput) {
-                updateSuplier(suplierInput: $suplierInput) {
-                _id
-                name
-                }
-            }
-            `,
-      variables: {
+export default async function updateSuplierGateway(
+  { _id, name }: { _id: string; name: string }) {
+
+  const variables = {
         suplierInput: {
           _id: _id,
-          name: name,
-        },
-      },
-    },
-  });
-  return data;
+          name: name
+        }
+    }
+  return await httpAxiosRequest(UPDATE_SUPLIER, variables)
 }
 
 export async function deleteSuplierGateway(id: string) {
-  const data = axios({
-    url: "https://apopy-api.vercel.app/graphql",
-    method: "post",
-    data: {
-      query: `
-              mutation DeleteSuplier($id: ID) {
-                deleteSuplier(_id: $id) {
-                  _id
-                }
-              }
-            `,
-      variables: {
-        id: id,
-      },
-    },
-  });
+  const variables = { id: id }
 
-  return data;
+  return await httpAxiosRequest(DELETE_SUPLIER, variables)
 }

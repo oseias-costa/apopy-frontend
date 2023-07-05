@@ -1,4 +1,4 @@
-export const SUPLIERS = `
+export const GET_SUPLIERS = `
   query Suplier {
     supliers {
       _id
