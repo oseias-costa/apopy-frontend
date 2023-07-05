@@ -20,13 +20,9 @@ export const getSupliersGateway = async () => {
   return data;
 };
 
-export async function createSuplierGateway({
-  name,
-  userId,
-}: {
-  name: string;
-  userId: string;
-}) {
+export async function createSuplierGateway(
+  { name, userId }: { name: string; userId: string }) {
+
   const data = await axios({
     url: "https://apopy-api.vercel.app/graphql",
     method: "post",

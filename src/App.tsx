@@ -1,4 +1,5 @@
 import "./App.css";
+import { CategoryList } from "./presentation/components/category/CategoryList";
 import { SuplierList } from "./presentation/components/suplier/SuplierList";
 
 function App() {
@@ -6,6 +7,7 @@ function App() {
     <>
       <div>
         <SuplierList />
+        <CategoryList />
       </div>
     </>
   );

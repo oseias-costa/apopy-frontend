@@ -1,6 +1,4 @@
-import { gql } from "@apollo/client";
-
-export const SUPLIERS = gql`
+export const SUPLIERS = `
   query Suplier {
     supliers {
       _id
@@ -10,7 +8,7 @@ export const SUPLIERS = gql`
   }
 `;
 
-export const CREATE_SUPLIER = gql`
+export const CREATE_SUPLIER = `
   mutation CreateSuplier($suplierInput: SuplierInput) {
     createSuplier(suplierInput: $suplierInput) {
       _id
@@ -29,7 +27,7 @@ export const UPDATE_SUPLIER = `
   }
 `;
 
-export const DELETE_SUPLIER = gql`
+export const DELETE_SUPLIER = `
   mutation DeleteSuplier($id: ID) {
     deleteSuplier(_id: $id) {
       _id
@@ -37,7 +35,7 @@ export const DELETE_SUPLIER = gql`
   }
 `;
 
-export const SUPLIER_FRAGMENT = gql`
+export const SUPLIER_FRAGMENT = `
   fragment MySuplier on Suplier {
     _id
     name
