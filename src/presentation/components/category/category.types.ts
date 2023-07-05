@@ -1,14 +1,13 @@
-
 export type CategoryState = {
-    id: string;
-    name: string;
-    type: string;
-    subcategory: string[]
-  };
+  _id: string;
+  name: string;
+  type?: string;
+  subcategory?: string[];
+};
 
-  export const initialCategoryValue = {
-     id: '', 
-     name: '', 
-     subcategory: [], 
-     type: 'create'
-  }
+export const initialCategoryValue = {
+  _id: "",
+  name: "",
+  subcategory: [],
+  type: "create",
+};

@@ -1,4 +1,4 @@
-export type SuplierProps = {
+export interface SuplierProps {
   _id: string;
   name: string;
-};
+}

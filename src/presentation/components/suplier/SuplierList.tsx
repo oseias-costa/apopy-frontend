@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { fetchData } from "../../../infra/redux/slice/suplierSlice";
 import getSupliersUseCase from "../../../application/suplier/get-supliers.usecase";
 import { openModal } from "../../../infra/redux/slice/modalSlice";
+import styled from "styled-components";
 
 export type ItemProps = {
   id: string;
@@ -43,8 +44,8 @@ export const SuplierList = () => {
 
   const supliersList = data?.map((item) => {
     return (
-      <div key={item._id}>
-        <p>{item.name}</p>
+      <ContainerSuplier sideBar={true} key={item._id}>
+        <p style={ItemSuplier}>{item.name}</p>
         <button
           onClick={() => {
             setSuplierState({ id: item._id, name: item.name, type: "update" });
@@ -61,7 +62,7 @@ export const SuplierList = () => {
         >
           Delete
         </button>
-      </div>
+      </ContainerSuplier>
     );
   });
 
@@ -80,4 +81,21 @@ export const SuplierList = () => {
       <Modal children={typeModal[suplierState.type]} />
     </div>
   );
+};
+
+const ContainerSuplier = styled("div")<{ sideBar: boolean }>`
+  display: ${(props) => {
+    return props.sideBar ? "flex" : "none";
+  }};
+  width: 400px;
+
+  @media (max-width: 740px) {
+    display: block;
+    background-color: blue;
+  }
+`;
+
+const ItemSuplier = {
+  color: "red",
+  backgroundColor: "black",
 };

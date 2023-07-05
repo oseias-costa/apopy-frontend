@@ -17,7 +17,7 @@ export const CreateSuplier = ({
 
   const handleCreate = async () => {
     const data = await createSuplierUseCase(state.name, userId);
-    console.log("handlecreate", data);
+
     if (data.status === 200) {
       dispatch(
         createSuplier({
