@@ -7,7 +7,7 @@ export const GET_CATEGORIES = `
         userId
         }
     }
-`
+`;
 
 export const CREATE_CATEGORY = `
   mutation CreateCategory($categoryInput: CategoryInput) {
@@ -18,7 +18,7 @@ export const CREATE_CATEGORY = `
       userId
     }
   }
-`
+`;
 
 export const UPDATE_CATEGORY = `
   mutation UpdateCategory($categoryEdit: CategoryEdit) {
@@ -29,11 +29,12 @@ export const UPDATE_CATEGORY = `
       userId
     }
   }
-`
+`;
 
 export const DELETE_CATEGORY = `
-  mutation DeleteCategory($categoryEdit: CategoryEdit) {
+  mutation Mutation($categoryEdit: CategoryEdit) {
     deleteCategory(categoryEdit: $categoryEdit) {
       _id
+      }
     }
-`
+`;

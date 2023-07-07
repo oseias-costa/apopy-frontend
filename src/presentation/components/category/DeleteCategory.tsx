@@ -1,22 +1,16 @@
 import { useDispatch } from "react-redux";
-import { updateCategoryUseCase } from "../../../application/category/get-categories.usecase";
-import { updateCategory } from "../../../infra/redux/slice/categorySlice";
+import { deleteCategoryUseCase } from "../../../application/category/get-categories.usecase";
+import { deleteCategory } from "../../../infra/redux/slice/categorySlice";
 import { Modal } from "../global/Modal";
 
 export function DeleteCategory({ state, setState }) {
   const dispatch = useDispatch();
 
   async function handleDeleteCategory() {
-    const req = await updateCategoryUseCase(state._id, state.name);
+    const req = await deleteCategoryUseCase(state._id);
 
     if (req.status === 200) {
-      console.log(req);
-      dispatch(
-        updateCategory({
-          _id: req.data.data.updateCategory._id,
-          name: req.data.data.updateCategory.name,
-        })
-      );
+      dispatch(deleteCategory({ _id: req.data.data.deleteCategory._id }));
       setState({ ...state, openModal: false });
     }
   }

@@ -6,6 +6,7 @@ import { fetchCategories } from "../../../infra/redux/slice/categorySlice";
 import { CategoryState, initialCategoryValue } from "./category.types";
 import { CreateCategory } from "./CreateCategory";
 import { UpdateCategory } from "./UpdateCategory";
+import { DeleteCategory } from "./DeleteCategory";
 
 type typeModal = {
   [key: string]: React.ReactNode;
@@ -25,7 +26,9 @@ export const CategoryList = () => {
     update: (
       <UpdateCategory state={categoryState} setState={setCategoryState} />
     ),
-    // delete: <DeleteSuplier state={suplierState} setState={setSuplierState} />,
+    delete: (
+      <DeleteCategory state={categoryState} setState={setCategoryState} />
+    ),
   };
 
   useEffect(() => {
@@ -51,7 +54,18 @@ export const CategoryList = () => {
           >
             Editar
           </button>
-          <button onClick={() => null}>Excluir</button>
+          <button
+            onClick={() => {
+              setCategoryState({
+                _id: item._id,
+                name: item.name,
+                type: "delete",
+                openModal: true,
+              });
+            }}
+          >
+            Excluir
+          </button>
         </CategoryRow>
       );
     }
