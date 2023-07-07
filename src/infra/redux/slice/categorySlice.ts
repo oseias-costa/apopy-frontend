@@ -1,17 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { CategoryInterface } from "../../../domain/entities/category";
 
-type initialStateProps = {
-  categories: CategoryInterface[];
-};
-
-const initialState: initialStateProps = {
-  categories: [],
-};
-
 const categorySlice = createSlice({
   name: "categoty",
-  initialState,
+  initialState: {
+    categories: [],
+  },
   reducers: {
     fetchCategories: (state, action) => {
       state.categories = action.payload;
@@ -20,11 +14,14 @@ const categorySlice = createSlice({
       state.categories.push(action.payload);
     },
     updateCategory: (state, action) => {
-      state.categories = state.categories.map((item) => {
-        if (item._id === action.payload._id) {
-          item.name = action.payload.name;
+      const { _id, name } = action.payload;
+
+      const updateCategory = state.categories.map((item) => {
+        if (item._id === _id) {
+          item.name = name;
         }
       });
+      state = updateCategory;
     },
     deleteCategory: (state, action) => {
       state.categories = state.categories.filter(

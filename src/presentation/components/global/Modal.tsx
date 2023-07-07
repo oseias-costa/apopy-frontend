@@ -2,18 +2,30 @@ import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { closeModal } from "../../../infra/redux/slice/modalSlice";
 
-export const Modal = ({ children }: { children: React.ReactNode }) => {
-const state = useSelector(state => state.modal.openModal)
-const dispatch = useDispatch()
+export const Modal = ({
+  children,
+  state,
+  setState,
+}: {
+  children: React.ReactNode;
+  state: { openModal: boolean };
+  setState: () => void;
+}) => {
+  const dispatch = useDispatch();
 
-function handleClick(e: HTMLDivElement){
-  if(e.target.id === 'modal'){
-    dispatch(closeModal())
+  function handleClick(e: HTMLDivElement) {
+    if (e.target.id === "modal") {
+      setState({ ...state, openModal: false });
+    }
   }
-}
 
   return (
-    <ModalContainer openModal={state} id="modal" name='oseias' onClick={(e: HTMLDivElement) => handleClick(e)}>
+    <ModalContainer
+      openModal={state?.openModal}
+      id="modal"
+      name="oseias"
+      onClick={(e: HTMLDivElement) => handleClick(e)}
+    >
       <ModalChildren>{children}</ModalChildren>
     </ModalContainer>
   );

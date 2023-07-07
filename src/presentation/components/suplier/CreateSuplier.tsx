@@ -1,13 +1,13 @@
 import { useDispatch } from "react-redux";
-import { closeModal } from "../../../infra/redux/slice/modalSlice";
 import { createSuplierUseCase } from "../../../application/suplier/add-suplier.usecase";
 import { createSuplier } from "../../../infra/redux/slice/suplierSlice";
+import { Modal } from "../global/Modal";
 
 export const CreateSuplier = ({
   state,
   setState,
 }: {
-  state: { id: string; name: string; type: string };
+  state: { id: string; name: string; type: string; openModal: boolean };
   setState: void;
 }) => {
   const dispatch = useDispatch();
@@ -26,21 +26,23 @@ export const CreateSuplier = ({
           userId: userId,
         })
       );
-      dispatch(closeModal());
+      setState({ ...state, openModal: false });
     }
   };
 
   return (
-    <div>
-      <h2>Criar Suplier</h2>
+    <Modal state={state} setState={setState}>
       <div>
-        <input
-          type="text"
-          value={state.name}
-          onChange={(e) => setState({ ...state, name: e.target.value })}
-        />
-        <button onClick={handleCreate}>Editar</button>
+        <h2>Criar Suplier</h2>
+        <div>
+          <input
+            type="text"
+            value={state.name}
+            onChange={(e) => setState({ ...state, name: e.target.value })}
+          />
+          <button onClick={handleCreate}>Editar</button>
+        </div>
       </div>
-    </div>
+    </Modal>
   );
 };

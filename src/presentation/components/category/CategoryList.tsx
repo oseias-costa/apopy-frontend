@@ -2,12 +2,7 @@ import { SetStateAction, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { getCategoriesUseCase } from "../../../application/category/get-categories.usecase";
-import {
-  fetchCategories,
-  updateCategory,
-} from "../../../infra/redux/slice/categorySlice";
-import { openModal } from "../../../infra/redux/slice/modalSlice";
-import { Modal } from "../global/Modal";
+import { fetchCategories } from "../../../infra/redux/slice/categorySlice";
 import { CategoryState, initialCategoryValue } from "./category.types";
 import { CreateCategory } from "./CreateCategory";
 import { UpdateCategory } from "./UpdateCategory";
@@ -50,8 +45,8 @@ export const CategoryList = () => {
                 _id: item._id,
                 name: item.name,
                 type: "update",
+                openModal: true,
               });
-              dispatch(openModal());
             }}
           >
             Editar
@@ -64,16 +59,16 @@ export const CategoryList = () => {
 
   return (
     <div>
-      <Modal children={typeModal[categoryState.type]} />
       <button
         onClick={() => {
-          dispatch(openModal());
+          setCategoryState({ ...state, type: "create", openModal: true });
         }}
       >
         Criar Categoria
       </button>
       <h2>Categorias</h2>
       {listCategories}
+      {typeModal[categoryState.type]}
     </div>
   );
 };
