@@ -74,11 +74,24 @@ export const CategoryList = () => {
               Excluir
             </button>
           </CategoryRow>
-          {item.subcategory?.map((item) => {
+          {item.subcategory?.map((sub) => {
             return (
-              <div key={item} style={{ display: "flex" }}>
-                <p>{item}</p>
-                <button>Update</button>
+              <div key={sub} style={{ display: "flex" }}>
+                <p>{sub}</p>
+                <button
+                  onClick={() => {
+                    setCategoryState({
+                      _id: item._id,
+                      name: item.name,
+                      type: "updateSubcategory",
+                      openModal: true,
+                      newSubcategory: sub,
+                      oldSubcategory: sub,
+                    });
+                  }}
+                >
+                  Update
+                </button>
               </div>
             );
           })}

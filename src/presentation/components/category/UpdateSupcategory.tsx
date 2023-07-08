@@ -4,9 +4,9 @@ export const UpdateSubcategory = ({ state, setState }) => {
   return (
     <Modal state={state} setState={setState}>
       <div>
-          <input value={state.category} disabled={true} />
-          <input value={state.newSubcategory} disabled={true} />
-          <button>Update</button>
+        <input value={state.name} disabled={true} />
+        <input value={state.newSubcategory} disabled={false} />
+        <button>Update</button>
       </div>
     </Modal>
   );
