@@ -7,6 +7,7 @@ import { CategoryState, initialCategoryValue } from "./category.types";
 import { CreateCategory } from "./CreateCategory";
 import { UpdateCategory } from "./UpdateCategory";
 import { DeleteCategory } from "./DeleteCategory";
+import { UpdateSubcategory } from "./UpdateSupcategory";
 
 type typeModal = {
   [key: string]: React.ReactNode;
@@ -29,7 +30,12 @@ export const CategoryList = () => {
     delete: (
       <DeleteCategory state={categoryState} setState={setCategoryState} />
     ),
+    updateSubcategory: (
+      <UpdateSubcategory state={categoryState} setState={setCategoryState} />
+    ),
   };
+
+  console.log(state);
 
   useEffect(() => {
     categories.then((res) =>
@@ -40,33 +46,43 @@ export const CategoryList = () => {
   const listCategories = state.map(
     (item: { _id: string; name: string; subcategory: string[] }) => {
       return (
-        <CategoryRow key={item?._id} style={{ display: "flex" }}>
-          <p style={{ color: "blue", fontWeight: "600" }}>{item?.name}</p>
-          <button
-            onClick={() => {
-              setCategoryState({
-                _id: item._id,
-                name: item.name,
-                type: "update",
-                openModal: true,
-              });
-            }}
-          >
-            Editar
-          </button>
-          <button
-            onClick={() => {
-              setCategoryState({
-                _id: item._id,
-                name: item.name,
-                type: "delete",
-                openModal: true,
-              });
-            }}
-          >
-            Excluir
-          </button>
-        </CategoryRow>
+        <>
+          <CategoryRow key={item?._id} style={{ display: "flex" }}>
+            <p style={{ color: "blue", fontWeight: "600" }}>{item?.name}</p>
+            <button
+              onClick={() => {
+                setCategoryState({
+                  _id: item._id,
+                  name: item.name,
+                  type: "update",
+                  openModal: true,
+                });
+              }}
+            >
+              Editar
+            </button>
+            <button
+              onClick={() => {
+                setCategoryState({
+                  _id: item._id,
+                  name: item.name,
+                  type: "delete",
+                  openModal: true,
+                });
+              }}
+            >
+              Excluir
+            </button>
+          </CategoryRow>
+          {item.subcategory?.map((item) => {
+            return (
+              <div key={item} style={{ display: "flex" }}>
+                <p>{item}</p>
+                <button>Update</button>
+              </div>
+            );
+          })}
+        </>
       );
     }
   );

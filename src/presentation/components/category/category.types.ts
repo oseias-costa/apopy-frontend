@@ -4,6 +4,8 @@ export interface CategoryState {
   type?: string;
   subcategory?: string[];
   openModal: boolean;
+  newSubcategory?: string;
+  oldSubcategory?: string;
 }
 
 export const initialCategoryValue = {
@@ -12,4 +14,6 @@ export const initialCategoryValue = {
   subcategory: [],
   type: "",
   openModal: false,
+  newSubcategory: '',
+  oldSubcategory: '',
 };
