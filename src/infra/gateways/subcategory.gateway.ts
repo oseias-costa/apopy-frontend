@@ -1,32 +1,36 @@
 import { httpAxiosRequest } from "../http/httpAxiosRequest";
-import { CREATE_SUBCATEGORY } from "../queries/subcategory.query";
+import { CREATE_SUBCATEGORY, DELETE_SUBCATEGORY, UPDATE_SUBCATEGORY } from "../queries/subcategory.query";
 
-export async function createSubcategoryGateway(
+export async function updateSubcategoryGateway(
   newSubcategory: string,
   category: string,
   subcategory: string
 ) {
   const variables = {
     subcategoryEdit: {
-      newName: subcategory,
-      name: newSubcategory,
+      newName: newSubcategory,
+      name: subcategory,
       category: category,
     },
   };
 
-  return await httpAxiosRequest(CREATE_SUBCATEGORY, variables);
+  return await httpAxiosRequest(UPDATE_SUBCATEGORY, variables);
 }
 
-export async function updateSubcategoryGateway() {
+export async function createSubcategoryGateway() {
   {
   }
 
   return await httpAxiosRequest();
 }
 
-export async function deleteSubcategoryGateway() {
-  {
+export async function deleteSubcategoryGateway(categoryId: string, subcategory: string) {
+  const variables = {
+    subcategoryEdit: {
+      name: subcategory,
+      category: categoryId,
+    },
   }
 
-  return await httpAxiosRequest();
+  return await httpAxiosRequest(DELETE_SUBCATEGORY, variables);
 }

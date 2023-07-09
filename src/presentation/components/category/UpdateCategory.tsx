@@ -10,7 +10,6 @@ export function UpdateCategory({ state, setState }) {
     const req = await updateCategoryUseCase(state._id, state.name);
 
     if (req.status === 200) {
-      console.log(req);
       dispatch(
         updateCategory({
           _id: req.data.data.updateCategory._id,

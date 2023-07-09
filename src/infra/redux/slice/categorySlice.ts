@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { CategoryInterface } from "../../../domain/entities/category";
 
 const categorySlice = createSlice({
   name: "categoty",
@@ -28,13 +27,39 @@ const categorySlice = createSlice({
         (item) => item._id !== action.payload._id
       );
     },
+
+    updateSubcategory: (state, action) => {
+      const updateSubcategory = state.categories.map((item) => {
+        if(item._id === action.payload._id){
+          const i = item.subcategory.indexOf(action.payload.oldSubcategory)
+          item.subcategory[i] = action.payload.newSubcategory
+        }
+      })
+       state = updateSubcategory
+
+        },
+        deleteSubcategory: (state, action) => {
+          const newState = state.categories.map(item => {
+            if(item._id === action.payload._id){
+              item.subcategory = item.subcategory?.filter(sub => {
+                sub !== action.payload.oldSubcategory
+              })
+              // const i = item.subcategory.indexOf(action.payload.oldSubcategory)
+              // item.subcategory.splice([i],[i])
+            }
+          })
+          state = newState
+        }
+    }
   },
-});
+);
 
 export const {
   fetchCategories,
   createCategory,
   updateCategory,
   deleteCategory,
+  updateSubcategory,
+  deleteSubcategory
 } = categorySlice.actions;
 export default categorySlice.reducer;

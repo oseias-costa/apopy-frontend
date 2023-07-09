@@ -8,6 +8,7 @@ import { CreateCategory } from "./CreateCategory";
 import { UpdateCategory } from "./UpdateCategory";
 import { DeleteCategory } from "./DeleteCategory";
 import { UpdateSubcategory } from "./UpdateSupcategory";
+import { DeleteSubcategory } from "./DeleteSubcategory";
 
 type typeModal = {
   [key: string]: React.ReactNode;
@@ -32,6 +33,9 @@ export const CategoryList = () => {
     ),
     updateSubcategory: (
       <UpdateSubcategory state={categoryState} setState={setCategoryState} />
+    ),
+    deleteSubcategory: (
+      <DeleteSubcategory state={categoryState} setState={setCategoryState} />
     ),
   };
 
@@ -78,7 +82,7 @@ export const CategoryList = () => {
             return (
               <div key={sub} style={{ display: "flex" }}>
                 <p>{sub}</p>
-                <button
+                <a
                   onClick={() => {
                     setCategoryState({
                       _id: item._id,
@@ -90,8 +94,17 @@ export const CategoryList = () => {
                     });
                   }}
                 >
-                  Update
-                </button>
+                  Update subcategoria
+                </a>
+                <a onClick={() => {
+                  setCategoryState({
+                    _id: item._id,
+                    name: item.name,
+                    type: "deleteSubcategory",
+                    openModal: true,
+                    oldSubcategory: sub,
+                  });
+                }}>Delete subcategoria</a>
               </div>
             );
           })}
