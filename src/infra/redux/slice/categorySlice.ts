@@ -41,14 +41,19 @@ const categorySlice = createSlice({
         deleteSubcategory: (state, action) => {
           const newState = state.categories.map(item => {
             if(item._id === action.payload._id){
-              item.subcategory = item.subcategory?.filter(sub => {
-                sub !== action.payload.oldSubcategory
-              })
-              // const i = item.subcategory.indexOf(action.payload.oldSubcategory)
-              // item.subcategory.splice([i],[i])
+              const i = item.subcategory.indexOf(action.payload.oldSubcategory)
+              item.subcategory.splice([i],[i])
             }
           })
           state = newState
+        },
+        createSubcategory: (state, action) => {
+          const newState = state.categories.map(item => {
+            if(item._id === action.payload._id){
+              item.subcategory.push(action.payload.newSubcategory)
+              }
+            })
+            state = newState
         }
     }
   },
@@ -60,6 +65,7 @@ export const {
   updateCategory,
   deleteCategory,
   updateSubcategory,
-  deleteSubcategory
+  deleteSubcategory,
+  createSubcategory
 } = categorySlice.actions;
 export default categorySlice.reducer;

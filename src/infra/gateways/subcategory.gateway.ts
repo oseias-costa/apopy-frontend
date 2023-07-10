@@ -17,11 +17,15 @@ export async function updateSubcategoryGateway(
   return await httpAxiosRequest(UPDATE_SUBCATEGORY, variables);
 }
 
-export async function createSubcategoryGateway() {
-  {
+export async function createSubcategoryGateway(categoryId: string, subcategory: string) {
+  const variables = {
+    subcategoryInput: {
+      name: subcategory,
+      category: categoryId,
+    }
   }
 
-  return await httpAxiosRequest();
+  return await httpAxiosRequest(CREATE_SUBCATEGORY, variables);
 }
 
 export async function deleteSubcategoryGateway(categoryId: string, subcategory: string) {

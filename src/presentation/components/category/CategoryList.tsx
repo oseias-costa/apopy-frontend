@@ -9,6 +9,7 @@ import { UpdateCategory } from "./UpdateCategory";
 import { DeleteCategory } from "./DeleteCategory";
 import { UpdateSubcategory } from "./UpdateSupcategory";
 import { DeleteSubcategory } from "./DeleteSubcategory";
+import { CreateSubcategory } from "./CreateSubcategory";
 
 type typeModal = {
   [key: string]: React.ReactNode;
@@ -37,9 +38,10 @@ export const CategoryList = () => {
     deleteSubcategory: (
       <DeleteSubcategory state={categoryState} setState={setCategoryState} />
     ),
+    createSubcategory: (
+      <CreateSubcategory state={categoryState} setState={setCategoryState} />
+    ),
   };
-
-  console.log(state);
 
   useEffect(() => {
     categories.then((res) =>
@@ -77,6 +79,15 @@ export const CategoryList = () => {
             >
               Excluir
             </button>
+            <button onClick={() => {
+              setCategoryState({
+                _id: item._id,
+                name: item.name,
+                type: "createSubcategory",
+                newSubcategory: '',
+                openModal: true,
+              });
+            }}>criar Subcategoria</button>
           </CategoryRow>
           {item.subcategory?.map((sub) => {
             return (
