@@ -31,6 +31,10 @@
       "name": "preview",
       "command": "yarn preview",
       "runAtStart": false
+    },
+    "test": {
+      "name": "test",
+      "command": "test"
     }
   }
 }
