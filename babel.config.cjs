@@ -1,5 +1,4 @@
-export default async function () {
-  return {
+module.exports = {
     presets: [
       [
         "@babel/preset-env",
@@ -13,5 +12,4 @@ export default async function () {
       ["@babel/preset-react", { runtime: "automatic" }],
       "@babel/preset-typescript",
     ],
-  };
-}
+  }
