@@ -20,7 +20,7 @@ export const CategoryList = () => {
     useState<SetStateAction<CategoryState>>(initialCategoryValue);
   const dispatch = useDispatch();
   const categories = getCategoriesUseCase();
-  const state = useSelector((state) => state.category.categories);
+  const state = useSelector((state) => state.category?.categories);
 
   const typeModal: typeModal = {
     create: (
@@ -49,7 +49,7 @@ export const CategoryList = () => {
     );
   }, []);
 
-  const listCategories = state.map(
+  const listCategories = state?.map(
     (item: { _id: string; name: string; subcategory: string[] }) => {
       return (
         <>
@@ -79,15 +79,19 @@ export const CategoryList = () => {
             >
               Excluir
             </button>
-            <button onClick={() => {
-              setCategoryState({
-                _id: item._id,
-                name: item.name,
-                type: "createSubcategory",
-                newSubcategory: '',
-                openModal: true,
-              });
-            }}>criar Subcategoria</button>
+            <button
+              onClick={() => {
+                setCategoryState({
+                  _id: item._id,
+                  name: item.name,
+                  type: "createSubcategory",
+                  newSubcategory: "",
+                  openModal: true,
+                });
+              }}
+            >
+              criar Subcategoria
+            </button>
           </CategoryRow>
           {item.subcategory?.map((sub) => {
             return (
@@ -107,15 +111,19 @@ export const CategoryList = () => {
                 >
                   Update subcategoria
                 </a>
-                <a onClick={() => {
-                  setCategoryState({
-                    _id: item._id,
-                    name: item.name,
-                    type: "deleteSubcategory",
-                    openModal: true,
-                    oldSubcategory: sub,
-                  });
-                }}>Delete subcategoria</a>
+                <a
+                  onClick={() => {
+                    setCategoryState({
+                      _id: item._id,
+                      name: item.name,
+                      type: "deleteSubcategory",
+                      openModal: true,
+                      oldSubcategory: sub,
+                    });
+                  }}
+                >
+                  Delete subcategoria
+                </a>
               </div>
             );
           })}
