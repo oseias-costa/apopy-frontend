@@ -4,21 +4,22 @@ import { loginUseCase } from "../../../application/acess/login.usecase";
 export function Login() {
   const [login, setLogin] = useState({ email: "", password: "" });
 
-  async function handleLogin(){
-   const req = await loginUseCase(login.email, login.password)
+  async function handleLogin(e) {
+    e.preventDefault();
+    const req = await loginUseCase(login.email, login.password);
 
-   if(req.status === 200){
-    console.log(req)
-   }
+    if (req.status === 200) {
+      console.log(req);
+      localStorage.setItem(
+        "apopyToken",
+        JSON.stringify(req.data.data.loginUser.token)
+      );
+      console.log(`
+                 Salvo no local storage
+                 ${localStorage.getItem("apopyToken")}
+             `);
+    }
   }
-
-  // if (data) {
-  //   localStorage.setItem("apopyToken", JSON.stringify(data.loginUser.token));
-  //   console.log(`
-  //           Salvo no local storage
-  //           ${localStorage.getItem("apopyToken")}
-  //       `);
-  // }
 
   return (
     <div>
@@ -34,7 +35,7 @@ export function Login() {
           value={login.password}
           onChange={(e) => setLogin({ ...login, password: e.target.value })}
         />
-        <button type="submit" onClick={handleLogin}>
+        <button type="submit" onClick={(e) => handleLogin(e)}>
           Login
         </button>
       </form>
