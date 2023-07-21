@@ -6,17 +6,22 @@ import { CategoryList } from "../CategoryList";
 const mockStore = configureStore([]);
 
 describe("CategoryList Component", () => {
-  it("hello word", () => {
+
+  const renderComponent = () => {
     const initialState = {
       categories: { _id: "01", name: "Categorias", userId: "001" },
     };
     const store = mockStore(initialState);
 
-    render(
+    return render(
       <Provider store={store}>
         <CategoryList />
       </Provider>
     );
+  }
+  
+  it("should render correctly", () => {
+    renderComponent()
 
     const nova = screen.getByText("Categorias");
     expect(nova).toBeInTheDocument();
