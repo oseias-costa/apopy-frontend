@@ -1,4 +1,4 @@
-import { httpAxiosRequest } from "../http/httpAxiosRequest";
+import { httpClient } from "../http/httpClient";
 import {
   CREATE_CATEGORY,
   DELETE_CATEGORY,
@@ -9,14 +9,14 @@ import {
 export async function fetchCategoryGateway() {
   const variables = { userId: "6451a787de4c08d54ed8da35" };
 
-  return await httpAxiosRequest(GET_CATEGORIES, variables);
+  return await httpClient(GET_CATEGORIES, variables);
 }
 
 export async function createCategoryGateway(name: string, userId: string) {
   const variables = {
     categoryInput: { name: name, userId: userId },
   };
-  return await httpAxiosRequest(CREATE_CATEGORY, variables);
+  return await httpClient(CREATE_CATEGORY, variables);
 }
 
 export async function updateCategoryGateway(id: string, name: string) {
@@ -26,11 +26,11 @@ export async function updateCategoryGateway(id: string, name: string) {
       name: name,
     },
   };
-  return await httpAxiosRequest(UPDATE_CATEGORY, variables);
+  return await httpClient(UPDATE_CATEGORY, variables);
 }
 
 export async function deleteCategoryGateway(id: string) {
   const variables = { categoryEdit: { _id: id } };
 
-  return await httpAxiosRequest(DELETE_CATEGORY, variables);
+  return await httpClient(DELETE_CATEGORY, variables);
 }

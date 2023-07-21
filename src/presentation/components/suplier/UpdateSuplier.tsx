@@ -1,7 +1,7 @@
 import updateSuplierUseCase from "../../../application/suplier/update-suplier.usecase";
 import { useDispatch } from "react-redux";
-import { closeModal } from "../../../infra/redux/slice/modalSlice";
-import { updateSuplier } from "../../../infra/redux/slice/suplierSlice";
+import { closeModal } from "../../redux/slice/modalSlice";
+import { updateSuplier } from "../../redux/slice/suplierSlice";
 import { ItemProps } from "./SuplierList";
 import { Modal } from "../global/Modal";
 

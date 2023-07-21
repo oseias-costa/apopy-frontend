@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux"
 import { createSubcategoryUseCase } from "../../../application/category/subcategory.usecase"
-import { createSubcategory } from "../../../infra/redux/slice/categorySlice"
+import { createSubcategory } from "../../redux/slice/categorySlice"
 import { Modal } from "../global/Modal"
 
 

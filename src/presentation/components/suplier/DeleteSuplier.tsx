@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { removeSuplier } from "../../../infra/redux/slice/suplierSlice";
+import { removeSuplier } from "../../redux/slice/suplierSlice";
 import { ItemProps } from "./SuplierList";
 import { deleteSuplierUseCase } from "../../../application/suplier/delete-suplier.usecase";
 import { Modal } from "../global/Modal";

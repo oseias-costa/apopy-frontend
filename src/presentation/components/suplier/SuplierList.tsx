@@ -4,7 +4,7 @@ import { CreateSuplier } from "./CreateSuplier";
 import { DeleteSuplier } from "./DeleteSuplier";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { fetchData } from "../../../infra/redux/slice/suplierSlice";
+import { fetchData } from "../../redux/slice/suplierSlice";
 import getSupliersUseCase from "../../../application/suplier/get-supliers.usecase";
 import styled from "styled-components";
 

@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { createSuplierUseCase } from "../../../application/suplier/add-suplier.usecase";
-import { createSuplier } from "../../../infra/redux/slice/suplierSlice";
+import { createSuplier } from "../../redux/slice/suplierSlice";
 import { Modal } from "../global/Modal";
 
 export const CreateSuplier = ({

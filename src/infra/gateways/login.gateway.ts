@@ -1,4 +1,4 @@
-import { httpAxiosRequest } from "../http/httpAxiosRequest"
+import { httpClient } from "../http/httpClient"
 import { LOGIN } from "../queries/login.query"
 
 export async function loginGateway(email: string, password: string){
@@ -10,6 +10,6 @@ const variables = {
     }
 }
 
-return await httpAxiosRequest(LOGIN, variables)
+return await httpClient(LOGIN, variables)
 
 }

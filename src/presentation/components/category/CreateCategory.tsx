@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { createCategoryUseCase } from "../../../application/category/get-categories.usecase";
-import { createCategory } from "../../../infra/redux/slice/categorySlice";
+import { createCategory } from "../../redux/slice/categorySlice";
 import { Modal } from "../global/Modal";
 
 export function CreateCategory({ state, setState }) {

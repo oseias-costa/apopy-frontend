@@ -1,4 +1,4 @@
-import { httpAxiosRequest } from "../http/httpAxiosRequest"
+import { httpClient } from "../http/httpClient"
 import { REGISTER_USER } from "../queries/register-user"
 
 export async function registerGateway(){
@@ -6,5 +6,5 @@ export async function registerGateway(){
         
     }
 
-    return await httpAxiosRequest(REGISTER_USER, variables)
+    return await httpClient(REGISTER_USER, variables)
 }

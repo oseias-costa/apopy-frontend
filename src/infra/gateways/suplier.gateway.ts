@@ -1,8 +1,8 @@
-import { httpAxiosRequest } from "../http/httpAxiosRequest";
+import { httpClient } from "../http/httpClient";
 import { CREATE_SUPLIER, DELETE_SUPLIER, GET_SUPLIERS, UPDATE_SUPLIER } from "../queries/suplier.query";
 
 export const getSupliersGateway = async () => {
-  return await httpAxiosRequest(GET_SUPLIERS, {})
+  return await httpClient(GET_SUPLIERS, {})
 };
 
 export async function createSuplierGateway(
@@ -14,7 +14,7 @@ export async function createSuplierGateway(
           userid: userId,
         }
   }
-  return await httpAxiosRequest(CREATE_SUPLIER, variables) 
+  return await httpClient(CREATE_SUPLIER, variables) 
 }
 
 export default async function updateSuplierGateway(
@@ -26,11 +26,11 @@ export default async function updateSuplierGateway(
           name: name
         }
     }
-  return await httpAxiosRequest(UPDATE_SUPLIER, variables)
+  return await httpClient(UPDATE_SUPLIER, variables)
 }
 
 export async function deleteSuplierGateway(id: string) {
   const variables = { id: id }
 
-  return await httpAxiosRequest(DELETE_SUPLIER, variables)
+  return await httpClient(DELETE_SUPLIER, variables)
 }

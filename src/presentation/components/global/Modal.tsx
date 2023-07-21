@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
-import { closeModal } from "../../../infra/redux/slice/modalSlice";
+import { closeModal } from "../../redux/slice/modalSlice";
 
 export const Modal = ({
   children,
