@@ -4,6 +4,8 @@ export const LOGIN = `
         name
         email
         token
+        _id
+        phone
         }
     }
-`
+`;
