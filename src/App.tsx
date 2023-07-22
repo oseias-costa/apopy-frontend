@@ -17,19 +17,17 @@ import { fetchUser } from "./presentation/redux/slice/userSlice";
 
 function App() {
 const dispatch = useDispatch()
+const getUser = userUseCase()
+const user = null
 
-  useEffect( () => {
+  useEffect(() => {
 
-    async () => {
-      const res = await userUseCase()
-      if(res.status === 200){
-        console.log(res)
-        dispatch(fetchUser(res.data.data.user))
-      }
-    }
+      getUser.then(res => console.log('novo', res))
+        // dispatch(fetchUser(res.data.data.user))
+      
+
   }, [])
 
-  const user = true;
 
   const router = createBrowserRouter(
     createRoutesFromElements(

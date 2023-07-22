@@ -1,5 +1,5 @@
 
-const USER = `
+export const USER = `
     query User{
         user {
             _id
