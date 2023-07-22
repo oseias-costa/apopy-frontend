@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { loginUseCase } from "../../../application/acess/login.usecase";
+import { useNavigate } from "react-router-dom";
 
 export function Login() {
+  const navigate = useNavigate()
   const [login, setLogin] = useState({ email: "", password: "" });
 
   async function handleLogin(e) {
@@ -12,12 +14,13 @@ export function Login() {
       console.log(req);
       localStorage.setItem(
         "apopyToken",
-        JSON.stringify('Bearer ' + req.data.data.loginUser.token)
+        JSON.stringify("Bearer " + req.data.data.loginUser.token)
       );
       console.log(`
                  Salvo no local storage
                  ${localStorage.getItem("apopyToken")}
              `);
+      return navigate("/");
     }
   }
 
