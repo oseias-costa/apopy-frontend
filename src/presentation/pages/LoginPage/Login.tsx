@@ -12,7 +12,7 @@ export function Login() {
       console.log(req);
       localStorage.setItem(
         "apopyToken",
-        JSON.stringify(req.data.data.loginUser.token)
+        JSON.stringify('Bearer ' + req.data.data.loginUser.token)
       );
       console.log(`
                  Salvo no local storage

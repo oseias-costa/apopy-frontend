@@ -8,3 +8,7 @@ export async function registerGateway(){
 
     return await httpClient(REGISTER_USER, variables)
 }
+
+export async function userGateway(){
+    return httpClient(USER, {})
+}
