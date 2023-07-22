@@ -9,8 +9,8 @@ export async function getCategoriesUseCase() {
   return await fetchCategoryGateway();
 }
 
-export async function createCategoryUseCase(name: string, userId: string) {
-  return await createCategoryGateway(name, userId);
+export async function createCategoryUseCase(name: string) {
+  return await createCategoryGateway(name);
 }
 
 export async function updateCategoryUseCase(id: string, name: string) {

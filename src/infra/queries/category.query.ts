@@ -1,6 +1,6 @@
 export const GET_CATEGORIES = `
-    query Categories($userId: ID!) {
-        categories(userId: $userId) {
+    query Categories {
+        categories {
         _id
         name
         subcategory

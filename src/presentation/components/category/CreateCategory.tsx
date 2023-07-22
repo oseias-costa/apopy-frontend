@@ -7,8 +7,7 @@ export function CreateCategory({ state, setState }) {
   const dispatch = useDispatch();
 
   async function handleCreateCategory() {
-    const userId = "6451a787de4c08d54ed8da35";
-    const req = await createCategoryUseCase(state.name, userId);
+    const req = await createCategoryUseCase(state.name);
 
     if (req.status === 200) {
       dispatch(createCategory(req.data.data.createCategory));

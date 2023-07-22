@@ -7,14 +7,12 @@ import {
 } from "../queries/category.query";
 
 export async function fetchCategoryGateway() {
-  const variables = { userId: "6451a787de4c08d54ed8da35" };
-
-  return await httpClient(GET_CATEGORIES, variables);
+  return await httpClient(GET_CATEGORIES, {});
 }
 
-export async function createCategoryGateway(name: string, userId: string) {
+export async function createCategoryGateway(name: string) {
   const variables = {
-    categoryInput: { name: name, userId: userId },
+    categoryInput: { name: name },
   };
   return await httpClient(CREATE_CATEGORY, variables);
 }
