@@ -3,7 +3,16 @@ import { loginUseCase } from "../../../application/acess/login.usecase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../redux/slice/userSlice";
-import { Container } from "../../styles/LoginStyles/login.styles";
+import {
+  Container,
+  FormContainer,
+  IconLogo,
+  Text,
+  Link,
+} from "../../styles/LoginStyles/login.styles";
+import Logo from "../../assets/logo/apopy-logo.svg";
+import { Input } from "../../styles/GlobalStyles/input.style";
+import { Button } from "../../styles/GlobalStyles/button.style";
 
 export function Login() {
   const navigate = useNavigate();
@@ -32,22 +41,26 @@ export function Login() {
 
   return (
     <Container>
-      <h1>Login</h1>
-      <form>
-        <input
+      <IconLogo src={Logo} alt="Logo Apopy" />
+      <FormContainer>
+        <Text>Entrar</Text>
+        <Input
           type="text"
           value={login.email}
           onChange={(e) => setLogin({ ...login, email: e.target.value })}
+          placeholder="Email"
         />
-        <input
+        <Input
           type="text"
           value={login.password}
           onChange={(e) => setLogin({ ...login, password: e.target.value })}
+          placeholder="Senha"
         />
-        <button type="submit" onClick={(e) => handleLogin(e)}>
+        <Button type="submit" onClick={(e) => handleLogin(e)}>
           Login
-        </button>
-      </form>
+        </Button>
+        <Link>Recuperar a senha</Link>
+      </FormContainer>
     </Container>
   );
 }
