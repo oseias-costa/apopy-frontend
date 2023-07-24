@@ -1,4 +1,3 @@
-import { Modal } from "../global/Modal";
 import { UpdateSuplier } from "./UpdateSuplier";
 import { CreateSuplier } from "./CreateSuplier";
 import { DeleteSuplier } from "./DeleteSuplier";
@@ -46,7 +45,7 @@ export const SuplierList = () => {
 
   const supliersList = data?.map((item) => {
     return (
-      <ContainerSuplier sideBar={true} key={item._id}>
+      <ContainerSuplier key={item._id}>
         <p style={ItemSuplier}>{item.name}</p>
         <button
           onClick={() => {
@@ -97,10 +96,8 @@ export const SuplierList = () => {
   );
 };
 
-const ContainerSuplier = styled("div")<{ sideBar: boolean }>`
-  display: ${(props) => {
-    return props.sideBar ? "flex" : "none";
-  }};
+const ContainerSuplier = styled("div")`
+  display:  "flex";
   width: 400px;
 
   @media (max-width: 740px) {

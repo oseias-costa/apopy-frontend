@@ -5,13 +5,11 @@ export const getSupliersGateway = async () => {
   return await httpClient(GET_SUPLIERS, {})
 };
 
-export async function createSuplierGateway(
-  { name, userId }: { name: string; userId: string }) {
+export async function createSuplierGateway({ name }: { name: string }) {
 
   const variables = {
         suplierInput: {
           name: name,
-          userid: userId,
         }
   }
   return await httpClient(CREATE_SUPLIER, variables) 

@@ -1,4 +1,3 @@
-import { AxiosResponse } from "axios";
 import { SuplierProps } from "../../domain/entities/suplier";
 import { getSupliersGateway } from "../../infra/gateways/suplier.gateway";
 

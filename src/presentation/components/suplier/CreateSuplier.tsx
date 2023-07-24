@@ -11,19 +11,15 @@ export const CreateSuplier = ({
   setState: void;
 }) => {
   const dispatch = useDispatch();
-  const userId = "6451a787de4c08d54ed8da35";
-
-  console.log(state, userId);
 
   const handleCreate = async () => {
-    const data = await createSuplierUseCase(state.name, userId);
+    const data = await createSuplierUseCase(state.name);
 
     if (data.status === 200) {
       dispatch(
         createSuplier({
           name: state.name,
-          _id: data.data.createSuplier?._id,
-          userId: userId,
+          _id: data.data.createSuplier?._id
         })
       );
       setState({ ...state, openModal: false });

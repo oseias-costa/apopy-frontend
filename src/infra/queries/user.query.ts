@@ -10,3 +10,15 @@ export const USER = `
         }
     }
 `
+
+export const REGISTER = `
+    mutation Register($registerInput: RegisterInput) {
+        registerUser(registerInput: $registerInput) {
+            _id
+            email
+            name
+            phone
+            token
+        }
+    }
+`

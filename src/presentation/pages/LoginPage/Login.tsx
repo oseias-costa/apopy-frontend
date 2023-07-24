@@ -1,31 +1,37 @@
 import { useState } from "react";
 import { loginUseCase } from "../../../application/acess/login.usecase";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUser } from "../../redux/slice/userSlice";
+import { Container } from "../../styles/LoginStyles/Login.styles";
 
 export function Login() {
   const navigate = useNavigate()
   const [login, setLogin] = useState({ email: "", password: "" });
+  const dispatch = useDispatch()
+  const user = useSelector((state: any) => state.user.user);
 
   async function handleLogin(e) {
     e.preventDefault();
     const req = await loginUseCase(login.email, login.password);
 
     if (req.status === 200) {
-      console.log(req);
       localStorage.setItem(
         "apopyToken",
         JSON.stringify("Bearer " + req.data.data.loginUser.token)
       );
-      console.log(`
-                 Salvo no local storage
-                 ${localStorage.getItem("apopyToken")}
-             `);
-      return navigate("/");
+      dispatch(fetchUser(req.data.data.loginUser));
+      
+      navigate("/dashboard")
     }
   }
 
+  if(user){
+    return navigate('/dashboard')
+  }
+
   return (
-    <div>
+    <Container>
       <h1>Login</h1>
       <form>
         <input
@@ -42,6 +48,6 @@ export function Login() {
           Login
         </button>
       </form>
-    </div>
+    </Container>
   );
 }
