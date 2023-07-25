@@ -4,13 +4,17 @@ import { useNavigate } from "react-router-dom"
 import { registerUseCase } from "../../../application/acess/register.usecase"
 import { RegisterUser } from "../../../domain/entities/user"
 import { fetchUser } from "../../redux/slice/userSlice"
+import { ButtonLogin, Container, FormContainer, IconLogo, InputLogin, Terms, TermsLink, Text } from "../../styles/PageStyles/acess.styles"
+import Logo from "../../assets/logo/apopy-logo.svg";
 
 export const Register = () => {
     const [ register, setRegister ] = useState<RegisterUser>(
-        { name: "", email: "",  password: "", phone: "" })
+        { name: "", email: "",  password: "0", phone: "" })
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const user = useSelector((state: any) => state.user.user);
+
+        console.log('register', register.phone)
 
     async function handleRegister(e){
         e.preventDefault();
@@ -21,7 +25,7 @@ export const Register = () => {
             phone: register.phone
         })
 
-        if(req.status === 200){
+        if(req.data.data.registerUser){
             localStorage.setItem(
                 "apopyToken",
                 JSON.stringify("Bearer " + req.data.data.registerUser.token)
@@ -30,6 +34,8 @@ export const Register = () => {
             
             return navigate("/dashboard")
         }
+
+        console.log('esse é a requisição', req)
     }
 
     if(user){
@@ -37,30 +43,34 @@ export const Register = () => {
       }
 
     return(
-        <div>
-            <h1>Register</h1>
-            <input 
+        <Container>
+            <IconLogo src={Logo} alt="Logo Apopy" />
+            <FormContainer>
+            <Text>Criar uma conta</Text>
+            <InputLogin
                 key='name' 
-                placeholder="Seu nome"  
-                label="Nome Completo" 
+                placeholder="Nome completo"  
                 onChange={(e) => setRegister({...register, name: e.target.value})}
             />
-            <input 
-                key='email' placeholder="Seu email" 
-                label="Email" 
-                onChange={(e) => setRegister({...register, email: e.target.value})}
-            />
-            <input 
-                key='phone' placeholder="Seu telefone" 
-                label="Telefone" 
+            <InputLogin 
+                key='email' 
+                placeholder="Número do celular" 
                 onChange={(e) => setRegister({...register, phone: e.target.value})}
             />
-            <input 
-                key='password' placeholder="Crie uma semja" 
-                label="Senha" 
+            <InputLogin 
+                key='phone' 
+                placeholder="Email" 
+                onChange={(e) => setRegister({...register, email: e.target.value})}
+            />
+            <InputLogin 
+                key='password' 
+                placeholder="Senha" 
                 onChange={(e) => setRegister({...register, password: e.target.value})}
             />
-            <button type="submit" onClick={(e) => handleRegister(e)}>Cadastrar</button>
-        </div>
+            <Terms>Ao se cadastrar, você concorda com nossos <TermsLink>Termos</TermsLink> e <TermsLink>Política de Privacidade</TermsLink>.</Terms>
+            <ButtonLogin type="submit" onClick={(e) => handleRegister(e)}>Cadastrar</ButtonLogin>
+            <Terms>Já tem conta? <TermsLink onClick={() => navigate('/login')}>Login</TermsLink></Terms>
+            </FormContainer>
+        </Container>
     )
 }

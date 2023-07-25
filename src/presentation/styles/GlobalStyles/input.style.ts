@@ -16,4 +16,11 @@ export const Input = styled.input`
   :-ms-input-placeholder {
     color: #8a8887;
   }
+
+  &:focus {
+    outline: none;
+    border: 2px solid #049dd9;
+    padding: 7px;
+    transition: border-color 0.4s ease-in-out;
+  }
 `;

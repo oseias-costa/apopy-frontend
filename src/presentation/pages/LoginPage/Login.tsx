@@ -9,22 +9,26 @@ import {
   IconLogo,
   Text,
   Link,
-} from "../../styles/LoginStyles/login.styles";
+  InputLogin,
+  ButtonLogin,
+} from "../../styles/PageStyles/acess.styles";
 import Logo from "../../assets/logo/apopy-logo.svg";
-import { Input } from "../../styles/GlobalStyles/input.style";
-import { Button } from "../../styles/GlobalStyles/button.style";
+import { Spinner } from "./Spinner";
+import { ErrorLogin } from "./ErrorLogin";
 
 export function Login() {
   const navigate = useNavigate();
+  const [ loginState, setLoginState] = useState({loading: false, error: ''})
   const [login, setLogin] = useState({ email: "", password: "" });
   const dispatch = useDispatch();
   const user = useSelector((state: any) => state.user.user);
 
   async function handleLogin(e) {
     e.preventDefault();
+    setLoginState({error: '', loading: true})
     const req = await loginUseCase(login.email, login.password);
-
-    if (req.status === 200) {
+    console.log(req)
+    if (req.data.data.loginUser) {
       localStorage.setItem(
         "apopyToken",
         JSON.stringify("Bearer " + req.data.data.loginUser.token)
@@ -32,33 +36,43 @@ export function Login() {
       dispatch(fetchUser(req.data.data.loginUser));
 
       navigate("/dashboard");
+      setLoginState({...loginState, loading: false})
     }
+
+    if (req.data.errors){
+      setLoginState({ error: 'Email ou Senha incorreta', loading: false })
+    } 
   }
 
   if (user) {
     return navigate("/dashboard");
-  }
+  } 
 
   return (
     <Container>
       <IconLogo src={Logo} alt="Logo Apopy" />
       <FormContainer>
         <Text>Entrar</Text>
-        <Input
+        { loginState.error ? <ErrorLogin /> : null }
+        <InputLogin
           type="text"
           value={login.email}
           onChange={(e) => setLogin({ ...login, email: e.target.value })}
           placeholder="Email"
         />
-        <Input
-          type="text"
+        <InputLogin
+          type="password"
           value={login.password}
           onChange={(e) => setLogin({ ...login, password: e.target.value })}
           placeholder="Senha"
         />
-        <Button type="submit" onClick={(e) => handleLogin(e)}>
-          Login
-        </Button>
+        <ButtonLogin 
+          type="submit" 
+          onClick={(e) => handleLogin(e)}
+          disabled={!loginState.loading}
+        >
+          { loginState.loading ?  <Spinner /> : 'Login' }
+        </ButtonLogin>
         <Link>Recuperar a senha</Link>
       </FormContainer>
     </Container>
