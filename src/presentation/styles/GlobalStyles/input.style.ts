@@ -7,6 +7,7 @@ export const Input = styled.input`
   padding: 8px;
   margin-top: 5px;
   width: 200px;
+  font-family: var(--font-primary);
 
   ::placeholder,
   ::-webkit-input-placeholder {
@@ -15,6 +16,7 @@ export const Input = styled.input`
   }
   :-ms-input-placeholder {
     color: #8a8887;
+    font-family: var(--font-primary);
   }
 
   &:focus {
