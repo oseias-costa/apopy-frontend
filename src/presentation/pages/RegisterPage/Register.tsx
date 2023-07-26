@@ -17,6 +17,7 @@ import {
 } from "../../styles/PageStyles/acess.styles";
 import Logo from "../../assets/logo/apopy-logo.svg";
 import { registerError } from "./erros";
+import { useLogin } from "../../hooks/useLogin";
 
 export const Register = () => {
   const [register, setRegister] = useState<RegisterUser>({
@@ -29,35 +30,36 @@ export const Register = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state: any) => state.user?.user);
+  const { handleRegister } = useLogin(register, user, setError)
 
-  async function handleRegister(e) {
-    e.preventDefault();
-    const req = await registerUseCase({
-      name: register.name,
-      email: register.email,
-      password: register.password,
-      phone: register.phone,
-    });
+  // async function handleRegister(e) {
+  //   e.preventDefault();
+  //   const req = await registerUseCase({
+  //     name: register.name,
+  //     email: register.email,
+  //     password: register.password,
+  //     phone: register.phone,
+  //   });
 
-    if (req.data.data.registerUser) {
-      localStorage.setItem(
-        "apopyToken",
-        JSON.stringify("Bearer " + req.data.data.registerUser.token)
-      );
-      dispatch(fetchUser(req.data.data.user));
+  //   if (req.data.data.registerUser) {
+  //     localStorage.setItem(
+  //       "apopyToken",
+  //       JSON.stringify("Bearer " + req.data.data.registerUser.token)
+  //     );
+  //     dispatch(fetchUser(req.data.data.user));
 
-      return navigate("/dashboard");
-    }
+  //     return navigate("/dashboard");
+  //   }
 
-    if (req.data.errors) {
-      const err = req.data.errors[0].message;
-      registerError(err, setError)
-    }
-  }
+  //   if (req.data.errors) {
+  //     const err = req.data.errors[0].message;
+  //     registerError(err, setError)
+  //   }
+  // }
 
-  if (user) {
-    return navigate("/dashboard");
-  }
+  // if (user) {
+  //   return navigate("/dashboard");
+  // }
 
   return (
     <Container>
@@ -74,7 +76,7 @@ export const Register = () => {
           }}
         />
         <InputLogin
-          error={error.error === "phone" ? 1 : 0}
+          error={Boolean(error.error === "phone")}
           placeholder="Número do celular"
           onChange={(e) => {
             setRegister({ ...register, phone: e.target.value });
