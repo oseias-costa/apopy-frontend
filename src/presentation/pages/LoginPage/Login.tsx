@@ -18,16 +18,16 @@ import { ErrorLogin } from "./ErrorLogin";
 
 export function Login() {
   const navigate = useNavigate();
-  const [ loginState, setLoginState] = useState({loading: false, error: ''})
+  const [loginState, setLoginState] = useState({ loading: false, error: "" });
   const [login, setLogin] = useState({ email: "", password: "" });
   const dispatch = useDispatch();
   const user = useSelector((state: any) => state.user.user);
 
   async function handleLogin(e) {
     e.preventDefault();
-    setLoginState({error: '', loading: true})
+    setLoginState({ error: "", loading: true });
     const req = await loginUseCase(login.email, login.password);
-    console.log(req)
+    console.log(req);
     if (req.data.data.loginUser) {
       localStorage.setItem(
         "apopyToken",
@@ -35,25 +35,25 @@ export function Login() {
       );
       dispatch(fetchUser(req.data.data.loginUser));
 
-      navigate("/dashboard");
-      setLoginState({...loginState, loading: false})
+      navigate("/");
+      setLoginState({ ...loginState, loading: false });
     }
 
-    if (req.data.errors){
-      setLoginState({ error: 'Email ou Senha incorreta', loading: false })
-    } 
+    if (req.data.errors) {
+      setLoginState({ error: "Email ou Senha incorreta", loading: false });
+    }
   }
 
   if (user) {
-    return navigate("/dashboard");
-  } 
+    return navigate("/");
+  }
 
   return (
     <Container>
       <IconLogo src={Logo} alt="Logo Apopy" />
       <FormContainer>
         <Text>Entrar</Text>
-        { loginState.error ? <ErrorLogin /> : null }
+        {loginState.error ? <ErrorLogin /> : null}
         <InputLogin
           type="text"
           value={login.email}
@@ -66,12 +66,12 @@ export function Login() {
           onChange={(e) => setLogin({ ...login, password: e.target.value })}
           placeholder="Senha"
         />
-        <ButtonLogin 
-          type="submit" 
+        <ButtonLogin
+          type="submit"
           onClick={(e) => handleLogin(e)}
           disabled={!loginState.loading}
         >
-          { loginState.loading ?  <Spinner /> : 'Login' }
+          {loginState.loading ? <Spinner /> : "Login"}
         </ButtonLogin>
         <Link>Recuperar a senha</Link>
       </FormContainer>
