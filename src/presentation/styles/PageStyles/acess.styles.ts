@@ -108,9 +108,13 @@ export const TermsLink = styled.a`
 
 export const RenderError = styled.p<{ error: boolean }>`
   color: #bf1f2c;
-  padding: 5px;
+  background-color: #FEEDEF;
+  padding: 8px;
   font-size: 13px;
   opacity: ${(props) => (props.error ? "1" : "0")};
   min-height: 18px;
   transition: 0.3s linear;
+  width: 200px;
+  text-align: center;
+  border-radius: 3px;
 `;

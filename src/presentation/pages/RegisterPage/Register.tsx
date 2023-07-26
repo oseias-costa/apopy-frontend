@@ -16,6 +16,7 @@ import {
   Text,
 } from "../../styles/PageStyles/acess.styles";
 import Logo from "../../assets/logo/apopy-logo.svg";
+import { registerError } from "./erros";
 
 export const Register = () => {
   const [register, setRegister] = useState<RegisterUser>({
@@ -27,7 +28,7 @@ export const Register = () => {
   const [error, setError] = useState({ error: "", msg: "" });
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector((state: any) => state.user.user);
+  const user = useSelector((state: any) => state.user?.user);
 
   async function handleRegister(e) {
     e.preventDefault();
@@ -50,31 +51,8 @@ export const Register = () => {
 
     if (req.data.errors) {
       const err = req.data.errors[0].message;
-      if (err === "Name does not match") {
-        return setError({ error: "name", msg: "O nome não é válido." });
-      }
-
-      if (err === "Phone dont match") {
-        return setError({ error: "phone", msg: "O telefone não é válido." });
-      }
-
-      if (err === "Email is not valid") {
-        return setError({ error: "email", msg: "O email não é válido." });
-      }
-
-      if (err === "Email already registered") {
-        return setError({ error: "email", msg: "Email já cadastrado." });
-      }
-
-      if (err === "Password must contain at least 6 characters") {
-        return setError({
-          error: "password",
-          msg: "A senha deve conter no mínimo 6 caracteres.",
-        });
-      }
+      registerError(err, setError)
     }
-
-    console.log("esse é a requisição", req);
   }
 
   if (user) {
