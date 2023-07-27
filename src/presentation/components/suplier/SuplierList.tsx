@@ -97,8 +97,7 @@ export const SuplierList = () => {
 };
 
 const ContainerSuplier = styled("div")`
-  display:  "flex";
-  width: 400px;
+  display: "flex";
 
   @media (max-width: 740px) {
     display: block;
