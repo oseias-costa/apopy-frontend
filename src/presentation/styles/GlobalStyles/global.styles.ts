@@ -13,6 +13,8 @@ export const GlobalStyle = createGlobalStyle`
     }
 
     body {
+        background-color: #EEF0F2;
+    
         p {
             font-family: var(--font-primary);
         }

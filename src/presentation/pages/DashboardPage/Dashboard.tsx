@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { fetchUser } from "../../../presentation/redux/slice/userSlice";
 
@@ -24,6 +24,7 @@ export const Dashboard = () => {
       <button onClick={() => change("/fornecedores")}>Fornecedores</button>
 
       <button onClick={() => handleLogout()}>Logout</button>
+
     </div>
   );
 };
