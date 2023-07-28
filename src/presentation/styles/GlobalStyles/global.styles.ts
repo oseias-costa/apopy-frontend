@@ -10,6 +10,7 @@ export const GlobalStyle = createGlobalStyle`
 
     :root {
         --font-primary: 'Raleway', sans-serif;
+        --color-green-strong: #012E40;
     }
 
     body {

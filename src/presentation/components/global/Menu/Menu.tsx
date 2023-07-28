@@ -16,6 +16,7 @@ import { DashboardIcon } from "./components/Dashboard.icon";
 import { CategoryIcon } from "./components/Category.icon";
 import { ProductIcon } from "./components/Product.icon";
 import { useState } from "react";
+import { SettingsIcon } from "./components/Settings.icon";
 
 export const Menu = () => {
   const [openMenu, setOpenMenu] = useState(false);
@@ -70,6 +71,18 @@ export const Menu = () => {
               Fornecedores
             </LinkMenu>
           </MenuItem>
+          <MenuItem className="settings"
+              isSelected={pathSelected("/configuracoes")}
+              onClick={() => setOpenMenu(!openMenu)}
+            >
+              <SettingsIcon isSelected={pathSelected("/configuracoes")} />
+              <LinkMenu
+                to="/configuracoes"
+                isSelected={pathSelected("/configuracoes")}
+              >
+                Configurações
+              </LinkMenu>
+            </MenuItem>
         </MenuBlockMobile>
       </MenuBlock>
     </MenuContainer>
