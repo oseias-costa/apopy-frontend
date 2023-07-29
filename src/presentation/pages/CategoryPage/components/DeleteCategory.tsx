@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import { deleteCategoryUseCase } from "../../../application/category/get-categories.usecase";
-import { deleteCategory } from "../../redux/slice/categorySlice";
-import { Modal } from "../global/Modal";
+import { deleteCategoryUseCase } from "../../../../application/category/get-categories.usecase";
+import { deleteCategory } from "../../../redux/slice/categorySlice";
+import { Modal } from "../../../components/global/Modal";
 
 export function DeleteCategory({ state, setState }) {
   const dispatch = useDispatch();

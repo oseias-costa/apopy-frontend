@@ -1,8 +1,8 @@
 import { SetStateAction, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
-import { getCategoriesUseCase } from "../../../application/category/get-categories.usecase";
-import { fetchCategories } from "../../redux/slice/categorySlice";
+import { getCategoriesUseCase } from "../../../../application/category/get-categories.usecase";
+import { fetchCategories } from "../../../redux/slice/categorySlice";
 import { CategoryState, initialCategoryValue } from "./category.types";
 import { CreateCategory } from "./CreateCategory";
 import { UpdateCategory } from "./UpdateCategory";
@@ -10,6 +10,7 @@ import { DeleteCategory } from "./DeleteCategory";
 import { UpdateSubcategory } from "./UpdateSupcategory";
 import { DeleteSubcategory } from "./DeleteSubcategory";
 import { CreateSubcategory } from "./CreateSubcategory";
+import { CategoryContainer } from "../../../styles/PageStyles/category.styles";
 
 type typeModal = {
   [key: string]: React.ReactNode;
@@ -133,7 +134,7 @@ export const CategoryList = () => {
   );
 
   return (
-    <div>
+    <CategoryContainer>
       <button
         onClick={() => {
           setCategoryState({ ...state, type: "create", openModal: true });
@@ -144,7 +145,7 @@ export const CategoryList = () => {
       <h2>Categorias</h2>
       {listCategories}
       {typeModal[categoryState.type]}
-    </div>
+    </CategoryContainer>
   );
 };
 

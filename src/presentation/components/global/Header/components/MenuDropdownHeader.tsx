@@ -1,4 +1,4 @@
-import { MenuDropdownHeaderContainer } from "../../../../styles/GlobalStyles/header.style";
+import { DropMenuHeaderBody, MenuDropdownHeaderContainer } from "../../../../styles/GlobalStyles/header.style";
 
 type MenuDropProps = {
   distanceFromRight: string;
@@ -7,10 +7,11 @@ type MenuDropProps = {
   onClick?: React.ReactEventHandler;
 };
 
-export const MenuDropdownHeader = (props: MenuDropProps) => {
+// export const MenuDropdownHeader = (props: MenuDropProps) => {
+export const MenuDropdownHeader = ({distanceFromRight, display, id, onClick} : MenuDropProps) => {
   return (
-    <MenuDropdownHeaderContainer
-      {...props}
-    ></MenuDropdownHeaderContainer>
+    <DropMenuHeaderBody display={display} id={id} onClick={onClick}>
+      <MenuDropdownHeaderContainer  distanceFromRight={distanceFromRight}></MenuDropdownHeaderContainer>
+    </DropMenuHeaderBody>
   );
 };

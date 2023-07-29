@@ -7,17 +7,15 @@ export const UserIcon = ({
   name,
   onClick,
   isCliked,
-  id,
 }: {
   name: string;
-  onClick: React.SetStateAction;
+  onClick: () => void;
   isCliked: boolean;
-  id: string;
 }) => {
   const sizeName = name?.split(" ").length - 1;
 
   return (
-    <HeaderMenuUser onClick={onClick} isCliked={isCliked} id={id}>
+    <HeaderMenuUser onClick={onClick} isCliked={isCliked}>
       <Abbreviation>
         {name?.split(" ")[0][0]}
         {name?.split(" ")[sizeName][0]}

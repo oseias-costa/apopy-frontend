@@ -1,5 +1,5 @@
 import { ReactElement } from 'react'
-import { CategoryList } from '../components/category/CategoryList'
+import { CategoryList } from '../pages/CategoryPage/components/CategoryList'
 import { SuplierList } from '../components/suplier/SuplierList'
 import { Login } from '../pages/LoginPage/Login'
 import { Register } from '../pages/RegisterPage/Register'

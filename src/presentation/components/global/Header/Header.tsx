@@ -3,30 +3,40 @@ import {
   HeaderContainer,
   TextName,
   TextWelcome,
-  HeaderMenu,
+  HeaderMenu
 } from "../../../styles/GlobalStyles/header.style";
 import { BellIcon } from "./components/Bell.icon";
 import { MessageIcon } from "./components/Message.icon";
 import { UserIcon } from "./components/User.icon";
 import { MenuDropdownHeader } from "./components/MenuDropdownHeader";
-import { useEffect, useRef, useState } from "react";
+import { useReducer } from "react";
+import { ActionMenuHeader, initialStateMenuHeader, StateMenuHeader } from "../../../types/components/header.types";
 
 export const Header = () => {
-  const [openMenu, setOpenMenu] = useState({
-    userMenu: false,
-    msgMenu: false,
-    notificationMenu: false,
-  });
-  const { name } = useSelector((state: any) => state.user.user);
-  const bellRef = useRef(null);
 
-  function handleCloseMenu(id, state) {
-    document.addEventListener("click", (e) => {
-      if (id !== e.target.id) {
-        setOpenMenu({ ...openMenu, [state]: false });
-      }
-    });
+  function reducer(state: StateMenuHeader, action: ActionMenuHeader){
+    switch(action.type){
+      case 'notificationChange': 
+        return { notification: !state.notification }
+      
+      case 'messageChange': 
+        return { message: !state.message }
+      
+      case 'userChange': 
+        return { user: !state.user }
+
+      case 'resetState': 
+        return initialStateMenuHeader
+      
+      default: 
+        console.error(`Unhandled action type ${action.type}`);
+        return state;
+    }
   }
+
+  const [state, dispatch] = useReducer(reducer, initialStateMenuHeader)
+  const { name } = useSelector((state: any) => state.user.user);
+
 
   return (
     <>
@@ -36,55 +46,34 @@ export const Header = () => {
         </TextWelcome>
         <HeaderMenu>
           <BellIcon
-            onClick={() => {
-              setOpenMenu({
-                userMenu: false,
-                msgMenu: false,
-                notificationMenu: !openMenu.notificationMenu,
-              });
-              console.log(bellRef);
-            }}
-            isCliked={openMenu.notificationMenu}
-            id="notificationMenu"
+            onClick={() => dispatch({type: 'notificationChange'})}
+            isCliked={state?.notification}
           />
           <MessageIcon
-            onClick={() =>
-              setOpenMenu({
-                userMenu: false,
-                msgMenu: !openMenu.msgMenu,
-                notificationMenu: false,
-              })
-            }
-            isCliked={openMenu.msgMenu}
-            id="msgMenu"
+            onClick={() => dispatch({type: 'messageChange'})}
+            isCliked={state?.message}
           />
           <UserIcon
             name={name}
-            onClick={() =>
-              setOpenMenu({
-                notificationMenu: false,
-                msgMenu: false,
-                userMenu: !openMenu.userMenu,
-              })
-            }
-            isCliked={openMenu.userMenu}
-            id="userMenu"
+            onClick={() => dispatch({type: 'userChange'})}
+            isCliked={state?.user}
           />
         </HeaderMenu>
       </HeaderContainer>
       <MenuDropdownHeader
         distanceFromRight="74px"
-        display={openMenu.userMenu}
-        id="notificationMenu"
-        onClick={(e) => handleCloseMenu("notificationMenu", openMenu.userMenu)}
+        display={state?.user}
+        onClick={() => dispatch({type: 'resetState'})}
       />
       <MenuDropdownHeader
         distanceFromRight="130px"
-        display={openMenu.msgMenu}
+        display={state?.message}
+        onClick={() => dispatch({type: 'resetState'})}
       />
       <MenuDropdownHeader
         distanceFromRight="194px"
-        display={openMenu.notificationMenu}
+        display={state?.notification}
+        onClick={() => dispatch({type: 'resetState'})}
       />
     </>
   );

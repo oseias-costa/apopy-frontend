@@ -11,6 +11,7 @@ export const MenuContainer = styled.div`
   flex-direction: column;
   align-items: center;
   padding-top: 40px;
+  position: fixed;
 
   @media (max-width: 740px) {
     height: 20px;

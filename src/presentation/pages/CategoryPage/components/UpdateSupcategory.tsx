@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import { updateSubcategoryUseCase } from "../../../application/category/subcategory.usecase";
-import { updateSubcategory } from "../../redux/slice/categorySlice";
-import { Modal } from "../global/Modal";
+import { updateSubcategoryUseCase } from "../../../../application/category/subcategory.usecase";
+import { updateSubcategory } from "../../../redux/slice/categorySlice";
+import { Modal } from "../../../components/global/Modal";
 
 export const UpdateSubcategory = ({ state, setState }) => {
   const {newSubcategory, _id, oldSubcategory } = state

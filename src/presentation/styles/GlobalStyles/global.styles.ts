@@ -19,5 +19,11 @@ export const GlobalStyle = createGlobalStyle`
         p {
             font-family: var(--font-primary);
         }
+        h2 {
+            font-family: var(--font-primary);
+            font-weight: 200;
+            font-size: 20px;
+
+        }
     }
 `;

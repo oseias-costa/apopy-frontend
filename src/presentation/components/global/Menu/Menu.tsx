@@ -23,11 +23,11 @@ export const Menu = () => {
   const location = useLocation();
   const pathSelected = (path: string) => Boolean(location?.pathname === path);
 
-  document.addEventListener("click", (e) => {
-    if(e.target.id){
-        setOpenMenu(!openMenu)
-    }
-  });
+  // document.addEventListener("click", (e) => {
+  //   if(e.target.id){
+  //       setOpenMenu(!openMenu)
+  //   }
+  // });
 
   return (
     <MenuContainer>

@@ -4,11 +4,12 @@ export const HeaderContainer = styled.header`
   height: 48px;
   background-color: #fff;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
-  width: 100%;
   display: flex;
   align-items: center;
-  margin-bottom: 36px;
   justify-content: space-between;
+  position: fixed;
+  width: calc(100% - 231px);
+
 
   @media (max-width: 740px) {
     display: none;
@@ -76,7 +77,6 @@ export const Abbreviation = styled.p`
 
 export const MenuDropdownHeaderContainer = styled.div<{
   distanceFromRight: string;
-  display: boolean;
 }>`
   width: 200px;
   height: 350px;
@@ -86,5 +86,17 @@ export const MenuDropdownHeaderContainer = styled.div<{
   top: 55px;
   border-radius: 7px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  display: ${(props) => (props.display ? "block" : "none")};
+  z-index: 2;
 `;
+
+export const DropMenuHeaderBody = styled.div<{
+  display: boolean;
+}>`
+  display: ${(props) => (props.display ? "block" : "none")};
+  height: 100%;
+  width: 100%;
+  background-color: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+`

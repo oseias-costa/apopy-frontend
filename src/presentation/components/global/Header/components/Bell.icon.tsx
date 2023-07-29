@@ -1,6 +1,7 @@
 import { HeaderMenuIcon } from "../../../../styles/GlobalStyles/header.style";
+import { IconMenuType } from "../../../../types/components/header.types";
 
-export const BellIcon = (props) => {
+export const BellIcon = (props: IconMenuType) => {
   return (
     <HeaderMenuIcon
       {...props}

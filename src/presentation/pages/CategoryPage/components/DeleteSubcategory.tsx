@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import { deleteSubcategoryUseCase } from "../../../application/category/subcategory.usecase";
-import { deleteCategory, deleteSubcategory } from "../../redux/slice/categorySlice";
-import { Modal } from "../global/Modal";
+import { deleteSubcategoryUseCase } from "../../../../application/category/subcategory.usecase";
+import { deleteCategory, deleteSubcategory } from "../../../redux/slice/categorySlice";
+import { Modal } from "../../../components/global/Modal";
 
 export const DeleteSubcategory = ({ state, setState }) => {
   const { _id, oldSubcategory } = state
