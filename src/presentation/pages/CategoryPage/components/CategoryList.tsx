@@ -10,7 +10,10 @@ import { DeleteCategory } from "./DeleteCategory";
 import { UpdateSubcategory } from "./UpdateSupcategory";
 import { DeleteSubcategory } from "./DeleteSubcategory";
 import { CreateSubcategory } from "./CreateSubcategory";
-import { CategoryContainer } from "../../../styles/PageStyles/category.styles";
+import {
+  CategoryContainer,
+  CategoryTitle,
+} from "../../../styles/PageStyles/category.styles";
 
 type typeModal = {
   [key: string]: React.ReactNode;
@@ -135,6 +138,8 @@ export const CategoryList = () => {
 
   return (
     <CategoryContainer>
+      <CategoryTitle></CategoryTitle>
+      <h2>Categorias</h2>
       <button
         onClick={() => {
           setCategoryState({ ...state, type: "create", openModal: true });
@@ -142,7 +147,6 @@ export const CategoryList = () => {
       >
         Criar Categoria
       </button>
-      <h2>Categorias</h2>
       {listCategories}
       {typeModal[categoryState.type]}
     </CategoryContainer>
