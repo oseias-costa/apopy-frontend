@@ -23,10 +23,7 @@ export const CategoryRow = ({ state, setCategoryState }) => {
     (item: { _id: string; name: string; subcategory: string[] }) => {
       return (
         <>
-          <div
-            key={item?._id}
-            style={{ display: "flex", justifyContent: "space-between" }}
-          >
+          <S.CategoryRowContainer key={item?._id}>
             <S.CategoryRowText>{item?.name}</S.CategoryRowText>
             <S.DropMenu
               display={menuCategory.item === item?._id}
@@ -66,7 +63,7 @@ export const CategoryRow = ({ state, setCategoryState }) => {
                 setPositionCategory(e);
               }}
             />
-          </div>
+          </S.CategoryRowContainer>
           <SubcategoryRow item={item} handleSetCategory={handleSetCategory} />
         </>
       );
