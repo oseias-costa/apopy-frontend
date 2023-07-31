@@ -11,6 +11,9 @@ export const GlobalStyle = createGlobalStyle`
     :root {
         --font-primary: 'Raleway', sans-serif;
         --color-green-strong: #012E40;
+        --color-blue-light: #049dd9;
+        --color-gray-title: #5E5E5E;
+        --color-gray-text: #2A2829;
     }
 
     body {
@@ -23,7 +26,6 @@ export const GlobalStyle = createGlobalStyle`
             font-family: var(--font-primary);
             font-weight: 200;
             font-size: 20px;
-
         }
     }
 `;

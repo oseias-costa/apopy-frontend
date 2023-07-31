@@ -14,3 +14,4 @@ export const ContainerContentLayout = styled.div`
     border-radius: 5px;
     padding: 32px;
 `
+

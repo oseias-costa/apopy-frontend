@@ -1,6 +1,5 @@
 import { SetStateAction, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styled from "styled-components";
 import { getCategoriesUseCase } from "../../../../application/category/get-categories.usecase";
 import { fetchCategories } from "../../../redux/slice/categorySlice";
 import { CategoryState, initialCategoryValue } from "./category.types";
@@ -10,10 +9,9 @@ import { DeleteCategory } from "./DeleteCategory";
 import { UpdateSubcategory } from "./UpdateSupcategory";
 import { DeleteSubcategory } from "./DeleteSubcategory";
 import { CreateSubcategory } from "./CreateSubcategory";
-import {
-  CategoryContainer,
-  CategoryTitle,
-} from "../../../styles/PageStyles/category.styles";
+import { CategoryContainer } from "../../../styles/PageStyles/CategoryStyles/category.styles";
+import { CategoryRow } from './CategoryRow'
+import * as S from "../../../styles/GlobalStyles/titleWithButton.style";
 
 type typeModal = {
   [key: string]: React.ReactNode;
@@ -53,106 +51,22 @@ export const CategoryList = () => {
     );
   }, []);
 
-  const listCategories = state?.map(
-    (item: { _id: string; name: string; subcategory: string[] }) => {
-      return (
-        <>
-          <CategoryRow key={item?._id} style={{ display: "flex" }}>
-            <p style={{ color: "blue", fontWeight: "600" }}>{item?.name}</p>
-            <button
-              onClick={() => {
-                setCategoryState({
-                  _id: item._id,
-                  name: item.name,
-                  type: "update",
-                  openModal: true,
-                });
-              }}
-            >
-              Editar
-            </button>
-            <button
-              onClick={() => {
-                setCategoryState({
-                  _id: item._id,
-                  name: item.name,
-                  type: "delete",
-                  openModal: true,
-                });
-              }}
-            >
-              Excluir
-            </button>
-            <button
-              onClick={() => {
-                setCategoryState({
-                  _id: item._id,
-                  name: item.name,
-                  type: "createSubcategory",
-                  newSubcategory: "",
-                  openModal: true,
-                });
-              }}
-            >
-              criar Subcategoria
-            </button>
-          </CategoryRow>
-          {item.subcategory?.map((sub) => {
-            return (
-              <div key={sub} style={{ display: "flex" }}>
-                <p>{sub}</p>
-                <a
-                  onClick={() => {
-                    setCategoryState({
-                      _id: item._id,
-                      name: item.name,
-                      type: "updateSubcategory",
-                      openModal: true,
-                      newSubcategory: sub,
-                      oldSubcategory: sub,
-                    });
-                  }}
-                >
-                  Update subcategoria
-                </a>
-                <a
-                  onClick={() => {
-                    setCategoryState({
-                      _id: item._id,
-                      name: item.name,
-                      type: "deleteSubcategory",
-                      openModal: true,
-                      oldSubcategory: sub,
-                    });
-                  }}
-                >
-                  Delete subcategoria
-                </a>
-              </div>
-            );
-          })}
-        </>
-      );
-    }
-  );
+
 
   return (
     <CategoryContainer>
-      <CategoryTitle></CategoryTitle>
-      <h2>Categorias</h2>
-      <button
-        onClick={() => {
-          setCategoryState({ ...state, type: "create", openModal: true });
-        }}
-      >
-        Criar Categoria
-      </button>
-      {listCategories}
+      <S.TitleWithButton>
+        <S.TitleSection>Categorias</S.TitleSection>
+        <S.ButtonCreateItem
+          onClick={() => {
+            setCategoryState({ ...state, type: "create", openModal: true });
+          }}
+        >
+          Adicionar
+        </S.ButtonCreateItem>
+      </S.TitleWithButton>
+      <CategoryRow state={state} setCategoryState={setCategoryState} />
       {typeModal[categoryState.type]}
     </CategoryContainer>
   );
 };
-
-const CategoryRow = styled.div`
-  display: flex;
-`;
