@@ -4,15 +4,28 @@ import { ButtonCreateItem } from "../../GlobalStyles/titleWithButton.style";
 export const CategoryRowContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  z-index: 3;
+  background-color: #fff;
+  padding-left: 20px;
+  padding-right: 20px;
+
+  &:hover {
+    background-color: #e7e7e7;
+  }
 `;
 
 export const CategoryRowText = styled.p`
   color: var(--color-gray-text);
   padding-top: 15px;
   padding-bottom: 5px;
-  background-color: #fff;
   position: relative;
+  top: -5px;
   z-index: 2;
+
+  &:hover {
+    background-color: #e7e7e7;
+  }
 `;
 
 export const DropMenu = styled.div<{ display: boolean }>`

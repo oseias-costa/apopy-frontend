@@ -15,6 +15,8 @@ export const SubCategoryText = styled.p<{ left: number }>`
   color: #5e5e5e;
   font-size: 14px;
   padding-left: 25px;
+  margin-left: 20px;
+  margin-right: 20px;
 
   &:before {
     content: "";

@@ -3,9 +3,16 @@ import { CreateSuplier } from "./CreateSuplier";
 import { DeleteSuplier } from "./DeleteSuplier";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
-import { fetchData } from "../../redux/slice/suplierSlice";
-import getSupliersUseCase from "../../../application/suplier/get-supliers.usecase";
+import { fetchData } from "../../../redux/slice/suplierSlice";
+import getSupliersUseCase from "../../../../application/suplier/get-supliers.usecase";
 import styled from "styled-components";
+import * as S from "../../../styles/PageStyles/SuplierStyles/suplier-list.style";
+import {
+  ButtonCreateItem,
+  TitleSection,
+  TitleWithButton,
+} from "../../../styles/GlobalStyles/titleWithButton.style";
+import { SuplierRow } from "./SuplierRow";
 
 export interface ItemProps {
   id: string;
@@ -43,69 +50,25 @@ export const SuplierList = () => {
     );
   }, []);
 
-  const supliersList = data?.map((item) => {
-    return (
-      <ContainerSuplier key={item._id}>
-        <p style={ItemSuplier}>{item.name}</p>
-        <button
-          onClick={() => {
-            setSuplierState({
-              id: item._id,
-              name: item.name,
-              type: "update",
-              openModal: true,
-            });
-          }}
-        >
-          Editar
-        </button>
-        <button
-          onClick={() => {
-            setSuplierState({
-              id: item._id,
-              name: item.name,
-              type: "delete",
-              openModal: true,
-            });
-          }}
-        >
-          Delete
-        </button>
-      </ContainerSuplier>
-    );
-  });
-
   return (
-    <div>
-      <h1>Supliers</h1>
-      <button
-        onClick={() => {
-          return setSuplierState({
-            id: "",
-            name: "",
-            type: "create",
-            openModal: true,
-          });
-        }}
-      >
-        Abrir
-      </button>
-      <div>{supliersList}</div>
+    <S.SuplierListContainer>
+      <TitleWithButton>
+        <TitleSection>Fornecedores</TitleSection>
+        <ButtonCreateItem
+          onClick={() => {
+            return setSuplierState({
+              id: "",
+              name: "",
+              type: "create",
+              openModal: true,
+            });
+          }}
+        >
+          Adicionar
+        </ButtonCreateItem>
+      </TitleWithButton>
+      <SuplierRow data={data} setSuplierState={setSuplierState} />
       {typeModal[suplierState.type]}
-    </div>
+    </S.SuplierListContainer>
   );
-};
-
-const ContainerSuplier = styled("div")`
-  display: "flex";
-
-  @media (max-width: 740px) {
-    display: block;
-    background-color: blue;
-  }
-`;
-
-const ItemSuplier = {
-  color: "red",
-  backgroundColor: "black",
 };

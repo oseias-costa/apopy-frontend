@@ -11,7 +11,7 @@ export const GlobalStyle = createGlobalStyle`
     :root {
         --font-primary: 'Raleway', sans-serif;
         --color-green-strong: #012E40;
-        --color-blue-light: #049dd9;
+        --color-blue-light: #049FB1;
         --color-gray-title: #5E5E5E;
         --color-gray-text: #2A2829;
     }

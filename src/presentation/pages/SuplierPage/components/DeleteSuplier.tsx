@@ -1,8 +1,7 @@
 import { useDispatch } from "react-redux";
-import { removeSuplier } from "../../redux/slice/suplierSlice";
-import { ItemProps } from "./SuplierList";
-import { deleteSuplierUseCase } from "../../../application/suplier/delete-suplier.usecase";
-import { Modal } from "../global/Modal";
+import { removeSuplier } from "../../../redux/slice/suplierSlice";
+import { deleteSuplierUseCase } from "../../../../application/suplier/delete-suplier.usecase";
+import { Modal } from "../../../components/global/Modal";
 
 export const DeleteSuplier = ({
   state,

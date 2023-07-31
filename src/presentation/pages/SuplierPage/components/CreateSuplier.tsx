@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
-import { createSuplierUseCase } from "../../../application/suplier/add-suplier.usecase";
-import { createSuplier } from "../../redux/slice/suplierSlice";
-import { Modal } from "../global/Modal";
+import { createSuplierUseCase } from "../../../../application/suplier/add-suplier.usecase";
+import { createSuplier } from "../../../redux/slice/suplierSlice";
+import { Modal } from "../../../components/global/Modal";
 
 export const CreateSuplier = ({
   state,
@@ -19,7 +19,7 @@ export const CreateSuplier = ({
       dispatch(
         createSuplier({
           name: state.name,
-          _id: data.data.createSuplier?._id
+          _id: data.data.createSuplier?._id,
         })
       );
       setState({ ...state, openModal: false });
