@@ -1,9 +1,6 @@
-import { useRef, useState } from "react";
-import { ButtonCreateItem } from "../../../styles/GlobalStyles/titleWithButton.style";
+import { useState } from "react";
 import * as S from "../../../styles/PageStyles/CategoryStyles/category-row.styles";
 import { DootsIcon } from "./DootsIcon";
-import { EditIcon } from "./EditIcon";
-import { PlusIcon } from "./PlusIcon";
 import { SubcategoryRow } from "./SubcategoryRow";
 
 export const CategoryRow = ({ state, setCategoryState }) => {
