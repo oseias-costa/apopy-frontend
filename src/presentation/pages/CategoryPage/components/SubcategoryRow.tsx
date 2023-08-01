@@ -4,21 +4,19 @@ import { DootsIconSubcategory } from "./DootsIconSubcategory";
 import { DropMenuContent } from "../../../styles/PageStyles/CategoryStyles/category-row.styles";
 
 export const SubcategoryRow = ({ item, handleSetCategory }) => {
-  const [menuSubcategory, setMenuSubcategory] = useState("");
+  const [menuSubcategory, setMenuSubcategory] = useState('');
   const [menuPosition, setMenuPosition] = useState("");
-  const subcategoryRowPosition = useRef(null);
 
-  console.log(subcategoryRowPosition);
-
-  const subcategory = item?.subcategory?.map((sub) => {
+  const subcategory = item?.subcategory?.map((sub, index) => {
     return (
       <S.SubcategoryRowContainer key={sub}>
-        <S.SubCategoryText ref={subcategoryRowPosition}>
+        <S.SubCategoryText className={index === 0 ? 'firstSubcategory' : ''}>
           {sub}
         </S.SubCategoryText>
         <S.DropMenuSubcategory
           display={menuSubcategory === sub}
           onClick={() => setMenuSubcategory("")}
+          height={window.innerHeight}
         >
           <DropMenuContent left={menuPosition?.pageX} top={menuPosition?.pageY}>
             <S.ButtonUpdateSubcategory
@@ -30,7 +28,7 @@ export const SubcategoryRow = ({ item, handleSetCategory }) => {
                 })
               }
             >
-              Update subcategoria
+              Editar Subcategoria
             </S.ButtonUpdateSubcategory>
             <S.ButtonUpdateSubcategory
               onClick={() =>
@@ -40,7 +38,7 @@ export const SubcategoryRow = ({ item, handleSetCategory }) => {
                 })
               }
             >
-              Delete subcategoria
+              Excluir Subcategoria
             </S.ButtonUpdateSubcategory>
           </DropMenuContent>
         </S.DropMenuSubcategory>

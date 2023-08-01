@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as S from "../../../styles/PageStyles/CategoryStyles/category-row.styles";
 import { DootsIcon } from "./DootsIcon";
 import { SubcategoryRow } from "./SubcategoryRow";
@@ -9,6 +9,7 @@ export const CategoryRow = ({ state, setCategoryState }) => {
     item: "",
   });
   const [positionCategory, setPositionCategory] = useState();
+  useEffect(() => setMenuCategory({...menuCategory, height: window.screen.height}),[])
 
   const handleSetCategory = (item, data) => {
     return setCategoryState({
@@ -26,8 +27,9 @@ export const CategoryRow = ({ state, setCategoryState }) => {
           <S.CategoryRowContainer key={item?._id}>
             <S.CategoryRowText>{item?.name}</S.CategoryRowText>
             <S.DropMenu
+              height={window.innerHeight}
               display={menuCategory.item === item?._id}
-              onClick={() => setMenuCategory({ openMenu: false, item: "" })}
+              onClick={() => setMenuCategory({openMenu: false, item: "" })}
             >
               <S.DropMenuContent
                 left={positionCategory?.pageX}
@@ -59,7 +61,7 @@ export const CategoryRow = ({ state, setCategoryState }) => {
             </S.DropMenu>
             <DootsIcon
               onClick={(e) => {
-                setMenuCategory({ openMenu: !menuCategory, item: item?._id });
+                setMenuCategory({openMenu: !menuCategory, item: item?._id });
                 setPositionCategory(e);
               }}
             />

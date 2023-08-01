@@ -30,11 +30,11 @@ export const ButtonCreateItem = styled.button`
   text-align: center;
   font-size: 12px;
   margin-left: 30px;
-  transition: 0.3s linear;
+  transition: 0.2s linear;
   cursor: pointer;
 
   &:hover {
-    background-color: #fff;
-    color: var(--color-blue-light);
+    background-color: #026773;
+    border: 1px solid #026773;
   }
 `;

@@ -20,6 +20,6 @@ export const IconSvg = styled.svg`
   border-radius: 50px;
 
   &:hover {
-    background-color: #e7e7e7;
+    background-color: #CECACA;
   }
 `;

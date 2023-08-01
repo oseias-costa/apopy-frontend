@@ -5,7 +5,7 @@ export const CategoryRowContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 3;
+  z-index: 4;
   background-color: #fff;
   padding-left: 20px;
   padding-right: 20px;
@@ -17,24 +17,20 @@ export const CategoryRowContainer = styled.div`
 
 export const CategoryRowText = styled.p`
   color: var(--color-gray-text);
-  padding-top: 15px;
-  padding-bottom: 5px;
+  padding-top: 20px;
+  padding-bottom: 3px;
   position: relative;
-  top: -5px;
-  z-index: 2;
-
-  &:hover {
-    background-color: #e7e7e7;
-  }
+  top: -08px;
 `;
 
-export const DropMenu = styled.div<{ display: boolean }>`
-  position: absolute;
-  z-index: 3;
-  width: 100vw;
-  height: 100vh;
+export const DropMenu = styled.div<{ display: boolean, height: number }>`
+  z-index: 15;
+  left: 0;
   top: 0;
-  right: 0;
+  height: ${props => `${props.height}px`};
+  width: 100%;
+  position: absolute;
+  background-color: transparent;
   display: ${(props) => (props.display ? "flex" : "none")};
 `;
 
@@ -47,9 +43,10 @@ export const DropMenuContent = styled.div<{
   left: number | undefined;
   top: number | undefined;
 }>`
+  z-index: 14;
   position: absolute;
-  left: ${(props) => (props.left ? props.left - 170 + "px" : 0)};
-  top: ${(props) => (props.top ? props.top + 10 + "px" : 0)};
+  left: ${(props) => (props.left ? props.left - 180 + "px" : 0)};
+  top: ${(props) => (props.top ? props.top + 18 + "px" : 0)};
   background-color: #fff;
   border-radius: 7px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
