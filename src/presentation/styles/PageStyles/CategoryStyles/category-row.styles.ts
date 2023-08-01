@@ -21,6 +21,7 @@ export const CategoryRowText = styled.p`
   padding-bottom: 3px;
   position: relative;
   top: -08px;
+  text-align: left;
 `;
 
 export const DropMenu = styled.div<{ display: boolean, height: number }>`

@@ -8,7 +8,6 @@ export const CategoryContainer = styled.div`
   width: 300px;
   height: auto;
   padding-bottom: 20px;
-  margin-left: 20px;
 `;
 
 export const CategoryTitle = styled.div`
@@ -22,6 +21,6 @@ export const IconSvg = styled.svg`
   border-radius: 50px;
 
   &:hover {
-    background-color: #CECACA;
+    background-color: #cecaca;
   }
 `;

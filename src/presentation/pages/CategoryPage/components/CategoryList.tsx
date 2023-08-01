@@ -10,7 +10,7 @@ import { UpdateSubcategory } from "./UpdateSupcategory";
 import { DeleteSubcategory } from "./DeleteSubcategory";
 import { CreateSubcategory } from "./CreateSubcategory";
 import { CategoryContainer } from "../../../styles/PageStyles/CategoryStyles/category.styles";
-import { CategoryRow } from './CategoryRow'
+import { CategoryRow } from "./CategoryRow";
 import * as S from "../../../styles/GlobalStyles/titleWithButton.style";
 
 type typeModal = {
