@@ -8,7 +8,6 @@ export const SuplierRow = ({ data, setSuplierState }) => {
     item: ""
   });
 
-  // console.log('eeeee', window.innerHeight)
   const [positionSuplier, setPositionSuplier] = useState(null);
 
   const supliersList = data?.map((item) => {
@@ -16,7 +15,7 @@ export const SuplierRow = ({ data, setSuplierState }) => {
       <S.CategoryRowContainer key={item._id}>
         <S.CategoryRowText>{item.name}</S.CategoryRowText>
         <S.DropMenu
-          height={window.innerHeight}
+          height={document.body.scrollHeight}
           display={menuSuplier.item === item?._id}
           onClick={() => setMenuSuplier({ openMenu: false, item: ""})}
         >

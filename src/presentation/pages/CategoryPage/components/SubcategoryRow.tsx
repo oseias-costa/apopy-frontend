@@ -16,7 +16,7 @@ export const SubcategoryRow = ({ item, handleSetCategory }) => {
         <S.DropMenuSubcategory
           display={menuSubcategory === sub}
           onClick={() => setMenuSubcategory("")}
-          height={window.innerHeight}
+          height={document.body.scrollHeight}
         >
           <DropMenuContent left={menuPosition?.pageX} top={menuPosition?.pageY}>
             <S.ButtonUpdateSubcategory

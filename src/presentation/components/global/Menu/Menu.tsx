@@ -23,12 +23,6 @@ export const Menu = () => {
   const location = useLocation();
   const pathSelected = (path: string) => Boolean(location?.pathname === path);
 
-  // document.addEventListener("click", (e) => {
-  //   if(e.target.id){
-  //       setOpenMenu(!openMenu)
-  //   }
-  // });
-
   return (
     <MenuContainer>
       <ImgLogo src={Logo} />
@@ -71,6 +65,18 @@ export const Menu = () => {
               Fornecedores
             </LinkMenu>
           </MenuItem>
+          <MenuItem
+              isSelected={pathSelected("/produtos")}
+              onClick={() => setOpenMenu(!openMenu)}
+            >
+              <SettingsIcon isSelected={pathSelected("/produtos")} />
+              <LinkMenu
+                to="/produtos"
+                isSelected={pathSelected("/produtos")}
+              >
+                Produtos
+              </LinkMenu>
+            </MenuItem>
           <MenuItem className="settings"
               isSelected={pathSelected("/configuracoes")}
               onClick={() => setOpenMenu(!openMenu)}

@@ -5,7 +5,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { fetchData } from "../../../redux/slice/suplierSlice";
 import getSupliersUseCase from "../../../../application/suplier/get-supliers.usecase";
-import styled from "styled-components";
 import * as S from "../../../styles/PageStyles/SuplierStyles/suplier-list.style";
 import {
   ButtonCreateItem,

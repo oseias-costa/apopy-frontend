@@ -51,8 +51,6 @@ export const CategoryList = () => {
     );
   }, []);
 
-
-
   return (
     <CategoryContainer>
       <S.TitleWithButton>
