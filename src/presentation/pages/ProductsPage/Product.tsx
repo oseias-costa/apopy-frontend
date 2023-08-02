@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getProductsUseCase } from "../../../application/product.usecase";
 import { fetchProducts } from "../../redux/slice/productSlice";
 import * as S from "../../styles/GlobalStyles/titleWithButton.style";
@@ -6,8 +6,10 @@ import { ProductContainer } from "../../styles/PageStyles/ProductStyles/products
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import { ProductRow } from "./components/ProductRow";
+import { ProductModal } from "./components/ProductModal";
 
 export const Product = () => {
+  const [ productState, setProductState ] = useState({type: 'create', openModal: true})
   const products = getProductsUseCase();
   const dispatch = useDispatch();
   const state = useSelector((state: RootState) => state?.product.products);
@@ -15,6 +17,7 @@ export const Product = () => {
   useEffect(() => {
     products.then((res) => dispatch(fetchProducts(res.data.data.products)));
   });
+console.log(state)
 
   return (
     <ProductContainer>
@@ -23,6 +26,7 @@ export const Product = () => {
         <S.ButtonCreateItem>Adicionar</S.ButtonCreateItem>
       </S.TitleWithButton>
       <ProductRow state={state} />
+      <ProductModal state={productState} setState={setProductState} />
     </ProductContainer>
   );
 };

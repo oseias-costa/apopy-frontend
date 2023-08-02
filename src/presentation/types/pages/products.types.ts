@@ -6,3 +6,11 @@ export interface ProductInterface {
   suplier: string;
   userId: string;
 }
+
+export type ProductCreate = {
+  name: string;
+  category: string;
+  subcategory: string;
+  suplier: string;
+  _id: string;
+}
