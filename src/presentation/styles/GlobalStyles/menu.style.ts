@@ -40,7 +40,6 @@ export const ImgLogoMobile = styled.img`
 `;
 
 export const MenuBlock = styled.div<{ isOpen: boolean }>`
-
   @media (max-width: 740px) {
     display: ${(props) => (props.isOpen ? "flex" : "none")};
     flex-direction: column;
@@ -56,13 +55,13 @@ export const MenuBlock = styled.div<{ isOpen: boolean }>`
 `;
 
 export const MenuBlockMobile = styled.div`
-    .settings {
-      padding-top: 40px;
-    }
+  .settings {
+    padding-top: 40px;
+  }
 
   @media (max-width: 740px) {
     width: 200px;
-    margin-top: 20px;
+    // margin-top: 20px;
     margin-right: 20px;
     background-color: #fff;
     padding: 30px;

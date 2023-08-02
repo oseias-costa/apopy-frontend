@@ -24,7 +24,6 @@ export const Dashboard = () => {
       <button onClick={() => change("/fornecedores")}>Fornecedores</button>
 
       <button onClick={() => handleLogout()}>Logout</button>
-
     </div>
   );
 };

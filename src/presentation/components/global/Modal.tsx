@@ -41,6 +41,7 @@ const ModalContainer = styled("div")<{ openModal: boolean }>`
   width: 100%;
   height: 100vh;
   background-color: rgb(0, 0, 0, 0.7);
+  z-index: 100;
 `;
 
 const ModalChildren = styled.div`

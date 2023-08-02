@@ -16,14 +16,14 @@ export const SubcategoryRowContainer = styled.div`
   border-radius: 5px;
 
   .firstSubcategory {
-      &:after {
-        height: 15px;
-        top: -23px;
-      }
+    &:after {
+      height: 15px;
+      top: -23px;
     }
+  }
 
   &:hover {
-    background-color: #E7E7E7;
+    background-color: #e7e7e7;
   }
 `;
 

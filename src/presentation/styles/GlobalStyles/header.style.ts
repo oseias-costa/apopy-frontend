@@ -9,7 +9,7 @@ export const HeaderContainer = styled.header`
   justify-content: space-between;
   position: fixed;
   width: calc(100% - 231px);
-
+  z-index: 40;
 
   @media (max-width: 740px) {
     display: none;
@@ -50,13 +50,13 @@ export const HeaderMenuIcon = styled.svg<{ isCliked: boolean }>`
   }
 `;
 
-export const HeaderMenuUser = styled.div<{isClicked: boolean}>`
+export const HeaderMenuUser = styled.div<{ isClicked: boolean }>`
   width: 26px;
   height: 26px;
   padding: 5px;
   margin-left: 12px;
   margin-right: 12px;
-  background-color: ${props => props.isClicked ? '#d9d9d9' : '#e7e7e7'};
+  background-color: ${(props) => (props.isClicked ? "#d9d9d9" : "#e7e7e7")};
   border-radius: 50px;
   display: flex;
   align-items: center;
@@ -99,4 +99,4 @@ export const DropMenuHeaderBody = styled.div<{
   position: absolute;
   top: 0;
   left: 0;
-`
+`;

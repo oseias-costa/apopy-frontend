@@ -30,5 +30,7 @@ export async function updateCategoryGateway(id: string, name: string) {
 export async function deleteCategoryGateway(id: string) {
   const variables = { categoryEdit: { _id: id } };
 
+  
+
   return await httpClient(DELETE_CATEGORY, variables);
 }
