@@ -1,9 +1,7 @@
 import { ReactElement } from 'react'
 import { CategoryList } from '../pages/CategoryPage/components/CategoryList'
-import { SuplierList } from '../components/suplier/SuplierList'
 import { Login } from '../pages/LoginPage/Login'
 import { Register } from '../pages/RegisterPage/Register'
-import { Novo } from './Novo'
 
 export type NavigationProps = {
     path: string,
