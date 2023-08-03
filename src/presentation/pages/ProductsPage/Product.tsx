@@ -1,31 +1,28 @@
-import { useEffect, useState } from "react";
-import { getProductsUseCase } from "../../../application/product.usecase";
-import { fetchProducts } from "../../redux/slice/productSlice";
+import { useState } from "react";
 import * as S from "../../styles/GlobalStyles/titleWithButton.style";
 import { ProductContainer } from "../../styles/PageStyles/ProductStyles/products.style";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../redux/store";
 import { ProductRow } from "./components/ProductRow";
 import { ProductModal } from "./components/ProductModal";
+import { useGetProducts } from "../../hooks/useGetProducts";
 
 export const Product = () => {
-  const [ productState, setProductState ] = useState({type: 'create', openModal: true})
-  const products = getProductsUseCase();
-  const dispatch = useDispatch();
-  const state = useSelector((state: RootState) => state?.product.products);
-
-  useEffect(() => {
-    products.then((res) => dispatch(fetchProducts(res.data.data.products)));
+  const { products } = useGetProducts();
+  const [productState, setProductState] = useState({
+    type: "",
+    openModal: false,
   });
-console.log(state)
 
   return (
     <ProductContainer>
       <S.TitleWithButton>
         <S.TitleSection>Produtos</S.TitleSection>
-        <S.ButtonCreateItem>Adicionar</S.ButtonCreateItem>
+        <S.ButtonCreateItem
+          onClick={() => setProductState({ type: "create", openModal: true })}
+        >
+          Adicionar
+        </S.ButtonCreateItem>
       </S.TitleWithButton>
-      <ProductRow state={state} />
+      <ProductRow state={products} />
       <ProductModal state={productState} setState={setProductState} />
     </ProductContainer>
   );

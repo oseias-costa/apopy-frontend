@@ -12,6 +12,7 @@ import {
   TitleWithButton,
 } from "../../../styles/GlobalStyles/titleWithButton.style";
 import { SuplierRow } from "./SuplierRow";
+import { useGetSuplier } from "../../../hooks/useGetSupliers";
 
 export interface ItemProps {
   id: string;
@@ -25,6 +26,7 @@ interface typeModal {
 }
 
 export const SuplierList = () => {
+  const { supliers } = useGetSuplier();
   const [suplierState, setSuplierState] = useState<
     React.SetStateAction<ItemProps>
   >({
@@ -39,15 +41,6 @@ export const SuplierList = () => {
     update: <UpdateSuplier state={suplierState} setState={setSuplierState} />,
     delete: <DeleteSuplier state={suplierState} setState={setSuplierState} />,
   };
-
-  const data = useSelector((state) => state.suplier.supliers);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    getSupliersUseCase().then((res) =>
-      dispatch(fetchData(res.data.data.supliers))
-    );
-  }, []);
 
   return (
     <S.SuplierListContainer>
@@ -66,7 +59,7 @@ export const SuplierList = () => {
           Adicionar
         </ButtonCreateItem>
       </TitleWithButton>
-      <SuplierRow data={data} setSuplierState={setSuplierState} />
+      <SuplierRow data={supliers} setSuplierState={setSuplierState} />
       {typeModal[suplierState.type]}
     </S.SuplierListContainer>
   );

@@ -1,5 +1,5 @@
 export interface CategoryState {
-  _id: string;
+  _id?: string;
   name: string;
   type?: string;
   subcategory?: string[];
@@ -14,6 +14,6 @@ export const initialCategoryValue = {
   subcategory: [],
   type: "",
   openModal: false,
-  newSubcategory: '',
-  oldSubcategory: '',
+  newSubcategory: "",
+  oldSubcategory: "",
 };

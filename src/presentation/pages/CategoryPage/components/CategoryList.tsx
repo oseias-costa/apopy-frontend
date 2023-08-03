@@ -12,6 +12,7 @@ import { CreateSubcategory } from "./CreateSubcategory";
 import { CategoryContainer } from "../../../styles/PageStyles/CategoryStyles/category.styles";
 import { CategoryRow } from "./CategoryRow";
 import * as S from "../../../styles/GlobalStyles/titleWithButton.style";
+import { useGetCategories } from "../../../hooks/useGetCategories";
 
 type typeModal = {
   [key: string]: React.ReactNode;
@@ -20,9 +21,7 @@ type typeModal = {
 export const CategoryList = () => {
   const [categoryState, setCategoryState] =
     useState<SetStateAction<CategoryState>>(initialCategoryValue);
-  const dispatch = useDispatch();
-  const categories = getCategoriesUseCase();
-  const state = useSelector((state) => state.category?.categories);
+  const { categories } = useGetCategories();
 
   const typeModal: typeModal = {
     create: (
@@ -45,25 +44,22 @@ export const CategoryList = () => {
     ),
   };
 
-  useEffect(() => {
-    categories.then((res) =>
-      dispatch(fetchCategories(res.data.data.categories))
-    );
-  }, []);
-
   return (
     <CategoryContainer>
       <S.TitleWithButton>
         <S.TitleSection>Categorias</S.TitleSection>
         <S.ButtonCreateItem
           onClick={() => {
-            setCategoryState({ ...state, type: "create", openModal: true });
+            setCategoryState({
+              type: "create",
+              openModal: true,
+            });
           }}
         >
           Adicionar
         </S.ButtonCreateItem>
       </S.TitleWithButton>
-      <CategoryRow state={state} setCategoryState={setCategoryState} />
+      <CategoryRow state={categories} setCategoryState={setCategoryState} />
       {typeModal[categoryState.type]}
     </CategoryContainer>
   );
