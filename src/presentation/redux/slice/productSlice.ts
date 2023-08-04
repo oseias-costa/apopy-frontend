@@ -9,8 +9,11 @@ const productSlice = createSlice({
     fetchProducts: (state, action) => {
       state.products = action.payload;
     },
+    createProduct: (state, action) => {
+      state.products.push(action.payload);
+    },
   },
 });
 
-export const { fetchProducts } = productSlice.actions;
+export const { fetchProducts, createProduct } = productSlice.actions;
 export default productSlice.reducer;

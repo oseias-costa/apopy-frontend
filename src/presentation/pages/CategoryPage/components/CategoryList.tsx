@@ -1,7 +1,4 @@
-import { SetStateAction, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getCategoriesUseCase } from "../../../../application/category/get-categories.usecase";
-import { fetchCategories } from "../../../redux/slice/categorySlice";
+import { SetStateAction, useState } from "react";
 import { CategoryState, initialCategoryValue } from "./category.types";
 import { CreateCategory } from "./CreateCategory";
 import { UpdateCategory } from "./UpdateCategory";

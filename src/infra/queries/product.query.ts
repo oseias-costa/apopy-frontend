@@ -1,4 +1,3 @@
-
 export const GET_PRODUCTS = `
     query Products {
             products {
@@ -10,4 +9,16 @@ export const GET_PRODUCTS = `
                 userId
         }
     }
+`;
+
+export const CREATE_PRODUCT = `
+    mutation Mutation($productInput: ProductInput) {
+        createProduct(productInput: $productInput) {
+            _id
+            category
+            name
+            subcategory
+            suplier  
+        }
+}
 `;
