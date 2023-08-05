@@ -1,18 +1,25 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { CategoryInterface } from "../../../domain/entities/category";
+
+interface CategoryState {
+  categories: CategoryInterface[]
+}
+
+const initialState: CategoryState  = {
+  categories: []
+}
 
 const categorySlice = createSlice({
   name: "categoty",
-  initialState: {
-    categories: [],
-  },
+  initialState: initialState,
   reducers: {
-    fetchCategories: (state, action) => {
+    fetchCategories: (state, action: PayloadAction<CategoryInterface[]>) => {
       state.categories = action.payload;
     },
-    createCategory: (state, action) => {
+    createCategory: (state, action: PayloadAction<CategoryInterface>) => {
       state.categories.push(action.payload);
     },
-    updateCategory: (state, action) => {
+    updateCategory: (state, action: PayloadAction<CategoryInterface>) => {
       const { _id, name } = action.payload;
 
       const updateCategory = state.categories.map((item) => {
@@ -22,7 +29,7 @@ const categorySlice = createSlice({
       });
       state = updateCategory;
     },
-    deleteCategory: (state, action) => {
+    deleteCategory: (state, action: PayloadAction<CategoryInterface>) => {
       state.categories = state.categories.filter(
         (item) => item._id !== action.payload._id
       );
@@ -31,7 +38,7 @@ const categorySlice = createSlice({
     updateSubcategory: (state, action) => {
       const updateSubcategory = state.categories.map((item) => {
         if (item._id === action.payload._id) {
-          const i = item.subcategory.indexOf(action.payload.oldSubcategory);
+          const i = item.subcategory?.indexOf(action.payload.oldSubcategory);
           item.subcategory[i] = action.payload.newSubcategory;
         }
       });
@@ -40,11 +47,11 @@ const categorySlice = createSlice({
     deleteSubcategory: (state, action) => {
       const newState = state.categories.map((item) => {
         if (item._id === action.payload._id) {
-          if (item.subcategory.length === 1) {
+          if (item.subcategory?.length === 1) {
             item.subcategory = [];
           } else {
-            const i = item.subcategory.indexOf(action.payload.oldSubcategory);
-            item.subcategory.splice([i], [i]);
+            const i = item.subcategory?.indexOf(action.payload.oldSubcategory);
+            item.subcategory?.splice([i], [i]);
           }
         }
       });
