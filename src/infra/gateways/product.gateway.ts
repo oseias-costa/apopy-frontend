@@ -1,4 +1,4 @@
-import { ProductCreate } from "../../domain/entities/product";
+import { Product, ProductCreate } from "../../domain/entities/product";
 import { httpClient } from "../http/httpClient";
 import { CREATE_PRODUCT, GET_PRODUCTS } from "../queries/product.query";
 
@@ -7,11 +7,9 @@ export const getProductGateway = async () => {
 };
 
 export const createProductGateway = async ({
-  name,
-  category,
-  subcategory,
-  suplier,
+  name, category, subcategory, suplier,
 }: ProductCreate) => {
+
   const variables = {
     productInput: {
       name,
@@ -25,13 +23,12 @@ export const createProductGateway = async ({
 };
 
 export const updateProductGateway = async ({
-  name,
-  category,
-  subcategory,
-  suplier,
-}: ProductCreate) => {
+  _id, name, category, subcategory, suplier,
+}: Product) => {
+  
   const variables = {
     productInput: {
+      _id,
       name,
       category,
       subcategory,

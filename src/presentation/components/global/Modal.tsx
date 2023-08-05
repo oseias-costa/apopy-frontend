@@ -1,17 +1,16 @@
 import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
-import { closeModal } from "../../redux/slice/modalSlice";
 
-export const Modal = ({
+interface ModalPropps { 
+  children: React.ReactNode;
+  state: any;
+  setState: () => void
+}
+
+export const Modal: React.FC<ModalPropps> = ({
   children,
   state,
   setState,
-}: {
-  children: React.ReactNode;
-  state: { openModal: boolean };
-  setState: () => void;
 }) => {
-  const dispatch = useDispatch();
 
   function handleClick(e: HTMLDivElement) {
     if (e.target.id === "modal") {
@@ -23,7 +22,6 @@ export const Modal = ({
     <ModalContainer
       openModal={state?.openModal}
       id="modal"
-      name="oseias"
       onClick={(e: HTMLDivElement) => handleClick(e)}
     >
       <ModalChildren>{children}</ModalChildren>

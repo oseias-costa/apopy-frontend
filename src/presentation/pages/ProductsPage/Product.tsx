@@ -4,26 +4,24 @@ import { ProductContainer } from "../../styles/PageStyles/ProductStyles/products
 import { ProductRow } from "./components/ProductRow";
 import { ProductModal } from "./components/ProductModal";
 import { useGetProducts } from "../../hooks/useGetProducts";
+import { initialStateProducts, ProductState } from "../../types/pages/products.types";
 
 export const Product = () => {
   const { products } = useGetProducts();
-  const [productState, setProductState] = useState({
-    type: "",
-    openModal: false,
-  });
+  const [ state, setState ] = useState<ProductState>(initialStateProducts);
 
   return (
     <ProductContainer>
       <S.TitleWithButton>
         <S.TitleSection>Produtos</S.TitleSection>
-        <S.ButtonCreateItem
-          onClick={() => setProductState({ type: "create", openModal: true })}
-        >
-          Adicionar
+          <S.ButtonCreateItem
+            onClick={() => setState({ ...initialStateProducts, type: "create", openModal: true })}
+          >
+            Adicionar
         </S.ButtonCreateItem>
       </S.TitleWithButton>
-      <ProductRow state={products} />
-      <ProductModal state={productState} setState={setProductState} />
+      <ProductRow productsList={products} state={state} setState={setState}  />
+      <ProductModal state={state} setState={setState} />
     </ProductContainer>
   );
 };

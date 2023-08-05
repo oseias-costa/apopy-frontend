@@ -1,4 +1,4 @@
-import { Product, ProductCreate } from "../domain/entities/product";
+import { Product } from "../domain/entities/product";
 import {
   createProductGateway,
   getProductGateway,
@@ -10,11 +10,8 @@ export async function getProductsUseCase() {
 }
 
 export async function createProductUseCase({
-  name,
-  category,
-  subcategory,
-  suplier,
-}: ProductCreate) {
+  name, category, subcategory, suplier }: Omit<Product, "_id">) {
+
   return await createProductGateway({ name, category, subcategory, suplier });
 }
 

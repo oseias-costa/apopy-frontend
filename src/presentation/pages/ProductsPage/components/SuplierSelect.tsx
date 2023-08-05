@@ -1,6 +1,13 @@
+import { Product } from "../../../../domain/entities/product";
+import { Suplier } from "../../../../domain/entities/suplier";
 import { useGetSuplier } from "../../../hooks/useGetSupliers";
 
-export const SuplierSelect = ({ product, setProduct }) => {
+interface SuplierSelectProps {
+  product: Product,
+  setProduct: (product: Product) => void
+}
+
+export const SuplierSelect: React.FC<SuplierSelectProps> = ({ product, setProduct }) => {
   const { supliers } = useGetSuplier();
 
   return (
@@ -9,7 +16,7 @@ export const SuplierSelect = ({ product, setProduct }) => {
       onChange={(e) => setProduct({ ...product, suplier: e.target.value })}
     >
       <option disabled={true}>Selecione</option>
-      {supliers?.map((item) => (
+      {supliers?.map((item: Suplier) => (
         <option key={item._id}>{item.name}</option>
       ))}
     </select>
