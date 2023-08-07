@@ -1,6 +1,6 @@
 import { Product, ProductCreate } from "../../domain/entities/product";
 import { httpClient } from "../http/httpClient";
-import { CREATE_PRODUCT, GET_PRODUCTS } from "../queries/product.query";
+import { CREATE_PRODUCT, DELETE_PRODUCT, GET_PRODUCTS, UPDATE_PRODUCT } from "../queries/product.query";
 
 export const getProductGateway = async () => {
   return await httpClient(GET_PRODUCTS, {});
@@ -27,7 +27,7 @@ export const updateProductGateway = async ({
 }: Product) => {
   
   const variables = {
-    productInput: {
+    productEdit: {
       _id,
       name,
       category,
@@ -36,5 +36,13 @@ export const updateProductGateway = async ({
     },
   };
 
-  return await httpClient(CREATE_PRODUCT, variables);
+  return await httpClient(UPDATE_PRODUCT, variables);
 };
+
+export async function deleteProductGateway(id: string){
+  const variables = {
+      id: id
+  }
+
+  return await httpClient(DELETE_PRODUCT, variables)
+}

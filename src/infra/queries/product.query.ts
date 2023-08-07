@@ -22,3 +22,28 @@ export const CREATE_PRODUCT = `
         }
 }
 `;
+
+export const UPDATE_PRODUCT = `
+    mutation UpdateProduct($productEdit: ProductEdit) {
+        updateProduct(productEdit: $productEdit) {
+            _id
+            name
+            category
+            subcategory
+            userId
+            suplier
+        }
+    }
+`
+
+export const DELETE_PRODUCT = `
+    mutation Mutation($id: ID) {
+        deleteProduct(_id: $id) {
+            _id
+            category
+            name
+            subcategory
+            suplier
+        }
+    }
+`

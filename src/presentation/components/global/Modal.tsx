@@ -1,9 +1,10 @@
+import React from "react";
 import styled from "styled-components";
 
 interface ModalPropps { 
   children: React.ReactNode;
   state: any;
-  setState: () => void
+  setState: React.Dispatch<React.SetStateAction<any>>
 }
 
 export const Modal: React.FC<ModalPropps> = ({

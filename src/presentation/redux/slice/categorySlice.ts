@@ -5,6 +5,27 @@ interface CategoryState {
   categories: CategoryInterface[]
 }
 
+interface CategoryState {
+  categories: CategoryInterface[];
+}
+
+interface UpdateSubcategoryPayload {
+  _id: string;
+  oldSubcategory: string;
+  newSubcategory: string;
+}
+
+interface DeleteSubcategoryPayload {
+  _id: string;
+  oldSubcategory: string;
+}
+
+interface CreateSubcategoryPayload {
+  _id: string;
+  newSubcategory: string;
+}
+
+
 const initialState: CategoryState  = {
   categories: []
 }
@@ -35,7 +56,7 @@ const categorySlice = createSlice({
       );
     },
 
-    updateSubcategory: (state, action) => {
+    updateSubcategory: (state, action: PayloadAction<UpdateSubcategoryPayload>) => {
       const updateSubcategory = state.categories.map((item) => {
         if (item._id === action.payload._id) {
           const i = item.subcategory?.indexOf(action.payload.oldSubcategory);
@@ -44,7 +65,7 @@ const categorySlice = createSlice({
       });
       state = updateSubcategory;
     },
-    deleteSubcategory: (state, action) => {
+    deleteSubcategory: (state, action: PayloadAction<DeleteSubcategoryPayload>) => {
       const newState = state.categories.map((item) => {
         if (item._id === action.payload._id) {
           if (item.subcategory?.length === 1) {
@@ -57,7 +78,7 @@ const categorySlice = createSlice({
       });
       state = newState;
     },
-    createSubcategory: (state, action) => {
+    createSubcategory: (state, action: PayloadAction<CreateSubcategoryPayload>) => {
       const newState = state.categories.map((item) => {
         if (item._id === action.payload._id) {
           if (!item.subcategory) {

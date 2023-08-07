@@ -1,6 +1,7 @@
 import { Product } from "../domain/entities/product";
 import {
   createProductGateway,
+  deleteProductGateway,
   getProductGateway,
   updateProductGateway,
 } from "../infra/gateways/product.gateway";
@@ -29,4 +30,8 @@ export async function updateProductUseCase({
     subcategory,
     suplier,
   });
+}
+
+export async function deleteProductUseCase(id: string){
+  return await deleteProductGateway(id)
 }

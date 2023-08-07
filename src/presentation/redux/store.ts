@@ -4,6 +4,7 @@ import modalReducer from "./slice/modalSlice";
 import categoryReducer from "./slice/categorySlice";
 import userReducer from "./slice/userSlice";
 import productReducer from "./slice/productSlice";
+import stockReducer from "./slice/stockSlice";
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +12,8 @@ export const store = configureStore({
     modal: modalReducer,
     category: categoryReducer,
     user: userReducer,
-    product: productReducer
+    product: productReducer,
+    stock: stockReducer
   },
 });
 

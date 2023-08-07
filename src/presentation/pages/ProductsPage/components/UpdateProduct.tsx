@@ -5,9 +5,9 @@ import { useGetSuplier } from "../../../hooks/useGetSupliers";
 import { SuplierSelect } from "./SuplierSelect";
 import { CategorySelect } from "./CategorySelect";
 import { SubcategorySelect } from "./SubcategorySelect";
-import { createProductUseCase } from "../../../../application/product.usecase";
 import { useDispatch } from "react-redux";
-import { createProduct } from "../../../redux/slice/productSlice";
+import { updateProduct } from "../../../redux/slice/productSlice";
+import { updateProductUseCase } from "../../../../application/product.usecase";
 
 export const UpdateProduct: React.FC<ProductStateProps> = ({ state, setState }) => {
   const dispatch = useDispatch();
@@ -15,12 +15,15 @@ export const UpdateProduct: React.FC<ProductStateProps> = ({ state, setState }) 
   const { categories } = useGetCategories();
   const verify = supliers.length === 0 && categories.length === 0;
 
+  console.log('ver id', state)
+
   async function handleCreateProduct() {
-    const update = await createProductUseCase({ ...state });
+    const update = await updateProductUseCase({...state});
 
     if (update.status === 200) {
-      dispatch(createProduct(data.data.createProduct));
-      return setState(initialStateProducts);
+      
+      dispatch(updateProduct(update.data?.data.updateProduct));
+      setState(initialStateProducts);
     }
   }
 
@@ -39,7 +42,7 @@ export const UpdateProduct: React.FC<ProductStateProps> = ({ state, setState }) 
             <CategorySelect product={state} setProduct={setState} />
             <SubcategorySelect product={state} setProduct={setState} />
             <SuplierSelect product={state} setProduct={setState} />
-            <button onClick={() => handleCreateProduct()}>Criar Produto</button>
+            <button onClick={() => handleCreateProduct()}>Editar Produto</button>
           </div>
         )}
       </Modal>

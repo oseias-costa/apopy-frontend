@@ -77,6 +77,18 @@ export const Menu = () => {
                 Produtos
               </LinkMenu>
             </MenuItem>
+          <MenuItem
+              isSelected={pathSelected("/estoque")}
+              onClick={() => setOpenMenu(!openMenu)}
+            >
+              <SettingsIcon isSelected={pathSelected("/estoque")} />
+              <LinkMenu
+                to="/estoque"
+                isSelected={pathSelected("/estoque")}
+              >
+                Estoque
+              </LinkMenu>
+            </MenuItem>
           <MenuItem className="settings"
               isSelected={pathSelected("/configuracoes")}
               onClick={() => setOpenMenu(!openMenu)}

@@ -16,10 +16,10 @@ export const ProductRow: React.FC<ProductRowProps> = ({
   const products = productsList?.map((item: ProductInterface) => {
     return (
       <S.ProductRowContainer>
-        <S.ProductRowText>{item.category}</S.ProductRowText>
-        <S.ProductRowText>{item.subcategory}</S.ProductRowText>
-        <S.ProductRowText>{item.suplier}</S.ProductRowText>
-        <S.ProductRowText>{item.name}</S.ProductRowText>
+        <S.ProductRowText>{item?.category}</S.ProductRowText>
+        <S.ProductRowText>{item?.subcategory}</S.ProductRowText>
+        <S.ProductRowText>{item?.suplier}</S.ProductRowText>
+        <S.ProductRowText>{item?.name}</S.ProductRowText>
         <MenuDropdownProduct state={state} item={item} setState={setState} />
       </S.ProductRowContainer>
     );
