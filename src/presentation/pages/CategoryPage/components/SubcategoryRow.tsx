@@ -1,16 +1,16 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import * as S from "../../../styles/PageStyles/CategoryStyles/subcategory-row.styles";
 import { DootsIconSubcategory } from "./DootsIconSubcategory";
 import { DropMenuContent } from "../../../styles/PageStyles/CategoryStyles/category-row.styles";
 
 export const SubcategoryRow = ({ item, handleSetCategory }) => {
-  const [menuSubcategory, setMenuSubcategory] = useState('');
+  const [menuSubcategory, setMenuSubcategory] = useState("");
   const [menuPosition, setMenuPosition] = useState("");
 
   const subcategory = item?.subcategory?.map((sub, index) => {
     return (
       <S.SubcategoryRowContainer key={sub}>
-        <S.SubCategoryText className={index === 0 ? 'firstSubcategory' : ''}>
+        <S.SubCategoryText className={index === 0 ? "firstSubcategory" : ""}>
           {sub}
         </S.SubCategoryText>
         <S.DropMenuSubcategory

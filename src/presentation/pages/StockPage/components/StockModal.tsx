@@ -1,5 +1,5 @@
 import { StockStateProps } from "../../../types/pages/stock.types";
-import { CreateStockItem } from "./createStockItem";
+import { CreateStockItem } from "./CreateStockItem";
 import { DeleteStockItem } from "./DeleteStockItem";
 import { MovimentStockItem } from "./MovimentStockItem";
 import { UpdateStockItem } from "./UpdateStockItem";
