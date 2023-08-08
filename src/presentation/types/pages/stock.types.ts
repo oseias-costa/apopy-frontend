@@ -50,3 +50,17 @@ export interface StockStateProps {
   setStockState: React.Dispatch<React.SetStateAction<StockState>>;
   stockState: StockState;
 }
+
+export function UpdateStockItemData(updateStockItem: Stock): Stock {
+  return {
+        _id: updateStockItem._id,
+        product: updateStockItem.product,
+        category : updateStockItem.category,
+        subcategory: updateStockItem.subcategory,
+        suplier: updateStockItem.suplier,
+        quantity: updateStockItem.quantity,
+        costPrice: updateStockItem.costPrice,
+        total: updateStockItem.total,
+        description: updateStockItem.description,
+  }
+} 

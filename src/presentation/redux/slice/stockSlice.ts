@@ -15,9 +15,24 @@ export const stockSlice = createSlice({
     reducers: {
         fetchStock: (state, action: PayloadAction<Stock[]>) => {
             state.stock = action.payload
+        },
+        createStock: (state, action: PayloadAction<Stock>) => {
+            state.stock.push(action.payload)
+        },
+        updateStock: (state, action: PayloadAction<Stock>) => {
+            state.stock = state.stock.map(item => {
+                if(item._id === action.payload._id){ 
+                    item = action.payload
+                }
+                return item
+            })
+        },
+        deleteStock: (state, action: PayloadAction<{ _id: string}>) => {
+            state.stock = state.stock.filter(item => 
+                item._id !== action.payload._id )
         }
     }
 })
 
-export const { fetchStock } = stockSlice.actions
+export const {  fetchStock, createStock, updateStock, deleteStock } = stockSlice.actions
 export default stockSlice.reducer

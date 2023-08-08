@@ -4,10 +4,13 @@ import { Stock } from "../../../../domain/entities/stock";
 import { Modal } from "../../../components/global/Modal";
 import { useGetProducts } from "../../../hooks/useGetProducts";
 import {
+  initialStockState,
   initialStockStateCreate,
   StockStateProps,
 } from "../../../types/pages/stock.types";
 import { createStockUseCase } from "../../../../application/stock.usecase";
+import { createStock } from "../../../redux/slice/stockSlice";
+import { useDispatch } from "react-redux";
 
 export const CreateStockItem: React.FC<StockStateProps> = ({
   stockState,
@@ -15,8 +18,9 @@ export const CreateStockItem: React.FC<StockStateProps> = ({
 }) => {
   const { products } = useGetProducts();
   const [newStockItem, setNewStockItem] = useState<Stock>(
-    initialStockStateCreate
-  );
+    initialStockStateCreate);
+  const dispatch = useDispatch()  
+
   const filterItem = (id: string): Product =>
     products.filter((item) => item._id === id)[0];
 
@@ -24,8 +28,10 @@ export const CreateStockItem: React.FC<StockStateProps> = ({
     const create = await createStockUseCase(newStockItem);
 
     if (create.status === 200) {
-      console.log(create);
+
+      dispatch(createStock(create.data.data.createStockItem))
       setNewStockItem(initialStockStateCreate);
+      setStockState(initialStockState)
     }
   }
 
