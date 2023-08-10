@@ -22,6 +22,22 @@ export const TransferToSale: React.FC<StockStateProps> = ({ stockState, setStock
     const [ newSale, setNewSale ] = useState<NewSale>(initialStateNewSale)
     
     async function handleTransferSale(){
+        const saleVariables = {
+            stockId: stockState._id,
+            category: stockState.category,
+            product: stockState.product,
+            subcategory: stockState.subcategory,
+            suplier: stockState.suplier,
+            quantity: newSale.quantity,
+            price: newSale.price,
+            total: newSale.price * newSale.quantity,
+            costPrice: 1200,
+            description: "Descrição",
+            profit: 4000,
+            percentage: 8,
+            date: null
+        }
+
         const data = await transferSaleUseCase(stockState)
 
         if(data.status === 200){

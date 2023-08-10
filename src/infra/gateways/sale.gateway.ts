@@ -13,8 +13,6 @@ export async function transferSaleGateway(data: Sale): Promise<AxiosResponse>{
 
     const variables = {
         saleInput: {
-            _id: "64d41ebe8a3019076f0a2b7a",
-            userId: "6451a787de4c08d54ed8da35",
             stockId: "64d19bdb765f56b4c60a7da5",
             category: "Estofado",
             product: "Turing",
