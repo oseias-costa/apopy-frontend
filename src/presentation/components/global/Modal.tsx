@@ -1,18 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-interface ModalPropps { 
+interface ModalPropps {
   children: React.ReactNode;
   state: any;
-  setState: React.Dispatch<React.SetStateAction<any>>
+  setState: React.Dispatch<React.SetStateAction<any>>;
 }
 
-export const Modal: React.FC<ModalPropps> = ({
-  children,
-  state,
-  setState,
-}) => {
-
+export const Modal: React.FC<ModalPropps> = ({ children, state, setState }) => {
   function handleClick(e: HTMLDivElement) {
     if (e.target.id === "modal") {
       setState({ ...state, openModal: false });
@@ -45,6 +40,6 @@ const ModalContainer = styled("div")<{ openModal: boolean }>`
 
 const ModalChildren = styled.div`
   background-color: #fff;
-  width: 400px;
-  height: 400px;
+  min-width: 400px;
+  min-height: 400px;
 `;

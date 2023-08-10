@@ -1,58 +1,100 @@
-import { useState } from "react"
+import { useState } from "react";
 import { transferSaleUseCase } from "../../../../application/sale.usecase";
-import { StockStateProps } from "../../../types/pages/stock.types"
+import { StockStateProps } from "../../../types/pages/stock.types";
+import { variablesSales } from "./utils-sales";
 
-interface NewSale {
-    quantity: number;
-    price: number;
-    profit: number;
-    percentage: number;
-    createAt: string
+export interface NewSale {
+  quantity: number;
+  price: number;
+  profit: number;
+  percentage: number;
+  createAt: string;
 }
 
 const initialStateNewSale: NewSale = {
-    quantity: 0,
-    price: 0,
-    profit: 0,
-    percentage: 0,
-    createAt: ''
-}
+  quantity: 0,
+  price: 0,
+  profit: 0,
+  percentage: 0,
+  createAt: "",
+};
 
-export const TransferToSale: React.FC<StockStateProps> = ({ stockState, setStockState }) => {
-    const [ newSale, setNewSale ] = useState<NewSale>(initialStateNewSale)
-    
-    async function handleTransferSale(){
-        const saleVariables = {
-            stockId: stockState._id,
-            category: stockState.category,
-            product: stockState.product,
-            subcategory: stockState.subcategory,
-            suplier: stockState.suplier,
-            quantity: newSale.quantity,
-            price: newSale.price,
-            total: newSale.price * newSale.quantity,
-            costPrice: 1200,
-            description: "Descrição",
-            profit: 4000,
-            percentage: 8,
-            date: null
+export const TransferToSale: React.FC<StockStateProps> = ({
+  stockState,
+  setStockState,
+}) => {
+  const [newSale, setNewSale] = useState<NewSale>(initialStateNewSale);
+
+  async function handleTransferSale() {
+    const teste = variablesSales(stockState, newSale);
+
+    console.log(JSON.stringify(teste));
+
+    // if(data.status === 200){
+    //     console.log(data)
+    // }
+  }
+
+  return (
+    <div>
+      <h2>Transfer Modal</h2>
+      <br />
+      <br />
+      <p>Quantidade</p>
+      <input
+        type="number"
+        placeholder="Quantidade"
+        value={newSale.quantity}
+        onChange={(e) =>
+          setNewSale({ ...newSale, quantity: Number(e.target.value) })
         }
-
-        const data = await transferSaleUseCase(stockState)
-
-        if(data.status === 200){
-            console.log(data)
+      />
+      <br />
+      <br />
+      <p>Preço</p>
+      <input
+        type="number"
+        placeholder="Preço"
+        value={newSale.price}
+        onChange={(e) =>
+          setNewSale({ ...newSale, price: Number(e.target.value) })
         }
-    }
-
-    return (
-            <div>Transfer Modal
-                <input type='number' value={newSale.quantity} onChange={(e) => setNewSale({ ...newSale, quantity: Number(e.target.value)})} />
-                <input type='number' value={newSale.price} onChange={(e) => setNewSale({ ...newSale, price: Number(e.target.value)})} />
-                <input type='number' value={newSale.price} onChange={(e) => setNewSale({ ...newSale, price: Number(e.target.value)})} />
-                <input type='number' value={newSale.profit} onChange={(e) => setNewSale({ ...newSale, profit: Number(e.target.value)})} />
-                <input type='text' value={newSale.createAt} onChange={(e) => setNewSale({ ...newSale, createAt: e.target.value})} />
-                <button>Nova Venda</button>
-            </div>
-    )
-}
+      />
+      <br />
+      <br />
+      <p>Percentual de Lucro</p>
+      <input
+        type="number"
+        placeholder="Percentual de Lucro"
+        value={newSale.price}
+      />
+      <br />
+      <br />
+      <p>Total</p>
+      <input
+        type="number"
+        placeholder="Total"
+        disabled={true}
+        value={newSale.price * newSale.quantity}
+      />
+      <input type="number" placeholder="Lucro" value={newSale.profit} />
+      <br />
+      <br />
+      <p>Lucro</p>
+      <input
+        type="number"
+        disabled={true}
+        value={newSale.price - stockState.costPrice}
+      />
+      <br />
+      <br />
+      <p>Preço</p>
+      <input
+        type="text"
+        disabled={true}
+        value={(newSale.price - stockState.costPrice) / newSale.price}
+      />
+      <button onClick={handleTransferSale}>Nova Venda</button>
+    </div>
+  );
+};

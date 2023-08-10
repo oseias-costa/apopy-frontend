@@ -1,4 +1,3 @@
-
 export const GET_SALES = `
     query Sales {
         sales {
@@ -16,14 +15,14 @@ export const GET_SALES = `
             description
             profit
             percentage
-            createAt
+            date
         }
     }
-`
+`;
 
 export const TRANSFER_SALE = `
-    mutation Mutation($saleInputCreate: SaleInputCreate) {
-        transferSale(saleInputCreate: $saleInputCreate) {
+    mutation Mutation($saleInputTransfer: SaleInputTransfer) {
+        transferSale(saleInputTransfer: $saleInputTransfer) {
             _id
             category
             userId
@@ -38,14 +37,14 @@ export const TRANSFER_SALE = `
             description
             profit
             percentage
-            createAt
+            date
         }
     }
-`
+`;
 
 export const REVERSE_SALE = `
-    mutation ReverseSale($saleInput: SaleInput) {
-        reverseSale(saleInput: $saleInput) {
+    mutation ReverseSale($saleInputTransfer: SaleInputTransfer) {
+        reverseSale(saleInputTransfer: $saleInputTransfer) {
             _id
             userId
             stockId
@@ -60,7 +59,7 @@ export const REVERSE_SALE = `
             description
             profit
             percentage
-            createAt
+            date
         }
     }
-`
+`;
