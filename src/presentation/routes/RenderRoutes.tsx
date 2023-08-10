@@ -12,6 +12,7 @@ import { Category } from "../pages/CategoryPage/Category";
 import { Suplier } from "../pages/SuplierPage/Suplier";
 import { Product } from "../pages/ProductsPage/Product";
 import { Stock } from "../pages/StockPage/Stock";
+import { Sales } from "../pages/SalesPage/Sales";
 
 export const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +24,7 @@ export const router = createBrowserRouter(
           <Route path={"/fornecedores"} element={<Suplier />} />
           <Route path={"/produtos"} element={<Product />} />
           <Route path={"/estoque"} element={<Stock />} />
+          <Route path={"/vendas"} element={<Sales />} />
         </Route>
       </Route>
       <Route path={"/login"} element={<Login />} />
