@@ -43,23 +43,19 @@ export const TRANSFER_SALE = `
 `;
 
 export const REVERSE_SALE = `
-    mutation ReverseSale($saleInputTransfer: SaleInputTransfer) {
+    mutation Mutation($saleInputTransfer: SaleInputTransfer) {
         reverseSale(saleInputTransfer: $saleInputTransfer) {
             _id
             userId
-            stockId
             category
             subcategory
             product
             suplier
-            quantity
             price
             total
             costPrice
             description
-            profit
-            percentage
-            date
+            quantity
         }
     }
 `;

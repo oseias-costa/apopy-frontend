@@ -2,6 +2,7 @@ import React, { Dispatch } from "react";
 import { Sale } from "../../../../domain/entities/sale"
 import * as S from "../../../styles/PageStyles/SaleStyles/sales-row.style";
 import { SaleState } from "../../../types/pages/sale.types";
+import { MenuDropDownSales } from "./MenuDropDownSales";
 
 interface SalesStateProp {
     sales: Sale[];
@@ -19,9 +20,11 @@ export const SalesRow: React.FC<SalesStateProp> = (props) => {
                 <S.SaleRowText>{item.costPrice}</S.SaleRowText>
                 <S.SaleRowText>{item.price}</S.SaleRowText>
                 <S.SaleRowText>{item.quantity}</S.SaleRowText>
+                <S.SaleRowText>{item.profit}</S.SaleRowText>
                 <S.SaleRowText>{item.total}</S.SaleRowText>
                 <S.SaleRowText>{item.percentage}</S.SaleRowText>
                 <S.SaleRowText>{item.description}</S.SaleRowText>
+                <MenuDropDownSales item={item} setState={props.setSaleState} />
             </S.SaleRowContainer>
         )
     })
@@ -35,8 +38,9 @@ export const SalesRow: React.FC<SalesStateProp> = (props) => {
             <S.SaleRowTextHeader>Preço Custo</S.SaleRowTextHeader>
             <S.SaleRowTextHeader>Preço</S.SaleRowTextHeader>
             <S.SaleRowTextHeader>Quantidade</S.SaleRowTextHeader>
+            <S.SaleRowTextHeader>Lucro</S.SaleRowTextHeader>
             <S.SaleRowTextHeader>Total</S.SaleRowTextHeader>
-            <S.SaleRowTextHeader>%</S.SaleRowTextHeader>
+            <S.SaleRowTextHeader>%Percentual</S.SaleRowTextHeader>
             <S.SaleRowTextHeader>Descrição</S.SaleRowTextHeader>
         </S.SaleRowContainerHeader>
             {salesList}

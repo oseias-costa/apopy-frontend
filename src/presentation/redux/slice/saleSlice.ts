@@ -25,5 +25,5 @@ export const saleSlice = createSlice({
     }
 })
 
-export const {fetchSales, transferSale, reverseSale} = saleSlice.actions
+export const { fetchSales, transferSale, reverseSale } = saleSlice.actions
 export default saleSlice.reducer

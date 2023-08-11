@@ -1,7 +1,12 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { transferSaleUseCase } from "../../../../application/sale.usecase";
+import { Sale } from "../../../../domain/entities/sale";
 import { StockStateProps } from "../../../types/pages/stock.types";
 import { variablesSales } from "./utils-sales";
+import { transferSale } from '../../../redux/slice/saleSlice'
+import { useNavigate } from "react-router-dom";
+import { initialSaleState } from "../../../types/pages/sale.types";
 
 export interface NewSale {
   quantity: number;
@@ -24,15 +29,18 @@ export const TransferToSale: React.FC<StockStateProps> = ({
   setStockState,
 }) => {
   const [newSale, setNewSale] = useState<NewSale>(initialStateNewSale);
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   async function handleTransferSale() {
-    const teste = variablesSales(stockState, newSale);
+    const variables: Omit<Sale, "_id">  = variablesSales(stockState, newSale)
+    const transferSaleReq = await transferSaleUseCase(variables)
 
-    console.log(JSON.stringify(teste));
-
-    // if(data.status === 200){
-    //     console.log(data)
-    // }
+    if(transferSaleReq.status === 200){
+        dispatch(transferSale(transferSaleReq.data.data.transferSale))
+        setStockState(initialSaleState)
+        navigate('vendas')
+    }
   }
 
   return (

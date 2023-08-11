@@ -7,7 +7,7 @@ export async function getSaleUseCase(): Promise<AxiosResponse>{
     return await getSalesGateway()
 }
 
-export async function transferSaleUseCase(data: Sale): Promise<AxiosResponse>{
+export async function transferSaleUseCase(data: Omit<Sale, "_id">): Promise<AxiosResponse>{
 
     return await transferSaleGateway(data)
 } 
