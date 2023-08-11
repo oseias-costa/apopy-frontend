@@ -18,8 +18,9 @@ export const CreateStockItem: React.FC<StockStateProps> = ({
 }) => {
   const { products } = useGetProducts();
   const [newStockItem, setNewStockItem] = useState<Stock>(
-    initialStockStateCreate);
-  const dispatch = useDispatch()  
+    initialStockStateCreate
+  );
+  const dispatch = useDispatch();
 
   const filterItem = (id: string): Product =>
     products.filter((item) => item._id === id)[0];
@@ -28,10 +29,9 @@ export const CreateStockItem: React.FC<StockStateProps> = ({
     const create = await createStockUseCase(newStockItem);
 
     if (create.status === 200) {
-
-      dispatch(createStock(create.data.data.createStockItem))
+      dispatch(createStock(create.data.data.createStockItem));
       setNewStockItem(initialStockStateCreate);
-      setStockState(initialStockState)
+      setStockState(initialStockState);
     }
   }
 
@@ -71,13 +71,7 @@ export const CreateStockItem: React.FC<StockStateProps> = ({
       />
       <input
         type="number"
-        placeholder=""
-        onChange={(e) =>
-          setNewStockItem({ ...newStockItem, quantity: Number(e.target.value) })
-        }
-      />
-      <input
-        type="number"
+        placeholder="Preço de Custo"
         onChange={(e) =>
           setNewStockItem({
             ...newStockItem,
@@ -86,7 +80,15 @@ export const CreateStockItem: React.FC<StockStateProps> = ({
         }
       />
       <input
+        type="number"
+        placeholder="total"
+        onChange={(e) =>
+          setNewStockItem({ ...newStockItem, total: Number(e.target.value) })
+        }
+      />
+      <input
         type="string"
+        placeholder="Descrição"
         onChange={(e) =>
           setNewStockItem({ ...newStockItem, description: e.target.value })
         }

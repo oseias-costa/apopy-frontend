@@ -3,10 +3,10 @@ import { useDispatch } from "react-redux";
 import { transferSaleUseCase } from "../../../../application/sale.usecase";
 import { Sale } from "../../../../domain/entities/sale";
 import { StockStateProps } from "../../../types/pages/stock.types";
-import { variablesSales } from "./utils-sales";
-import { transferSale } from '../../../redux/slice/saleSlice'
-import { useNavigate } from "react-router-dom";
+import { originStockMoviment, variablesSales } from "./utils-sales";
+import { transferSale } from "../../../redux/slice/saleSlice";
 import { initialSaleState } from "../../../types/pages/sale.types";
+import { transferStockToSale } from "../../../redux/slice/stockSlice";
 
 export interface NewSale {
   quantity: number;
@@ -29,17 +29,16 @@ export const TransferToSale: React.FC<StockStateProps> = ({
   setStockState,
 }) => {
   const [newSale, setNewSale] = useState<NewSale>(initialStateNewSale);
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  const dispatch = useDispatch();
 
   async function handleTransferSale() {
-    const variables: Omit<Sale, "_id">  = variablesSales(stockState, newSale)
-    const transferSaleReq = await transferSaleUseCase(variables)
+    const variables: Omit<Sale, "_id"> = variablesSales(stockState, newSale);
+    const transferSaleReq = await transferSaleUseCase(variables);
 
-    if(transferSaleReq.status === 200){
-        dispatch(transferSale(transferSaleReq.data.data.transferSale))
-        setStockState(initialSaleState)
-        navigate('vendas')
+    if (transferSaleReq.status === 200) {
+      dispatch(transferSale(transferSaleReq.data.data.transferSale));
+      dispatch(transferStockToSale(originStockMoviment(stockState, newSale)));
+      setStockState(initialSaleState);
     }
   }
 

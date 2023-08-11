@@ -2,37 +2,65 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Stock } from "../../../domain/entities/stock";
 
 interface StockState {
-    stock: Stock[]
+  stock: Stock[];
 }
 
 const initialState: StockState = {
-    stock: []
-}
+  stock: [],
+};
 
 export const stockSlice = createSlice({
-    name: 'stock',
-    initialState: initialState,
-    reducers: {
-        fetchStock: (state, action: PayloadAction<Stock[]>) => {
-            state.stock = action.payload
-        },
-        createStock: (state, action: PayloadAction<Stock>) => {
-            state.stock.push(action.payload)
-        },
-        updateStock: (state, action: PayloadAction<Stock>) => {
-            state.stock = state.stock.map(item => {
-                if(item._id === action.payload._id){ 
-                    item = action.payload
-                }
-                return item
-            })
-        },
-        deleteStock: (state, action: PayloadAction<{ _id: string}>) => {
-            state.stock = state.stock.filter(item => 
-                item._id !== action.payload._id )
+  name: "stock",
+  initialState: initialState,
+  reducers: {
+    fetchStock: (state, action: PayloadAction<Stock[]>) => {
+      state.stock = action.payload;
+    },
+    createStock: (state, action: PayloadAction<Stock>) => {
+      state.stock.push(action.payload);
+    },
+    updateStock: (state, action: PayloadAction<Stock>) => {
+      state.stock = state.stock.map((item) => {
+        if (item._id === action.payload._id) {
+          item = action.payload;
         }
-    }
-})
+        return item;
+      });
+    },
+    deleteStock: (state, action: PayloadAction<{ _id: string }>) => {
+      state.stock = state.stock.filter(
+        (item) => item._id !== action.payload._id
+      );
+    },
+    transferStockToSale: (state, action: PayloadAction<Stock>) => {
+      const itemStock: Stock = state.stock.filter(
+        (item) => item._id === action.payload._id
+      )[0];
+      const verifyQuantity = itemStock.quantity - action.payload.quantity;
+      if (verifyQuantity === 0) {
+        state.stock = state.stock.filter(
+          (stock) => stock._id !== action.payload._id
+        );
+      } else {
+        state.stock = state.stock.map((item) => {
+          if (item._id === action.payload._id) {
+            item = {
+              ...action.payload,
+              quantity: item.quantity - action.payload.quantity,
+            };
+          }
+          return item;
+        });
+      }
+    },
+  },
+});
 
-export const {  fetchStock, createStock, updateStock, deleteStock } = stockSlice.actions
-export default stockSlice.reducer
+export const {
+  fetchStock,
+  createStock,
+  updateStock,
+  deleteStock,
+  transferStockToSale,
+} = stockSlice.actions;
+export default stockSlice.reducer;
