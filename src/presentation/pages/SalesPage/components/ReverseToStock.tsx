@@ -1,8 +1,11 @@
 import React, { Dispatch } from "react";
+import { useDispatch } from "react-redux";
 import { reverseSaleUseCase } from "../../../../application/sale.usecase";
 import { Modal } from "../../../components/global/Modal";
-import { SaleState } from "../../../types/pages/sale.types"
-import { variablesReverseSales } from "./utils-sales";
+import { reverseSale } from "../../../redux/slice/saleSlice";
+import { reverseToStock } from "../../../redux/slice/stockSlice";
+import { initialSaleState, SaleState } from "../../../types/pages/sale.types"
+import { originStockReverse, variablesReverseSales } from "./utils-sales";
 
 interface ReverseToStockProps {
     saleState: SaleState;
@@ -10,11 +13,15 @@ interface ReverseToStockProps {
 }
 
 export const ReverseToStock: React.FC<ReverseToStockProps> = ({saleState, setSaleState}) => {
+    const dispatch = useDispatch()
+
     async function handleReverse(){
         const reverse = await reverseSaleUseCase(variablesReverseSales(saleState))
 
         if(reverse.status === 200){
-            console.log(reverse.data)
+            dispatch(reverseSale(saleState))
+            dispatch(reverseToStock(originStockReverse(saleState)))
+            setSaleState(initialSaleState)
         }
     }
 

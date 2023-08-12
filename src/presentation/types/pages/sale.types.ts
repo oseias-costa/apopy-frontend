@@ -35,3 +35,19 @@ export const initialSaleState: SaleState = {
   openModal: false,
   type: "",
 };
+
+export interface NewSale {
+  quantity: number;
+  price: number;
+  profit: number;
+  percentage: number;
+  createAt: string;
+}
+
+export const initialStateNewSale: NewSale = {
+  quantity: 0,
+  price: 0,
+  profit: 0,
+  percentage: 0,
+  createAt: "",
+};

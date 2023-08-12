@@ -1,8 +1,7 @@
 import { Sale } from "../../../../domain/entities/sale";
 import { Stock } from "../../../../domain/entities/stock";
-import { SaleState } from "../../../types/pages/sale.types";
+import { NewSale, SaleState } from "../../../types/pages/sale.types";
 import { StockState } from "../../../types/pages/stock.types";
-import { NewSale } from "./TransferToSale";
 
 interface VariablesSales {
   (stockState: StockState, newSale: NewSale): Omit<Sale, "_id">;
@@ -68,6 +67,22 @@ export const originStockMoviment = (
     subcategory: stockState.subcategory,
     suplier: stockState.suplier,
     total: stockState.total,
+  };
+
+  return originStock;
+};
+
+export const originStockReverse = ( saleState: SaleState ): Stock => {
+  const originStock: Stock = {
+    _id: saleState.stockId,
+    category: saleState.category,
+    product: saleState.product,
+    costPrice: saleState.costPrice,
+    description: saleState.description,
+    quantity: saleState.quantity,
+    subcategory: saleState.subcategory,
+    suplier: saleState.suplier,
+    total: saleState.total,
   };
 
   return originStock;

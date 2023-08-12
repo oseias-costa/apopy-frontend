@@ -53,6 +53,22 @@ export const stockSlice = createSlice({
         });
       }
     },
+    reverseToStock: (state, action: PayloadAction<Stock>) => {
+      const itemStock: Stock = state.stock.filter(
+        (item) => item._id === action.payload._id
+      )[0];
+
+      if(itemStock){
+        state.stock = state.stock.map((item) => {
+          if (item._id === action.payload._id) {
+            item = action.payload
+          }
+          return item
+        })
+      } else {
+        state.stock.push(action.payload)
+      }
+    }
   },
 });
 
@@ -62,5 +78,6 @@ export const {
   updateStock,
   deleteStock,
   transferStockToSale,
+  reverseToStock
 } = stockSlice.actions;
 export default stockSlice.reducer;

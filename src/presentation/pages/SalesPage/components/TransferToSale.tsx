@@ -5,24 +5,8 @@ import { Sale } from "../../../../domain/entities/sale";
 import { StockStateProps } from "../../../types/pages/stock.types";
 import { originStockMoviment, variablesSales } from "./utils-sales";
 import { transferSale } from "../../../redux/slice/saleSlice";
-import { initialSaleState } from "../../../types/pages/sale.types";
+import { initialSaleState, initialStateNewSale, NewSale } from "../../../types/pages/sale.types";
 import { transferStockToSale } from "../../../redux/slice/stockSlice";
-
-export interface NewSale {
-  quantity: number;
-  price: number;
-  profit: number;
-  percentage: number;
-  createAt: string;
-}
-
-const initialStateNewSale: NewSale = {
-  quantity: 0,
-  price: 0,
-  profit: 0,
-  percentage: 0,
-  createAt: "",
-};
 
 export const TransferToSale: React.FC<StockStateProps> = ({
   stockState,
@@ -36,6 +20,7 @@ export const TransferToSale: React.FC<StockStateProps> = ({
     const transferSaleReq = await transferSaleUseCase(variables);
 
     if (transferSaleReq.status === 200) {
+      console.log(transferSale)
       dispatch(transferSale(transferSaleReq.data.data.transferSale));
       dispatch(transferStockToSale(originStockMoviment(stockState, newSale)));
       setStockState(initialSaleState);
