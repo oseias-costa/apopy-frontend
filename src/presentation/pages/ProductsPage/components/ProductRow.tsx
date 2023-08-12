@@ -6,13 +6,14 @@ import { Product } from "../../../../domain/entities/product";
 interface ProductRowProps {
   productsList: ProductInterface[];
   state: Product;
-  setState: (state: Product) => void
+  setState: (state: Product) => void;
 }
 
-export const ProductRow: React.FC<ProductRowProps> = ({ 
-  productsList, state, setState 
+export const ProductRow: React.FC<ProductRowProps> = ({
+  productsList,
+  state,
+  setState,
 }) => {
-
   const products = productsList?.map((item: ProductInterface) => {
     return (
       <S.ProductRowContainer>
@@ -26,7 +27,7 @@ export const ProductRow: React.FC<ProductRowProps> = ({
   });
 
   return (
-    <>
+    <table>
       <S.ProductRowContainerHeader>
         <S.ProductRowTextHeader>Categoria</S.ProductRowTextHeader>
         <S.ProductRowTextHeader>Subcategoria</S.ProductRowTextHeader>
@@ -35,6 +36,6 @@ export const ProductRow: React.FC<ProductRowProps> = ({
         <S.Adjuste />
       </S.ProductRowContainerHeader>
       {products}
-    </>
+    </table>
   );
 };

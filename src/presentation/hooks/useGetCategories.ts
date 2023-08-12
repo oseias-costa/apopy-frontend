@@ -12,7 +12,9 @@ export function useGetCategories() {
   );
 
   useEffect(() => {
-    state.then((res) => dispatch(fetchCategories(res.data.data.categories)));
+    if (categories.length === 0) {
+      state.then((res) => dispatch(fetchCategories(res.data.data.categories)));
+    }
   }, []);
 
   return { categories };

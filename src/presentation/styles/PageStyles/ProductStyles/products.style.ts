@@ -1,8 +1,4 @@
 import { styled } from "styled-components";
-import {
-  CategoryRowContainer,
-  CategoryRowText,
-} from "../CategoryStyles/category-row.styles";
 
 export const ProductContainer = styled.div`
   background-color: #fff;
@@ -13,22 +9,22 @@ export const ProductContainer = styled.div`
   padding-top: 5px;
 `;
 
-export const ProductRowContainer = styled(CategoryRowContainer)`
+export const ProductRowContainer = styled.tr`
   justify-content: start;
   border-bottom: 1px solid #e5e4e2;
 `;
-export const ProductRowContainerHeader = styled(CategoryRowContainer)`
+export const ProductRowContainerHeader = styled.tr`
   justify-content: start;
   border-bottom: 0px solid #e5e4e2;
   background-color: #e5e4e2;
 `;
 
-export const ProductRowText = styled(CategoryRowText)`
-  width: auto;
+export const ProductRowText = styled.td`
+  // width: auto;
   font-size: 14px;
 `;
 
-export const ProductRowTextHeader = styled(ProductRowText)`
+export const ProductRowTextHeader = styled.th`
   font-weight: 600;
   color: #828282;
 `;

@@ -9,9 +9,11 @@ export function useGetProducts() {
   const products = useSelector((state: RootState) => state?.product.products);
 
   useEffect(() => {
-    getProductsUseCase().then((res) =>
-      dispatch(fetchProducts(res.data.data.products))
-    );
+    if (products.length === 0) {
+      getProductsUseCase().then((res) =>
+        dispatch(fetchProducts(res.data.data.products))
+      );
+    }
   }, []);
 
   return { products };

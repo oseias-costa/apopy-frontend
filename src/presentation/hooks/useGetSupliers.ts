@@ -9,9 +9,11 @@ export function useGetSuplier() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getSupliersUseCase().then((res) =>
-      dispatch(fetchData(res.data.data.supliers))
-    );
+    if (supliers.length === 0) {
+      getSupliersUseCase().then((res) =>
+        dispatch(fetchData(res.data.data.supliers))
+      );
+    }
   }, []);
 
   return { supliers };

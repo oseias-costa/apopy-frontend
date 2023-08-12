@@ -9,9 +9,11 @@ export function useGetStock() {
   const stock = useSelector((state: RootState) => state?.stock.stock);
 
   useEffect(() => {
-    getStockUseCase().then((res) =>
+    if (stock.length === 0) {
+      getStockUseCase().then((res) =>
         dispatch(fetchStock(res.data.data.stock))
-    );
+      );
+    }
   }, []);
 
   return { stock };
