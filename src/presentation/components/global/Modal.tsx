@@ -8,7 +8,7 @@ interface ModalPropps {
 }
 
 export const Modal: React.FC<ModalPropps> = ({ children, state, setState }) => {
-  function handleClick(e: HTMLDivElement) {
+  function handleClick(e: React.MouseEvent<HTMLDivElement, MouseEvent>) {
     if (e.target.id === "modal") {
       setState({ ...state, openModal: false });
     }
@@ -18,7 +18,7 @@ export const Modal: React.FC<ModalPropps> = ({ children, state, setState }) => {
     <ModalContainer
       openModal={state?.openModal}
       id="modal"
-      onClick={(e: HTMLDivElement) => handleClick(e)}
+      onClick={(e) => handleClick(e)}
     >
       <ModalChildren>{children}</ModalChildren>
     </ModalContainer>
@@ -41,5 +41,17 @@ const ModalContainer = styled("div")<{ openModal: boolean }>`
 const ModalChildren = styled.div`
   background-color: #fff;
   min-width: 400px;
-  min-height: 400px;
+  min-height: 200px;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transform: scale(.5);
+  animation: scaleUp 0.3s forwards;
+
+  @keyframes scaleUp {
+    to{
+        opacity: initial;
+        transform: initial;
+    }
+}
 `;

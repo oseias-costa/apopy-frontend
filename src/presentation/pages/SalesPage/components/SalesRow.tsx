@@ -1,8 +1,9 @@
 import React, { Dispatch } from "react";
 import { Sale } from "../../../../domain/entities/sale"
-import * as S from "../../../styles/PageStyles/SaleStyles/sales-row.style";
+import * as S from "../../../styles/GlobalStyles/table.style";
 import { SaleState } from "../../../types/pages/sale.types";
 import { MenuDropDownSales } from "./MenuDropDownSales";
+import { formatDate } from "./utils-sales";
 
 interface SalesStateProp {
     sales: Sale[];
@@ -12,38 +13,36 @@ interface SalesStateProp {
 export const SalesRow: React.FC<SalesStateProp> = (props) => {
     const salesList = props.sales?.map((item: Sale) => {
         return(
-            <S.SaleRowContainer key={item._id}>
-                <S.SaleRowText>{item.product}</S.SaleRowText>
-                <S.SaleRowText>{item.category}</S.SaleRowText>
-                <S.SaleRowText>{item.subcategory}</S.SaleRowText>
-                <S.SaleRowText>{item.suplier}</S.SaleRowText>
-                <S.SaleRowText>{item.costPrice}</S.SaleRowText>
-                <S.SaleRowText>{item.price}</S.SaleRowText>
-                <S.SaleRowText>{item.quantity}</S.SaleRowText>
-                <S.SaleRowText>{item.profit}</S.SaleRowText>
-                <S.SaleRowText>{item.total}</S.SaleRowText>
-                <S.SaleRowText>{item.percentage}</S.SaleRowText>
-                <S.SaleRowText>{item.description}</S.SaleRowText>
+            <S.TableRow key={item._id}>
+                <S.TableRowItem position="left">{item.product}</S.TableRowItem>
+                <S.TableRowItem position="left">{`${item.category} ${item.subcategory} ${item.suplier}`}</S.TableRowItem>
+                <S.TableRowItem position="right">R$ {item.costPrice}</S.TableRowItem>
+                <S.TableRowItem position="right">R$ {item.price}</S.TableRowItem>
+                <S.TableRowItem position="center">{item.quantity}</S.TableRowItem>
+                <S.TableRowItem position="right">R$ {item.total}</S.TableRowItem>
+                <S.TableRowItem position="center">{(item.percentage * 100).toFixed(1)} %</S.TableRowItem>
+                <S.TableRowItem position="center">{formatDate(item.date)}</S.TableRowItem>
+                <S.TableRowItem position="left">{item.description}</S.TableRowItem>
                 <MenuDropDownSales item={item} setState={props.setSaleState} />
-            </S.SaleRowContainer>
+            </S.TableRow>
         )
     })
 
     return(
-        <>
-        <S.SaleRowContainerHeader>
-            <S.SaleRowTextHeader>Produto</S.SaleRowTextHeader>
-            <S.SaleRowTextHeader>Categoria</S.SaleRowTextHeader>
-            <S.SaleRowTextHeader>Fornecedor</S.SaleRowTextHeader>
-            <S.SaleRowTextHeader>Preço Custo</S.SaleRowTextHeader>
-            <S.SaleRowTextHeader>Preço</S.SaleRowTextHeader>
-            <S.SaleRowTextHeader>Quantidade</S.SaleRowTextHeader>
-            <S.SaleRowTextHeader>Lucro</S.SaleRowTextHeader>
-            <S.SaleRowTextHeader>Total</S.SaleRowTextHeader>
-            <S.SaleRowTextHeader>%Percentual</S.SaleRowTextHeader>
-            <S.SaleRowTextHeader>Descrição</S.SaleRowTextHeader>
-        </S.SaleRowContainerHeader>
+        <S.Table>
+                <S.TableRow>
+                    <S.TableRowTh position="left">Produto</S.TableRowTh>
+                    <S.TableRowTh position="left">Categoria</S.TableRowTh>
+                    <S.TableRowTh position="right">P. Custo</S.TableRowTh>
+                    <S.TableRowTh position="right">Preço</S.TableRowTh>
+                    <S.TableRowTh position="center">Qtd</S.TableRowTh>
+                    <S.TableRowTh position="right">Total</S.TableRowTh>
+                    <S.TableRowTh position="center">Lucro</S.TableRowTh>
+                    <S.TableRowTh position="center">Data</S.TableRowTh>
+                    <S.TableRowTh position="left">Descrição</S.TableRowTh>
+                    <S.TableRowTh></S.TableRowTh>
+                </S.TableRow>
             {salesList}
-        </>
+        </S.Table>
     )
 }

@@ -12,7 +12,7 @@ export const MenuDropdownProduct: React.FC<MenuDropdownProps> = ({state, item, s
     });
 
     return(
-        <>
+        <S.ContainerDropMenu>
         <S.DropMenu
         height={document.body.scrollHeight}
         display={menuState.item === item?._id}
@@ -42,6 +42,6 @@ export const MenuDropdownProduct: React.FC<MenuDropdownProps> = ({state, item, s
           setPositionItem(e);
             }}
         />
-        </>
+        </S.ContainerDropMenu>
     )
  }

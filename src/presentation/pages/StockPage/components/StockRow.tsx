@@ -1,6 +1,6 @@
 import React from "react";
 import { Stock } from "../../../../domain/entities/stock"
-import * as S from "../../../styles/PageStyles/StockStyles/stock-row.styles";
+import * as S from "../../../styles/GlobalStyles/table.style";
 import { StockState } from "../../../types/pages/stock.types";
 import { MenuDropdownStock } from "./MenuDropdownStock";
 
@@ -12,33 +12,35 @@ interface StockStateProps {
 export const StockRow: React.FC<StockStateProps> = ({stockList, setStockState}) => {
     const stockItems = stockList.map((item: Stock) => {
         return(
-            <S.StockRowContainer key={item._id}>
-                <S.StockRowText>{item.product}</S.StockRowText>
-                <S.StockRowText>{item.category}</S.StockRowText>
-                <S.StockRowText>{item.subcategory}</S.StockRowText>
-                <S.StockRowText>{item.suplier}</S.StockRowText>
-                <S.StockRowText>{item.costPrice}</S.StockRowText>
-                <S.StockRowText>{item.quantity}</S.StockRowText>
-                <S.StockRowText>{item.total}</S.StockRowText>
-                <S.StockRowText>{item.description}</S.StockRowText>
-                <MenuDropdownStock item={item} setState={setStockState}  />
-            </S.StockRowContainer>
+            <S.TableRow key={item._id}>
+                <S.TableRowItem position="left">{item.product}</S.TableRowItem>
+                <S.TableRowItem position="left">{item.category}</S.TableRowItem>
+                <S.TableRowItem position="left">{item.subcategory}</S.TableRowItem>
+                <S.TableRowItem position="left">{item.suplier}</S.TableRowItem>
+                <S.TableRowItem position="right">R$ {item.costPrice}</S.TableRowItem>
+                <S.TableRowItem position="center">{item.quantity}</S.TableRowItem>
+                <S.TableRowItem position="right">R$ {item.total}</S.TableRowItem>
+                <S.TableRowItem position="left">{item.description}</S.TableRowItem>
+                <S.TableRowItem position="center">
+                    <MenuDropdownStock item={item} setState={setStockState}  />
+                </S.TableRowItem>
+            </S.TableRow>
         )
     })
 
     return  (
-        <>
-            <S.StockRowContainerHeader>
-                <S.StockRowTextHeader>Produto</S.StockRowTextHeader>
-                <S.StockRowTextHeader>Categoria</S.StockRowTextHeader>
-                <S.StockRowTextHeader>Subcategoria</S.StockRowTextHeader>
-                <S.StockRowTextHeader>Fornecedor</S.StockRowTextHeader>
-                <S.StockRowTextHeader>Preço de Custo</S.StockRowTextHeader>
-                <S.StockRowTextHeader>Quantidade</S.StockRowTextHeader>
-                <S.StockRowTextHeader>Total</S.StockRowTextHeader>
-                <S.StockRowTextHeader>Descrição</S.StockRowTextHeader>
-                <S.Adjuste />
-            </S.StockRowContainerHeader>
+        <S.Table>
+            <S.TableRow>
+                <S.TableRowTh position="left">Produto</S.TableRowTh>
+                <S.TableRowTh position="left">Categoria</S.TableRowTh>
+                <S.TableRowTh position="left">Subcategoria</S.TableRowTh>
+                <S.TableRowTh position="left">Fornecedor</S.TableRowTh>
+                <S.TableRowTh position="right">Preço de Custo</S.TableRowTh>
+                <S.TableRowTh position="center">Quantidade</S.TableRowTh>
+                <S.TableRowTh position="right">Total</S.TableRowTh>
+                <S.TableRowTh position="left">Descrição</S.TableRowTh>
+                <S.TableRowTh position="left"></S.TableRowTh>
+            </S.TableRow>
             {stockItems}
-        </>)
+        </S.Table>)
 }

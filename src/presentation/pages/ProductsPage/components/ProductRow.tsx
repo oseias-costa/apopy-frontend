@@ -1,7 +1,7 @@
 import { ProductInterface } from "../../../types/pages/products.types";
-import * as S from "../../../styles/PageStyles/ProductStyles/products.style";
 import { MenuDropdownProduct } from "./MenuDropdownProduct";
 import { Product } from "../../../../domain/entities/product";
+import * as S from "../../../styles/GlobalStyles/table.style";
 
 interface ProductRowProps {
   productsList: ProductInterface[];
@@ -16,26 +16,26 @@ export const ProductRow: React.FC<ProductRowProps> = ({
 }) => {
   const products = productsList?.map((item: ProductInterface) => {
     return (
-      <S.ProductRowContainer>
-        <S.ProductRowText>{item?.category}</S.ProductRowText>
-        <S.ProductRowText>{item?.subcategory}</S.ProductRowText>
-        <S.ProductRowText>{item?.suplier}</S.ProductRowText>
-        <S.ProductRowText>{item?.name}</S.ProductRowText>
+      <S.TableRow>
+        <S.TableRowItem>{item?.category}</S.TableRowItem>
+        <S.TableRowItem>{item?.subcategory}</S.TableRowItem>
+        <S.TableRowItem>{item?.suplier}</S.TableRowItem>
+        <S.TableRowItem>{item?.name}</S.TableRowItem>
         <MenuDropdownProduct state={state} item={item} setState={setState} />
-      </S.ProductRowContainer>
+      </S.TableRow>
     );
   });
 
   return (
-    <table>
-      <S.ProductRowContainerHeader>
-        <S.ProductRowTextHeader>Categoria</S.ProductRowTextHeader>
-        <S.ProductRowTextHeader>Subcategoria</S.ProductRowTextHeader>
-        <S.ProductRowTextHeader>Fornecedor</S.ProductRowTextHeader>
-        <S.ProductRowTextHeader>Produto</S.ProductRowTextHeader>
-        <S.Adjuste />
-      </S.ProductRowContainerHeader>
+    <S.Table>
+      <S.TableRow>
+        <S.TableRowTh position="left">Categoria</S.TableRowTh>
+        <S.TableRowTh position="left">Subcategoria</S.TableRowTh>
+        <S.TableRowTh position="left">Fornecedor</S.TableRowTh>
+        <S.TableRowTh position="left">Produto</S.TableRowTh>
+        <S.TableRowTh position="left"></S.TableRowTh>
+      </S.TableRow>
       {products}
-    </table>
+    </S.Table>
   );
 };

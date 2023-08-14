@@ -13,11 +13,10 @@ export const Stock = () => {
     return (
         <StockContainerPage>
             <S.TitleWithButton>
-                <S.TitleSection>
                     <S.TitleSection>Estoque</S.TitleSection>
                     <S.ButtonCreateItem onClick={() => 
-                        setStockState({...stockState, type: 'create', openModal: true})}>Adicionar</S.ButtonCreateItem>
-                </S.TitleSection>
+                        setStockState({...stockState, type: 'create', openModal: true})
+                    }>Adicionar</S.ButtonCreateItem>
             </S.TitleWithButton>
             <StockRow stockList={stock} setStockState={setStockState} />
             <StockModal stockState={stockState} setStockState={setStockState} />

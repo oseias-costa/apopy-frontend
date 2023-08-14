@@ -19,7 +19,6 @@ export const router = createBrowserRouter(
     <>
       <Route element={<PrivateRoute />}>
         <Route path={"/"} element={<Layout />}>
-          <Route path={"/dashboard"} element={<Dashboard />} />
           <Route path={"/categorias"} element={<Category />} />
           <Route path={"/fornecedores"} element={<Suplier />} />
           <Route path={"/produtos"} element={<Product />} />

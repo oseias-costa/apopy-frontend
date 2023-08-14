@@ -1,10 +1,8 @@
 import { styled } from "styled-components";
 import {
   CategoryRowContainer,
-  CategoryRowText,
 } from "../CategoryStyles/category-row.styles";
 import { CategoryContainer } from "../CategoryStyles/category.styles";
-import { ProductRowText } from "../ProductStyles/products.style";
 
 export const StockContainerPage = styled(CategoryContainer)`
     width: auto;
@@ -29,12 +27,13 @@ export const StockRowContainerHeader = styled(CategoryRowContainer)`
   background-color: #e5e4e2;
 `;
 
-export const StockRowText = styled(CategoryRowText)`
+export const StockRowText = styled.div`
+  font-family: var(--font-primary);
   width: 12%;
   font-size: 14px;
 `;
 
-export const StockRowTextHeader = styled(ProductRowText)`
+export const StockRowTextHeader = styled.div`
   font-weight: 400;
   color: #828282;
   width: 100%

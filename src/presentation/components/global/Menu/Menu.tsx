@@ -39,8 +39,8 @@ export const Menu = () => {
             isSelected={pathSelected("/dashboard")}
             onClick={() => setOpenMenu(!openMenu)}
           >
-            <DashboardIcon isSelected={pathSelected("/dashboard")} />
-            <LinkMenu to="/dashboard" isSelected={pathSelected("/dashboard")}>
+            <DashboardIcon isSelected={pathSelected("/")} />
+            <LinkMenu to="/" isSelected={pathSelected("/")}>
               Dashboard
             </LinkMenu>
           </MenuItem>

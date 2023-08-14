@@ -76,3 +76,9 @@ export const ButtonUpdate = styled.button`
     background-color: #e7e7e7;
   }
 `;
+
+
+export const ContainerDropMenu = styled.div`
+    padding-right: 6px;
+    padding-left: 6px;
+`

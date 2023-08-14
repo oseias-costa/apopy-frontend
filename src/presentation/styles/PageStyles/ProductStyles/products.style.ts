@@ -4,9 +4,10 @@ export const ProductContainer = styled.div`
   background-color: #fff;
   border-radius: 5px;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
-  height: auto;
   padding-bottom: 20px;
   padding-top: 5px;
+  display: inline-block;
+  overflow: auto;
 `;
 
 export const ProductRowContainer = styled.tr`
@@ -15,20 +16,12 @@ export const ProductRowContainer = styled.tr`
 `;
 export const ProductRowContainerHeader = styled.tr`
   justify-content: start;
-  border-bottom: 0px solid #e5e4e2;
+  border-bottom: 0px solid ;
   background-color: #e5e4e2;
+  border: 4px solid #e5e4e2;
 `;
 
-export const ProductRowText = styled.td`
-  // width: auto;
-  font-size: 14px;
-`;
-
-export const ProductRowTextHeader = styled.th`
-  font-weight: 600;
-  color: #828282;
-`;
-
+  
 export const Adjuste = styled.div`
   width: 26px;
   height: 26px;
