@@ -27,6 +27,7 @@ export const Modal: React.FC<ModalPropps> = ({ children, state, setState }) => {
 
 const ModalContainer = styled("div")<{ openModal: boolean }>`
   display: ${(props) => (props.openModal === true ? "flex" : "none")};
+  opacity: ${(props) => (props.openModal === true ? "1" : "0")};
   align-items: center;
   justify-content: center;
   position: fixed;
@@ -36,12 +37,12 @@ const ModalContainer = styled("div")<{ openModal: boolean }>`
   height: 100vh;
   background-color: rgb(0, 0, 0, 0.7);
   z-index: 100;
+  transition: opacity 1s ease-in-out;
 `;
 
 const ModalChildren = styled.div`
   background-color: #fff;
   min-width: 400px;
-  min-height: 200px;
   border-radius: 5px;
   padding: 15px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;

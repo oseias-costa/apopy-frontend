@@ -1,29 +1,43 @@
-import { Outlet, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../../presentation/redux/slice/userSlice";
+import { getDashboardUseCase } from "../../../application/dashboard.usecase";
+import { useEffect } from "react";
+import { RootState } from "../../redux/store";
+import { fetchDashboardData } from "../../redux/slice/dashboardSlice";
+import * as S from "../../styles/PageStyles/DashboardStyles/dashboard.styles";
 
 export const Dashboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const dashboardData = useSelector((state: RootState) => state.dashboard)
 
-  function change(nav: string) {
-    return navigate(nav);
-  }
+  useEffect(() => {
+      getDashboardUseCase().then(res => 
+        dispatch(fetchDashboardData(res.data.data.dashboard)))
+  },[])
 
   function handleLogout() {
     localStorage.removeItem("apopyToken");
     dispatch(fetchUser({}));
-
-    //  return navigate("/login")
   }
 
   return (
-    <div>
-      <h1>Dashboard</h1>
-      <button onClick={() => change("/categorias")}>Categorias</button>
-      <button onClick={() => change("/fornecedores")}>Fornecedores</button>
+    <S.DashboardContainer>
+      <S.DashboarNumber>
+        <p>Total em Estoque</p>
+        <h2>{dashboardData.totalValue}</h2>
+      </S.DashboarNumber>
+      <S.DashboarNumber>
+        <p>Total de Produtos</p>
+        <h2>{dashboardData.products}</h2>
+      </S.DashboarNumber>
+      <S.DashboarNumber>
+        <p>Total de itens no Estoque</p>
+        <h2>{dashboardData.totalItems}</h2>
+      </S.DashboarNumber>
 
       <button onClick={() => handleLogout()}>Logout</button>
-    </div>
+    </S.DashboardContainer>
   );
 };
