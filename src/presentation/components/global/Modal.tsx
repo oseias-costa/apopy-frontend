@@ -35,17 +35,17 @@ const ModalContainer = styled("div")<{ openModal: boolean }>`
   right: 0;
   width: 100%;
   height: 100vh;
-  background-color: rgb(0, 0, 0, 0.7);
+  background-color: rgb(255, 255, 255, 0.4);
   z-index: 100;
   transition: opacity 1s ease-in-out;
 `;
 
 const ModalChildren = styled.div`
   background-color: #fff;
-  min-width: 400px;
   border-radius: 5px;
-  padding: 15px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 20px;
+  /* box-shadow: rgba(0, 0, 0, 0.30) 0px 5px 15px; */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   transform: scale(.5);
   animation: scaleUp 0.3s forwards;
 

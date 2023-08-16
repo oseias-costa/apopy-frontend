@@ -20,7 +20,7 @@ const suplierSlice = createSlice({
     createSuplier: (state, action: PayloadAction<Suplier>) => {
       state.supliers.push(action.payload);
     },
-    removeSuplier: (state, action: PayloadAction<{ _id: string }>) => {
+    removeSuplier: (state, action: PayloadAction<Suplier>) => {
       state.supliers = state.supliers.filter(
         (suplier) => suplier._id !== action.payload._id
       );

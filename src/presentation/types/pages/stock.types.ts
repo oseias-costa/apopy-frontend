@@ -64,3 +64,24 @@ export function UpdateStockItemData(updateStockItem: Stock): Stock {
         description: updateStockItem.description,
   }
 } 
+
+export interface ProductComponentState {
+  isEmpty: boolean,
+  loading: boolean
+}
+
+export const initialCreateProduct: ProductCreateState  = {
+  name: "",
+  category: "",
+  subcategory: "",
+  suplier: "",
+  _id: "",
+}
+
+export interface ProductCreateState {
+  name: string,
+  category: string,
+  subcategory: string,
+  suplier: string,
+  _id: string,
+}

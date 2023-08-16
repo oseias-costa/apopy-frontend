@@ -50,7 +50,7 @@ const categorySlice = createSlice({
       });
       state = updateCategory;
     },
-    deleteCategory: (state, action: PayloadAction<CategoryInterface>) => {
+    deleteCategory: (state, action: PayloadAction<Omit<CategoryInterface, "name">>) => {
       state.categories = state.categories.filter(
         (item) => item._id !== action.payload._id
       );

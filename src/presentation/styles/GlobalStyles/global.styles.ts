@@ -7,13 +7,16 @@ export const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
     }
-
+    
     :root {
         --font-primary: 'Raleway', sans-serif;
         --color-green-strong: #012E40;
         --color-blue-light: #049FB1;
         --color-gray-title: #5E5E5E;
         --color-gray-text: #2A2829;
+
+        --color-gray-hover: #ececec;
+        --color-gray-placeholder: #8a8887;
     }
 
     body {

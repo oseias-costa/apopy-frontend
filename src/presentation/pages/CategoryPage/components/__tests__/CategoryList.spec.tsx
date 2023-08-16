@@ -5,7 +5,7 @@ import { CategoryList } from "../CategoryList";
 
 const mockStore = configureStore([]);
 
-describe("CategoryList Component", () => {
+describe("Render CategoryList Component", () => {
 
   const renderComponent = () => {
     const initialState = {

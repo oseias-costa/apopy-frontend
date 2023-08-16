@@ -10,13 +10,7 @@ import {
 } from "../../../styles/GlobalStyles/titleWithButton.style";
 import { SuplierRow } from "./SuplierRow";
 import { useGetSuplier } from "../../../hooks/useGetSupliers";
-
-export interface ItemProps {
-  id: string;
-  name: string;
-  type: string;
-  openModal: boolean;
-}
+import { suplierInitialState, SuplierState } from "../../../types/pages/suplier.types";
 
 interface typeModal {
   [key: string]: React.ReactNode;
@@ -24,14 +18,7 @@ interface typeModal {
 
 export const SuplierList = () => {
   const { supliers } = useGetSuplier();
-  const [suplierState, setSuplierState] = useState<
-    React.SetStateAction<ItemProps>
-  >({
-    id: "",
-    name: "",
-    type: "",
-    openModal: false,
-  });
+  const [suplierState, setSuplierState] = useState<SuplierState>(suplierInitialState);
 
   const typeModal: typeModal = {
     create: <CreateSuplier state={suplierState} setState={setSuplierState} />,

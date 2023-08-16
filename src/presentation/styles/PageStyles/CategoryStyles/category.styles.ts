@@ -22,18 +22,7 @@ export const IconSvg = styled.svg`
 
   &:hover {
     background-color: #cecaca;
+    transform: rotate(90deg);
+    transition: transform 150ms ease;
   }
 `;
-
-export const ModalContent = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 200px;
-`
-
-export const TitleModal = styled.div`
-  display: flex;
-  justify-content: space-around;
-`

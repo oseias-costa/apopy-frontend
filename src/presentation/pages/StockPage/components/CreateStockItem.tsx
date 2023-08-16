@@ -6,21 +6,22 @@ import { useGetProducts } from "../../../hooks/useGetProducts";
 import {
   initialStockState,
   initialStockStateCreate,
+  StockComponentState,
   StockStateProps,
 } from "../../../types/pages/stock.types";
 import { createStockUseCase } from "../../../../application/stock.usecase";
 import { createStock } from "../../../redux/slice/stockSlice";
 import { useDispatch } from "react-redux";
+import * as S from "../../../styles/GlobalStyles/modal.style";
 
-export const CreateStockItem: React.FC<StockStateProps> = ({
-  stockState,
-  setStockState,
-}) => {
+export const CreateStockItem: React.FC<StockStateProps> = ({ stockState, setStockState }) => {
   const { products } = useGetProducts();
-  const [newStockItem, setNewStockItem] = useState<Stock>(
-    initialStockStateCreate
-  );
+  const [newStockItem, setNewStockItem] = useState<Stock>(initialStockStateCreate)
   const dispatch = useDispatch();
+  const [ stockComponentState, setStockComponentState ] = useState<StockComponentState>({
+    isEmpty: false,
+    loading: false
+  })
 
   const filterItem = (id: string): Product =>
     products.filter((item) => item._id === id)[0];
@@ -37,6 +38,10 @@ export const CreateStockItem: React.FC<StockStateProps> = ({
 
   return (
     <Modal state={stockState} setState={setStockState}>
+      <S.ModalContent>
+        <S.TitleModal>
+          <S.TitleModalH2>Inserir Produto</S.TitleModalH2>
+        </S.TitleModal>
       <select
         value={newStockItem?.product}
         onChange={(e) => {
@@ -94,6 +99,7 @@ export const CreateStockItem: React.FC<StockStateProps> = ({
         }
       />
       <button onClick={handleCreateStockItem}>Adicionar</button>
+      </S.ModalContent>
     </Modal>
   );
 };

@@ -20,8 +20,6 @@ export const CategoryList = () => {
     useState<SetStateAction<CategoryState>>(initialCategoryValue);
   const { categories } = useGetCategories();
 
-  console.log("http", categories);
-
   const typeModal: typeModal = {
     create: (
       <CreateCategory state={categoryState} setState={setCategoryState} />

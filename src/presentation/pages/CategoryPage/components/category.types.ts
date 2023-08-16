@@ -1,14 +1,14 @@
 export interface CategoryState {
-  _id?: string;
+  _id: string;
   name: string;
   type?: string;
   subcategory?: string[];
   openModal: boolean;
-  newSubcategory?: string;
-  oldSubcategory?: string;
+  newSubcategory: string;
+  oldSubcategory: string;
 }
 
-export const initialCategoryValue = {
+export const initialCategoryValue: CategoryState= {
   _id: "",
   name: "",
   subcategory: [],
@@ -17,3 +17,13 @@ export const initialCategoryValue = {
   newSubcategory: "",
   oldSubcategory: "",
 };
+
+export interface CategoryStateProps {
+  state: CategoryState;
+  setState: React.Dispatch<React.SetStateAction<CategoryState>>
+}
+
+export interface CreateCategoryState {
+  isEmpty: boolean;
+  loading: boolean
+}
