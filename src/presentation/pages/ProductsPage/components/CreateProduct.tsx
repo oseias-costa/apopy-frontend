@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Modal } from "../../../components/global/Modal";
 import { initialStateProducts, ProductStateProps } from "../../../types/pages/products.types";
 import { useGetCategories } from "../../../hooks/useGetCategories";
@@ -12,26 +12,38 @@ import { createProduct } from "../../../redux/slice/productSlice";
 import { initialCreateProduct, ProductComponentState, ProductCreateState } from "../../../types/pages/stock.types";
 import * as S from "../../../styles/GlobalStyles/modal.style";
 import { CloseIcon } from "../../../assets/icons/CloseIcon";
+import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
+import { verifyIfHaveEmptyFields } from "./utils-product";
 
 export const CreateProduct: React.FC<ProductStateProps> = ({ state, setState }) => {
   const dispatch = useDispatch();
   const [product, setProduct] = useState<ProductCreateState>(initialCreateProduct);
   const [ productComponentState, setProductComponentState ] = useState<ProductComponentState>({
-    isEmpty: false,
+    isEmpty: true,
     loading: false
   })
 
   const { supliers } = useGetSuplier();
   const { categories } = useGetCategories();
-  const verify = supliers.length === 0 && categories.length === 0;
+  const verify = supliers.length === 0 && categories.length === 0
+  
+  useEffect(() => {
+    if(verifyIfHaveEmptyFields(product)){
+      setProductComponentState({ isEmpty: false, loading: false })
+    } else {
+      setProductComponentState({ isEmpty: true, loading: false })
+    }
+  }, [product])
 
   async function handleCreateProduct() {
+    setProductComponentState({ isEmpty: true, loading: true })
     const create = await createProductUseCase({ ...product });
 
     if (create.status === 200) {
       dispatch(createProduct(create.data.data.createProduct));
+      setProductComponentState({ isEmpty: true, loading: false })
       return setProduct(initialCreateProduct);
-    }
+    } 
   }
 
   return (
@@ -43,21 +55,23 @@ export const CreateProduct: React.FC<ProductStateProps> = ({ state, setState }) 
             <CloseIcon onClick={() => setState(initialStateProducts)} />
           </S.TitleModal>
         {verify ? (
-          <div>Você precisa criar categorias e adicionar supliers</div>
+          <div>Você precisa criar categorias e adicionar fornecedores para criar produtos.</div>
         ) : (
             <>
+              <S.ModalContentText>Complete os campos abaixos e clique em criar produto.</S.ModalContentText>
               <CategorySelect product={product} setProduct={setProduct} />
               <SubcategorySelect product={product} setProduct={setProduct} />
               <SuplierSelect product={product} setProduct={setProduct} />
               <S.InputModal
                 value={product?.name}
                 onChange={(e) => setProduct({ ...product, name: e.target.value })}
+                placeholder='Digite o nome do produto'
               />
               <S.ButtonModal 
-                disabled={false}
+                disabled={productComponentState.isEmpty}
                 onClick={() => handleCreateProduct()}
               >
-                Criar Produto
+                { productComponentState.loading ?  <SpinnerIcon /> : 'Criar Produto' }
               </S.ButtonModal>
             </>
             )}
