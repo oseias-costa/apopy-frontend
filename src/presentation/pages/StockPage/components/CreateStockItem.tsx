@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Product } from "../../../../domain/entities/product";
 import { Stock } from "../../../../domain/entities/stock";
 import { Modal } from "../../../components/global/Modal";
 import {
@@ -45,51 +44,53 @@ export const CreateStockItem: React.FC<StockStateProps> = ({ stockState, setStoc
           <CloseIcon onClick={() => setStockState(initialStockState)} />
         </S.TitleModal>
       <S.ModalContentText>Preencha os campos abaixo para adicionar um Produto ao estoque.</S.ModalContentText>
+      <S.InputNumbersContent>
       <ProductSelect 
         newStockItem={newStockItem} 
         setNewStockItem={setNewStockItem} 
       />
-      <S.InputModal 
-        disabled={true} 
-        value={newStockItem?.category} 
-        placeholder='Categoria do Produto'
-      />
-      <S.InputModal 
-        disabled={true}
-        placeholder='Subcategoria do Produto' 
-        value={newStockItem?.subcategory} />
+        <S.InputModal 
+          disabled={true} 
+          value={newStockItem?.category} 
+          placeholder='Categoria do Produto'
+          />
+      </S.InputNumbersContent>
+        <S.InputModal 
+          disabled={true}
+          placeholder='Subcategoria do Produto' 
+          value={newStockItem?.subcategory} />
       <S.InputModal 
         disabled={true}
         placeholder='Fornecedor do Produto' 
         value={newStockItem?.suplier} />
-      <div style={{display: 'inline'}}>
-      <S.InputModalNumber
-        type="number"
-        placeholder="Qtd"
-        onChange={(e) =>
-          setNewStockItem({ ...newStockItem, quantity: Number(e.target.value) })
-        }
-      />
-      <S.InputModalNumber
-        type="number"
-        placeholder="P. de Custo"
-        onChange={(e) =>
-          setNewStockItem({
-            ...newStockItem,
-            costPrice: Number(e.target.value),
-          })
-        }
-        second={true}
-      />
-      <S.InputModalNumber
-        disabled={true}
-        type="number"
-        placeholder="Total"
-        onChange={(e) =>
-          setNewStockItem({ ...newStockItem, total: Number(e.target.value) })
-        }
-      />
-      </div>
+      <S.InputNumbersContent>
+        <S.InputModalNumber
+          type="number"
+          placeholder="Qtd"
+          onChange={(e) =>
+            setNewStockItem({ ...newStockItem, quantity: Number(e.target.value) })
+          }
+        />
+        <S.InputModalNumber
+          type="number"
+          placeholder="P. de Custo"
+          onChange={(e) =>
+            setNewStockItem({
+              ...newStockItem,
+              costPrice: Number(e.target.value),
+            })
+          }
+          second={true}
+        />
+        <S.InputModalNumber
+          disabled={true}
+          type="number"
+          placeholder="Total"
+          onChange={(e) =>
+            setNewStockItem({ ...newStockItem, total: Number(e.target.value) })
+          }
+        />
+      </S.InputNumbersContent>
       <S.InputModal
         type="string"
         placeholder="Descrição"

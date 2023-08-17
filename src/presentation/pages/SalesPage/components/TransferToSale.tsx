@@ -7,6 +7,7 @@ import { originStockMoviment, variablesSales } from "./utils-sales";
 import { transferSale } from "../../../redux/slice/saleSlice";
 import { initialSaleState, initialStateNewSale, NewSale } from "../../../types/pages/sale.types";
 import { transferStockToSale } from "../../../redux/slice/stockSlice";
+import * as S from "../../../styles/GlobalStyles/modal.style"
 
 export const TransferToSale: React.FC<StockStateProps> = ({
   stockState,
@@ -28,65 +29,56 @@ export const TransferToSale: React.FC<StockStateProps> = ({
   }
 
   return (
-    <div>
-      <h2>Transfer Modal</h2>
-      <br />
-      <br />
-      <p>Quantidade</p>
-      <input
-        type="number"
-        placeholder="Quantidade"
-        value={newSale.quantity}
-        onChange={(e) =>
-          setNewSale({ ...newSale, quantity: Number(e.target.value) })
-        }
-      />
-      <br />
-      <br />
-      <p>Preço</p>
-      <input
-        type="number"
-        placeholder="Preço"
-        value={newSale.price}
-        onChange={(e) =>
-          setNewSale({ ...newSale, price: Number(e.target.value) })
-        }
-      />
-      <br />
-      <br />
-      <p>Percentual de Lucro</p>
-      <input
-        type="number"
-        placeholder="Percentual de Lucro"
-        value={newSale.price}
-      />
-      <br />
-      <br />
-      <p>Total</p>
-      <input
-        type="number"
-        placeholder="Total"
-        disabled={true}
-        value={newSale.price * newSale.quantity}
-      />
-      <input type="number" placeholder="Lucro" value={newSale.profit} />
-      <br />
-      <br />
-      <p>Lucro</p>
-      <input
-        type="number"
-        disabled={true}
-        value={newSale.price - stockState.costPrice}
-      />
-      <br />
-      <br />
-      <p>Preço</p>
-      <input
-        type="text"
-        disabled={true}
-        value={(newSale.price - stockState.costPrice) / newSale.price}
-      />
-      <button onClick={handleTransferSale}>Nova Venda</button>
-    </div>
+    <>
+      <S.InputNumbersContent>
+        <S.InputModalNumber
+          type="number"
+          placeholder="Quantidade"
+          value={newSale.quantity}
+          onChange={(e) =>
+            setNewSale({ ...newSale, quantity: Number(e.target.value) })
+          }
+        />
+        <S.InputModalNumber
+          type="number"
+          second={true}
+          placeholder="Preço"
+          value={newSale.price}
+          onChange={(e) =>
+            setNewSale({ ...newSale, price: Number(e.target.value) })
+          }
+        />
+        <S.InputModalNumber
+          type="number"
+          placeholder="Percentual de Lucro"
+          value={newSale.price}
+        />
+      </S.InputNumbersContent>
+      <S.InputNumbersContent>
+        <S.InputModalNumber
+          type="number"
+          placeholder="Total"
+          disabled={true}
+          value={newSale.price * newSale.quantity}
+        />
+        <S.InputModalNumber 
+          type="number" 
+          placeholder="Lucro" 
+          value={newSale.profit} 
+          second={true}
+        />
+        <S.InputModalNumber
+          type="number"
+          disabled={true}
+          value={newSale.price - stockState.costPrice}
+        />
+      </S.InputNumbersContent>
+        <S.InputModalNumber
+          type="text"
+          disabled={true}
+          value={(newSale.price - stockState.costPrice) / newSale.price}
+        />
+      <S.ButtonModal onClick={handleTransferSale}>Nova Venda</S.ButtonModal>
+    </>
   );
 };

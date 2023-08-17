@@ -4,6 +4,9 @@ export const ModalContent = styled.div`
   min-width: 250px;
   display: flex;
   flex-direction: column;
+  max-height: 300px;
+  /* flex-wrap: wrap; */
+  overflow-x: auto;
 `
 
 export const ModalContentText = styled.p`
@@ -33,6 +36,8 @@ export const InputModal = styled.input<{ error?: boolean, disabled?: boolean }>`
   padding: 8px;
   font-family: var(--font-primary);
   margin-bottom: 7px;
+  margin-left: 2px;
+  margin-right: 2px;
 
   ::placeholder,
   ::-webkit-input-placeholder {
@@ -83,4 +88,9 @@ export const ButtonModal = styled.button<{disabled: boolean}>`
   &:hover {
     background-color: ${props => props.disabled ? '#828282' : '#026773' };
   }
+`
+
+export const InputNumbersContent = styled.div`
+  display: flex;
+  justify-content: space-between;
 `

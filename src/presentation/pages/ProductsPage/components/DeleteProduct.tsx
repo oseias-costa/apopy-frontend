@@ -46,11 +46,10 @@ export const DeleteProduct: React.FC<ProductStateProps> = ({ state, setState }) 
               onChange={(e) => setState({ ...state, name: e.target.value })}
             />
             <S.ButtonModal 
-              disabled={productComponentState.isEmpty} 
+              disabled={false} 
               onClick={() => handleDeleteProduct()}
             >
               { productComponentState.loading ?  <SpinnerIcon /> : 'Excluir Produto' }
-                
             </S.ButtonModal>
           </S.ModalContent>
       </Modal>
