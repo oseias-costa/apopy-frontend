@@ -7,11 +7,13 @@ import * as S from "../../../styles/GlobalStyles/select.style";
 interface SuplierSelectProps {
   product: Product;
   setProduct: (product: Product) => void;
+  disabled?: boolean
 }
 
 export const SuplierSelect: React.FC<SuplierSelectProps> = ({
   product,
   setProduct,
+  disabled
 }) => {
   const { supliers } = useGetSuplier();
   const selectWidth = useRef<any>(null);
@@ -25,17 +27,17 @@ export const SuplierSelect: React.FC<SuplierSelectProps> = ({
       <S.Select
         isActive={selectState.isClicked}
         ref={selectWidth}
-        onClick={() =>
+        onClick={() => !disabled &&
           setSelectState({
             suplier: selectState.suplier,
             isClicked: !selectState.isClicked,
           })
         }
       >
-        {selectState?.suplier === "" ? (
+        {product?.suplier === "" ? (
           <S.SelectText>Selecione a Fornecedor</S.SelectText>
         ) : (
-          <p>{selectState?.suplier}</p>
+          <p>{product?.suplier}</p>
         )}
       </S.Select>
       <S.OptionsSelect

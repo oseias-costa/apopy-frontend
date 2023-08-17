@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { useGetCategories } from "../../../hooks/useGetCategories";
 import * as S from "../../../styles/GlobalStyles/select.style";
 
-export const SubcategorySelect: React.FC<any> = ({ product, setProduct }) => {
+export const SubcategorySelect: React.FC<any> = ({ product, setProduct, disabled }) => {
   const { categories } = useGetCategories();
   const selectWidth = useRef<any>(null)
   const [ selectState, setSelectState ] = useState({
@@ -19,14 +19,14 @@ export const SubcategorySelect: React.FC<any> = ({ product, setProduct }) => {
     <S.Select
       isActive={selectState.isClicked}
       ref={selectWidth}
-      onClick={() => setSelectState({
+      onClick={() => !disabled && setSelectState({
         subcategory: selectState.subcategory,
         isClicked: !selectState.isClicked
       }) }
       >
-      { selectState?.subcategory === '' 
+      { product?.subcategory === '' 
        ? <S.SelectText>Selecione a Subcategoria</S.SelectText>
-       : <p>{selectState?.subcategory}</p> }
+       : <p>{product?.subcategory}</p> }
       </S.Select>
       <S.OptionsSelect
         isActive={selectState.isClicked} 

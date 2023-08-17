@@ -58,6 +58,12 @@ export const InputModal = styled.input<{ error?: boolean, disabled?: boolean }>`
   }
 `;
 
+export const InputModalNumber = styled(InputModal)<{second?: boolean}>`
+  width: 96px;
+  margin-left: ${ props => props.second && '5px' };
+  margin-right: ${ props => props.second && '5px' };
+`
+
 export const ButtonModal = styled.button<{disabled: boolean}>`
   display: flex;
   align-items: center;

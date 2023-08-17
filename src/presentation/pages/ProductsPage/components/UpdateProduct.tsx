@@ -20,6 +20,7 @@ import {
   verifyProductEqualNewProduct,
 } from "./utils-product";
 import { RootState } from "../../../redux/store";
+import { CloseIcon } from "../../../assets/icons/CloseIcon";
 
 export const UpdateProduct: React.FC<ProductStateProps> = ({
   state,
@@ -67,6 +68,7 @@ export const UpdateProduct: React.FC<ProductStateProps> = ({
         <S.ModalContent>
           <S.TitleModal>
             <S.TitleModalH2>Editar Produto</S.TitleModalH2>
+            <CloseIcon onClick={() => setState(initialStateProducts)} />
           </S.TitleModal>
           {verify ? (
             <div>Você precisa criar categorias e adicionar supliers</div>
