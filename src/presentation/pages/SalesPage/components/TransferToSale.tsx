@@ -5,9 +5,14 @@ import { Sale } from "../../../../domain/entities/sale";
 import { StockStateProps } from "../../../types/pages/stock.types";
 import { originStockMoviment, variablesSales } from "./utils-sales";
 import { transferSale } from "../../../redux/slice/saleSlice";
-import { initialSaleState, initialStateNewSale, NewSale } from "../../../types/pages/sale.types";
+import {
+  initialSaleState,
+  initialStateNewSale,
+  NewSale,
+} from "../../../types/pages/sale.types";
 import { transferStockToSale } from "../../../redux/slice/stockSlice";
-import * as S from "../../../styles/GlobalStyles/modal.style"
+import * as S from "../../../styles/GlobalStyles/modal.style";
+import { InputNumberModalWithLabel } from "../../../components/global/Input/InputNumberModalWithLabel";
 
 export const TransferToSale: React.FC<StockStateProps> = ({
   stockState,
@@ -21,7 +26,7 @@ export const TransferToSale: React.FC<StockStateProps> = ({
     const transferSaleReq = await transferSaleUseCase(variables);
 
     if (transferSaleReq.status === 200) {
-      console.log(transferSale)
+      console.log(transferSale);
       dispatch(transferSale(transferSaleReq.data.data.transferSale));
       dispatch(transferStockToSale(originStockMoviment(stockState, newSale)));
       setStockState(initialSaleState);
@@ -31,7 +36,8 @@ export const TransferToSale: React.FC<StockStateProps> = ({
   return (
     <>
       <S.InputNumbersContent>
-        <S.InputModalNumber
+        <InputNumberModalWithLabel
+          label="Quantidade"
           type="number"
           placeholder="Quantidade"
           value={newSale.quantity}
@@ -39,7 +45,8 @@ export const TransferToSale: React.FC<StockStateProps> = ({
             setNewSale({ ...newSale, quantity: Number(e.target.value) })
           }
         />
-        <S.InputModalNumber
+        <InputNumberModalWithLabel
+          label="Preço"
           type="number"
           second={true}
           placeholder="Preço"
@@ -48,37 +55,38 @@ export const TransferToSale: React.FC<StockStateProps> = ({
             setNewSale({ ...newSale, price: Number(e.target.value) })
           }
         />
-        <S.InputModalNumber
+        <InputNumberModalWithLabel
+          label="Lucro"
           type="number"
           placeholder="Percentual de Lucro"
           value={newSale.price}
         />
       </S.InputNumbersContent>
       <S.InputNumbersContent>
-        <S.InputModalNumber
+        <InputNumberModalWithLabel
+          label="Total"
           type="number"
           placeholder="Total"
           disabled={true}
           value={newSale.price * newSale.quantity}
         />
-        <S.InputModalNumber 
-          type="number" 
-          placeholder="Lucro" 
-          value={newSale.profit} 
+        <InputNumberModalWithLabel
+          label="Lucro"
+          type="number"
+          placeholder="Lucro"
+          value={newSale.profit}
           second={true}
         />
-        <S.InputModalNumber
+        <InputNumberModalWithLabel
+          label="Preço de Custo"
           type="number"
           disabled={true}
           value={newSale.price - stockState.costPrice}
         />
       </S.InputNumbersContent>
-        <S.InputModalNumber
-          type="text"
-          disabled={true}
-          value={(newSale.price - stockState.costPrice) / newSale.price}
-        />
-      <S.ButtonModal onClick={handleTransferSale}>Nova Venda</S.ButtonModal>
+      <S.ButtonModal disabled={false} onClick={handleTransferSale}>
+        Nova Venda
+      </S.ButtonModal>
     </>
   );
 };

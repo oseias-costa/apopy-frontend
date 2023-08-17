@@ -21,6 +21,7 @@ import {
 } from "./utils-product";
 import { RootState } from "../../../redux/store";
 import { CloseIcon } from "../../../assets/icons/CloseIcon";
+import { InputModalWithLabel } from "../../../components/global/Input/InputModalWithLabel";
 
 export const UpdateProduct: React.FC<ProductStateProps> = ({
   state,
@@ -38,9 +39,6 @@ export const UpdateProduct: React.FC<ProductStateProps> = ({
       loading: false,
     });
   const verify = supliers.length === 0 && categories.length === 0;
-
-  console.log("productItem", productItemUpdate);
-  console.log("state", state);
 
   useEffect(() => {
     if (
@@ -77,13 +75,18 @@ export const UpdateProduct: React.FC<ProductStateProps> = ({
               <S.ModalContentText>
                 Para Editar o produto, faça as alterações e clique em editar.
               </S.ModalContentText>
-              <CategorySelect product={state} setProduct={setState} />
-              <SubcategorySelect product={state} setProduct={setState} />
-              <SuplierSelect product={state} setProduct={setState} />
-              <S.InputModal
-                value={state?.name}
-                onChange={(e) => setState({ ...state, name: e.target.value })}
-              />
+              <S.ProductContainerFlex>
+                <CategorySelect product={state} setProduct={setState} />
+                <SubcategorySelect product={state} setProduct={setState} />
+              </S.ProductContainerFlex>
+              <S.ProductContainerFlex>
+                <SuplierSelect product={state} setProduct={setState} />
+                <InputModalWithLabel
+                  label="Produto"
+                  value={state?.name}
+                  onChange={(e) => setState({ ...state, name: e.target.value })}
+                />
+              </S.ProductContainerFlex>
               <S.ButtonModal
                 disabled={productComponentState.isEmpty}
                 onClick={() => handleCreateProduct()}

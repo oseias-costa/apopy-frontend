@@ -14,25 +14,33 @@ import * as S from "../../../styles/GlobalStyles/modal.style";
 import { CloseIcon } from "../../../assets/icons/CloseIcon";
 import { ProductSelect } from "./ProductSelect";
 import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
+import { InputModalWithLabel } from "../../../components/global/Input/InputModalWithLabel";
+import { InputNumberModalWithLabel } from "../../../components/global/Input/InputNumberModalWithLabel";
 
-export const CreateStockItem: React.FC<StockStateProps> = ({ stockState, setStockState }) => {
-  const [newStockItem, setNewStockItem] = useState<Stock>(initialStockStateCreate)
+export const CreateStockItem: React.FC<StockStateProps> = ({
+  stockState,
+  setStockState,
+}) => {
+  const [newStockItem, setNewStockItem] = useState<Stock>(
+    initialStockStateCreate
+  );
   const dispatch = useDispatch();
-  const [ stockComponentState, setStockComponentState ] = useState<ProductComponentState>({
-    isEmpty: false,
-    loading: false
-  })
-  console.log('newstock', newStockItem)
+  const [stockComponentState, setStockComponentState] =
+    useState<ProductComponentState>({
+      isEmpty: false,
+      loading: false,
+    });
+  console.log("newstock", newStockItem);
 
   async function handleCreateStockItem() {
-    setStockComponentState({ isEmpty: true, loading: true })
+    setStockComponentState({ isEmpty: true, loading: true });
     const create = await createStockUseCase(newStockItem);
 
     if (create.status === 200) {
       dispatch(createStock(create.data.data.createStockItem));
       setNewStockItem(initialStockStateCreate);
       setStockState(initialStockState);
-      setStockComponentState({ isEmpty: false, loading: false })
+      setStockComponentState({ isEmpty: false, loading: false });
     }
   }
 
@@ -40,70 +48,90 @@ export const CreateStockItem: React.FC<StockStateProps> = ({ stockState, setStoc
     <Modal state={stockState} setState={setStockState}>
       <S.ModalContent>
         <S.TitleModal>
-          <S.TitleModalH2>Inserir Produto</S.TitleModalH2>
+          <S.TitleModalH2>Inserir novo </S.TitleModalH2>
           <CloseIcon onClick={() => setStockState(initialStockState)} />
         </S.TitleModal>
-      <S.ModalContentText>Preencha os campos abaixo para adicionar um Produto ao estoque.</S.ModalContentText>
-      <S.InputNumbersContent>
-      <ProductSelect 
-        newStockItem={newStockItem} 
-        setNewStockItem={setNewStockItem} 
-      />
-        <S.InputModal 
-          disabled={true} 
-          value={newStockItem?.category} 
-          placeholder='Categoria do Produto'
+        <S.ProductContainerFlex>
+          <ProductSelect
+            newStockItem={newStockItem}
+            setNewStockItem={setNewStockItem}
           />
-      </S.InputNumbersContent>
-        <S.InputModal 
-          disabled={true}
-          placeholder='Subcategoria do Produto' 
-          value={newStockItem?.subcategory} />
-      <S.InputModal 
-        disabled={true}
-        placeholder='Fornecedor do Produto' 
-        value={newStockItem?.suplier} />
-      <S.InputNumbersContent>
-        <S.InputModalNumber
-          type="number"
-          placeholder="Qtd"
+          <InputModalWithLabel
+            label="Categoria"
+            disabled={true}
+            value={newStockItem?.category}
+            placeholder="Categoria do Produto"
+          />
+        </S.ProductContainerFlex>
+        <S.ProductContainerFlex>
+          <InputModalWithLabel
+            label="Subcategoria"
+            disabled={true}
+            placeholder="Subcategoria do Produto"
+            value={newStockItem?.subcategory}
+          />
+          <InputModalWithLabel
+            label="Fornecedor"
+            disabled={true}
+            placeholder="Fornecedor do Produto"
+            value={newStockItem?.suplier}
+          />
+        </S.ProductContainerFlex>
+        <S.InputNumbersContent>
+          <InputNumberModalWithLabel
+            label="Quantidade"
+            type="number"
+            placeholder="Qtd"
+            onChange={(e) =>
+              setNewStockItem({
+                ...newStockItem,
+                quantity: Number(e.target.value),
+              })
+            }
+          />
+          <InputNumberModalWithLabel
+            label="Preço de Custo"
+            type="number"
+            placeholder="P. de Custo"
+            onChange={(e) =>
+              setNewStockItem({
+                ...newStockItem,
+                costPrice: Number(e.target.value),
+              })
+            }
+            second={true}
+          />
+          <InputNumberModalWithLabel
+            label="Total"
+            disabled={true}
+            type="number"
+            placeholder="Total"
+            onChange={(e) =>
+              setNewStockItem({
+                ...newStockItem,
+                total: Number(e.target.value),
+              })
+            }
+          />
+        </S.InputNumbersContent>
+        <InputModalWithLabel
+          label="Descrição"
+          type="string"
+          placeholder="Descrição"
           onChange={(e) =>
-            setNewStockItem({ ...newStockItem, quantity: Number(e.target.value) })
+            setNewStockItem({ ...newStockItem, description: e.target.value })
           }
         />
-        <S.InputModalNumber
-          type="number"
-          placeholder="P. de Custo"
-          onChange={(e) =>
-            setNewStockItem({
-              ...newStockItem,
-              costPrice: Number(e.target.value),
-            })
-          }
-          second={true}
-        />
-        <S.InputModalNumber
-          disabled={true}
-          type="number"
-          placeholder="Total"
-          onChange={(e) =>
-            setNewStockItem({ ...newStockItem, total: Number(e.target.value) })
-          }
-        />
-      </S.InputNumbersContent>
-      <S.InputModal
-        type="string"
-        placeholder="Descrição"
-        onChange={(e) =>
-          setNewStockItem({ ...newStockItem, description: e.target.value })
-        }
-      />
-      <S.ButtonModal 
-        disabled={stockComponentState.isEmpty}
-        onClick={handleCreateStockItem}
-      >
-        { stockComponentState.loading ?  <SpinnerIcon /> : 'Adicionar Produto no Estoque'}
-      </S.ButtonModal>
+        <S.ButtonModal
+          disabled={stockComponentState.isEmpty}
+          onClick={handleCreateStockItem}
+        >
+          {stockComponentState.loading ? (
+            <SpinnerIcon />
+          ) : (
+            "Adicionar Produto no Estoque"
+          )}
+        </S.ButtonModal>
       </S.ModalContent>
     </Modal>
   );
