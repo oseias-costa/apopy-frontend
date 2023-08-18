@@ -17,20 +17,15 @@ import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
 import { InputModalWithLabel } from "../../../components/global/Input/InputModalWithLabel";
 import { InputNumberModalWithLabel } from "../../../components/global/Input/InputNumberModalWithLabel";
 
-export const CreateStockItem: React.FC<StockStateProps> = ({
-  stockState,
-  setStockState,
-}) => {
+export const CreateStockItem: React.FC<StockStateProps> = ({ stockState, setStockState }) => {
   const [newStockItem, setNewStockItem] = useState<Stock>(
     initialStockStateCreate
   );
   const dispatch = useDispatch();
-  const [stockComponentState, setStockComponentState] =
-    useState<ProductComponentState>({
+  const [stockComponentState, setStockComponentState] = useState<ProductComponentState>({
       isEmpty: false,
       loading: false,
     });
-  console.log("newstock", newStockItem);
 
   async function handleCreateStockItem() {
     setStockComponentState({ isEmpty: true, loading: true });
