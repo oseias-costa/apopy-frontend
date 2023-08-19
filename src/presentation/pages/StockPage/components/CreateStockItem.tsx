@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Stock } from "../../../../domain/entities/stock";
 import { Modal } from "../../../components/global/Modal";
 import {
@@ -16,6 +16,7 @@ import { ProductSelect } from "./ProductSelect";
 import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
 import { InputModalWithLabel } from "../../../components/global/Input/InputModalWithLabel";
 import { InputNumberModalWithLabel } from "../../../components/global/Input/InputNumberModalWithLabel";
+import { verifyFieldsStock } from "./stock-utils";
 
 export const CreateStockItem: React.FC<StockStateProps> = ({ stockState, setStockState }) => {
   const [newStockItem, setNewStockItem] = useState<Stock>(
@@ -26,6 +27,17 @@ export const CreateStockItem: React.FC<StockStateProps> = ({ stockState, setStoc
       isEmpty: false,
       loading: false,
     });
+
+    console.log(newStockItem)
+
+  useEffect(() => {
+    if(verifyFieldsStock(newStockItem)){
+      setStockComponentState({ isEmpty: false, loading: false });
+    } else {
+      setStockComponentState({ isEmpty: true, loading: false });
+    }
+
+  },[newStockItem])
 
   async function handleCreateStockItem() {
     setStockComponentState({ isEmpty: true, loading: true });
@@ -77,10 +89,11 @@ export const CreateStockItem: React.FC<StockStateProps> = ({ stockState, setStoc
             label="Quantidade"
             type="number"
             placeholder="Qtd"
-            onChange={(e) =>
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setNewStockItem({
                 ...newStockItem,
                 quantity: Number(e.target.value),
+                total: Number(newStockItem.costPrice * Number(e.target.value))
               })
             }
           />
@@ -88,10 +101,11 @@ export const CreateStockItem: React.FC<StockStateProps> = ({ stockState, setStoc
             label="Preço de Custo"
             type="number"
             placeholder="P. de Custo"
-            onChange={(e) =>
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
               setNewStockItem({
                 ...newStockItem,
                 costPrice: Number(e.target.value),
+                total: Number(e.target.value) * newStockItem.quantity
               })
             }
             second={true}
@@ -101,19 +115,14 @@ export const CreateStockItem: React.FC<StockStateProps> = ({ stockState, setStoc
             disabled={true}
             type="number"
             placeholder="Total"
-            onChange={(e) =>
-              setNewStockItem({
-                ...newStockItem,
-                total: Number(e.target.value),
-              })
-            }
+            value={newStockItem.total}
           />
         </S.InputNumbersContent>
         <InputModalWithLabel
           label="Descrição"
           type="string"
           placeholder="Descrição"
-          onChange={(e) =>
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setNewStockItem({ ...newStockItem, description: e.target.value })
           }
         />

@@ -12,6 +12,8 @@ export const variablesSales: VariablesSales = (
   newSale
 ): Omit<Sale, "_id"> => {
   const today = new Date();
+  const total = newSale.price * newSale.quantity
+  const profit = (newSale.price * newSale.quantity) - (newSale.quantity * stockState.costPrice)
 
   const variables: Omit<Sale, "_id"> = {
     stockId: stockState._id,
@@ -21,11 +23,11 @@ export const variablesSales: VariablesSales = (
     suplier: stockState.suplier,
     quantity: newSale.quantity,
     price: newSale.price,
-    total: newSale.price * newSale.quantity,
+    total: total,
     costPrice: stockState.costPrice,
     description: stockState.description,
-    profit: newSale.price - stockState.costPrice,
-    percentage: (newSale.price - stockState.costPrice) / newSale.price,
+    profit: profit,
+    percentage: profit / total,
     date: today.toString(),
   };
 

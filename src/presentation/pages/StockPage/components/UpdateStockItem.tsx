@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { Stock } from "../../../../domain/entities/stock";
 import { Modal } from "../../../components/global/Modal";
 import {
@@ -65,7 +65,7 @@ export const UpdateStockItem: React.FC<StockStateProps> = ({
               type="number"
               value={updateStockItem.quantity}
               placeholder="Quantidade"
-              onChange={(e) =>
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setUpdateStockItem({ ...updateStockItem, quantity: Number(e.target.value) })
               }
             />
@@ -74,7 +74,7 @@ export const UpdateStockItem: React.FC<StockStateProps> = ({
               type="number"
               placeholder="Preço de Custo"
               value={updateStockItem.quantity}
-              onChange={(e) =>
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setUpdateStockItem({ ...updateStockItem, costPrice: Number(e.target.value) })
               }
             />
@@ -83,7 +83,7 @@ export const UpdateStockItem: React.FC<StockStateProps> = ({
               type="number"
               placeholder="Total"
               value={updateStockItem.total}
-              onChange={(e) =>
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                 setUpdateStockItem({
                   ...updateStockItem,
                   total: Number(e.target.value),
@@ -95,7 +95,7 @@ export const UpdateStockItem: React.FC<StockStateProps> = ({
         label='Descrição'
         type="string"
         value={updateStockItem.description}
-        onChange={(e) =>
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setUpdateStockItem({ ...updateStockItem, description: e.target.value })
         }
       />

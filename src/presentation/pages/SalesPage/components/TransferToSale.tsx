@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { transferSaleUseCase } from "../../../../application/sale.usecase";
 import { Sale } from "../../../../domain/entities/sale";
@@ -13,20 +13,35 @@ import {
 import { transferStockToSale } from "../../../redux/slice/stockSlice";
 import * as S from "../../../styles/GlobalStyles/modal.style";
 import { InputNumberModalWithLabel } from "../../../components/global/Input/InputNumberModalWithLabel";
+import { Spinner } from "../../LoginPage/Spinner";
 
 export const TransferToSale: React.FC<StockStateProps> = ({
   stockState,
   setStockState,
 }) => {
   const [newSale, setNewSale] = useState<NewSale>(initialStateNewSale);
+  const [saleVariables, setSaleVariables ] = useState<Omit<Sale, "_id">>(initialSaleState);
   const dispatch = useDispatch();
+  const [ transferToSaleState, setTransferToSaleState ] = useState({
+    isLoading: false,
+    isError: false,
+    isEmpty: true
+  })
+
+  useEffect(() => {
+    if(saleVariables.quantity === 0 && saleVariables.price === 0){
+      setTransferToSaleState({...transferToSaleState, isEmpty: true })
+    } else {
+      setTransferToSaleState({...transferToSaleState, isEmpty: false })
+    }
+
+    setSaleVariables(variablesSales(stockState, newSale)) 
+  },[ stockState, newSale ])
 
   async function handleTransferSale() {
-    const variables: Omit<Sale, "_id"> = variablesSales(stockState, newSale);
-    const transferSaleReq = await transferSaleUseCase(variables);
+    const transferSaleReq = await transferSaleUseCase(saleVariables);
 
     if (transferSaleReq.status === 200) {
-      console.log(transferSale);
       dispatch(transferSale(transferSaleReq.data.data.transferSale));
       dispatch(transferStockToSale(originStockMoviment(stockState, newSale)));
       setStockState(initialSaleState);
@@ -38,54 +53,37 @@ export const TransferToSale: React.FC<StockStateProps> = ({
       <S.InputNumbersContent>
         <InputNumberModalWithLabel
           label="Quantidade"
+          error={transferToSaleState.isError}
           type="number"
-          placeholder="Quantidade"
-          value={newSale.quantity}
-          onChange={(e) =>
-            setNewSale({ ...newSale, quantity: Number(e.target.value) })
-          }
+          max={stockState.quantity}
+          min={1}
+          value={saleVariables.quantity}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            setNewSale({  ...newSale,  quantity: Number(e.target.value) })
+          }}
         />
         <InputNumberModalWithLabel
-          label="Preço"
+          label="Preço Unidade"
           type="number"
           second={true}
-          placeholder="Preço"
-          value={newSale.price}
-          onChange={(e) =>
+          value={saleVariables.price}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             setNewSale({ ...newSale, price: Number(e.target.value) })
           }
         />
         <InputNumberModalWithLabel
-          label="Lucro"
-          type="number"
-          placeholder="Percentual de Lucro"
-          value={newSale.price}
-        />
-      </S.InputNumbersContent>
-      <S.InputNumbersContent>
-        <InputNumberModalWithLabel
-          label="Total"
-          type="number"
-          placeholder="Total"
+          label="Total da Venda"
+          type="string"
           disabled={true}
-          value={newSale.price * newSale.quantity}
-        />
-        <InputNumberModalWithLabel
-          label="Lucro"
-          type="number"
-          placeholder="Lucro"
-          value={newSale.profit}
-          second={true}
-        />
-        <InputNumberModalWithLabel
-          label="Preço de Custo"
-          type="number"
-          disabled={true}
-          value={newSale.price - stockState.costPrice}
-        />
-      </S.InputNumbersContent>
-      <S.ButtonModal disabled={false} onClick={handleTransferSale}>
-        Nova Venda
+          value={`R$ ${saleVariables.total}`}
+          />
+        </S.InputNumbersContent>
+      <S.ButtonModal disabled={transferToSaleState.isEmpty} onClick={handleTransferSale}>
+        { transferToSaleState.isLoading ? (
+          <Spinner />
+        ) : (
+          'Nova Venda'
+        )} 
       </S.ButtonModal>
     </>
   );

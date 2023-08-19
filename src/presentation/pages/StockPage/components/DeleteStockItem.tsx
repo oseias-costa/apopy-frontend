@@ -1,4 +1,4 @@
-import { InputHTMLAttributes, useState } from "react";
+import { useState } from "react";
 import { Stock } from "../../../../domain/entities/stock";
 import { Modal } from "../../../components/global/Modal";
 import {
@@ -58,9 +58,6 @@ export const DeleteStockItem: React.FC<StockStateProps> = ({ stockState, setStoc
             type="number"
             value={deleteStockItem.quantity}
             placeholder="Quantidade"
-            onChange={(e) =>
-                setDeleteStockItem({ ...deleteStockItem, quantity: Number(e.target.value) })
-            }
           />
             <InputNumberModalWithLabel
               label='Preço de Custo'
@@ -68,9 +65,6 @@ export const DeleteStockItem: React.FC<StockStateProps> = ({ stockState, setStoc
               type="number"
               placeholder="Preço de Custo"
               value={deleteStockItem.quantity}
-              onChange={(e: HTMLInputElement) =>
-                setDeleteStockItem({ ...deleteStockItem, costPrice: Number(e.target.value) })
-              }
             />
           <InputNumberModalWithLabel
             label='Total'
@@ -78,23 +72,17 @@ export const DeleteStockItem: React.FC<StockStateProps> = ({ stockState, setStoc
             disabled={true}
             placeholder="Total"
             value={deleteStockItem.total}
-            onChange={(e) =>
-              setDeleteStockItem({
-                ...deleteStockItem,
-                total: Number(e.target.value),
-              })
-            }
           />
        </S.InputNumbersContent>
         <InputModalWithLabel label='Descrição'
           type="string"
           disabled={true}
           value={deleteStockItem.description}
-          onChange={(e) =>
-            setDeleteStockItem({ ...deleteStockItem, description: e.target.value })
-          }
         />
-        <S.ButtonModal disabled={stockComponentState.loading} onClick={handleDeleteStockItem}>
+        <S.ButtonModal 
+          disabled={stockComponentState.loading} 
+          onClick={handleDeleteStockItem}
+        >
         {stockComponentState.loading ? (
             <SpinnerIcon />
           ) : (

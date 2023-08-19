@@ -11,6 +11,7 @@ import { UserIcon } from "./components/User.icon";
 import { MenuDropdownHeader } from "./components/MenuDropdownHeader";
 import { useReducer } from "react";
 import { ActionMenuHeader, initialStateMenuHeader, StateMenuHeader } from "../../../types/components/header.types";
+import { UserHeader } from "./components/UserHeader";
 
 export const Header = () => {
 
@@ -64,7 +65,7 @@ export const Header = () => {
         distanceFromRight="74px"
         display={state?.user}
         onClick={() => dispatch({type: 'resetState'})}
-      />
+      ><UserHeader /></MenuDropdownHeader>
       <MenuDropdownHeader
         distanceFromRight="130px"
         display={state?.message}

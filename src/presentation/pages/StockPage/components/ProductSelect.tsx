@@ -57,7 +57,7 @@ export const ProductSelect: React.FC<ProductSelectProps> = ({
               onClick={() => {
                 const product = filterItem(item._id);
                 setNewStockItem({
-                  ...initialStockStateCreate,
+                  ...newStockItem,
                   _id: product._id,
                   category: product.category,
                   subcategory: product.subcategory,

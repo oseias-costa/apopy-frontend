@@ -1,13 +1,25 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { User } from "../../../domain/entities/user";
 
+interface UserState {
+    user: User
+}
+
+export const initialUserState: UserState = {
+    user: {
+        _id: "",
+        createAt: null,
+        email: "",
+        name: "",
+        phone: ""
+    }
+}
 
 const userSlice = createSlice({
     name: 'user',
-    initialState: {
-        user: {}
-    },
+    initialState: initialUserState,
     reducers: {
-        fetchUser: (state, action) => {
+        fetchUser: (state, action: PayloadAction<User>) => {
             state.user = action.payload
         }
     }

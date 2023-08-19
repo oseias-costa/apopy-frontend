@@ -13,11 +13,12 @@ export const MovimentStockItem: React.FC<StockStateProps> = ({
   stockState,
   setStockState,
 }) => {
+
   return (
     <Modal state={stockState} setState={setStockState}>
       <S.ModalContent>
         <S.TitleModal>
-          <S.TitleModalH2>Movimentar Estoque</S.TitleModalH2>
+          <S.TitleModalH2>Nova venda</S.TitleModalH2>
           <CloseIcon onClick={() => setStockState(initialStockState)} />
         </S.TitleModal>
         <S.ProductContainerFlex>
@@ -46,7 +47,7 @@ export const MovimentStockItem: React.FC<StockStateProps> = ({
         </S.ProductContainerFlex>
         <S.InputNumbersContent>
           <InputNumberModalWithLabel
-            label="Quantidade"
+            label="Qtde em Estoque"
             disabled={true}
             value={stockState.quantity}
           />
@@ -54,12 +55,12 @@ export const MovimentStockItem: React.FC<StockStateProps> = ({
             label="Total"
             disabled={true}
             second={true}
-            value={stockState.total}
+            value={`R$ ${stockState.total}`}
           />
           <InputNumberModalWithLabel
             label="Preço de Custo"
             disabled={true}
-            value={stockState.costPrice}
+            value={`R$ ${stockState.costPrice}`}
           />
         </S.InputNumbersContent>
         <TransferToSale stockState={stockState} setStockState={setStockState} />

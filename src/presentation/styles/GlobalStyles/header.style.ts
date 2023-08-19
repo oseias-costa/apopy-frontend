@@ -79,9 +79,9 @@ export const MenuDropdownHeaderContainer = styled.div<{
   distanceFromRight: string;
 }>`
   width: 200px;
-  height: 350px;
+  height: auto;
   background-color: #fff;
-  position: absolute;
+  position: fixed;
   right: ${(props) => props.distanceFromRight};
   top: 55px;
   border-radius: 7px;
