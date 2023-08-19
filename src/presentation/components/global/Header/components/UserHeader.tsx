@@ -8,6 +8,8 @@ export const UserHeader = () => {
   const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.user.user);
   const sizeName = user.name?.split(" ").length - 1;
+  const firstName = user.name?.split(" ")[0]
+  const lastName = user.name?.split(" ")[sizeName]
 
   function handleLogout() {
     localStorage.removeItem("apopyToken");
@@ -18,15 +20,15 @@ export const UserHeader = () => {
     <S.UserHeaderContainer>
       <S.UserAbreviation>
         <S.UserIconCircle>
-          {user.name?.split(" ")[0][0]}
-          {user.name?.split(" ")[sizeName][0]}
+          {firstName[0]}
+          {lastName[0]}
         </S.UserIconCircle>
       </S.UserAbreviation>
-      <S.UserNameText>{user.name}</S.UserNameText>
+      <S.UserNameText>{firstName} {lastName}</S.UserNameText>
       <S.UserEmailText>{user.email}</S.UserEmailText>
-      <ButtonModal disabled={false} onClick={() => handleLogout()}>
-        Logout
-      </ButtonModal>
+      <S.ButtonUserHeader disabled={false} onClick={handleLogout}>
+        Sair
+      </S.ButtonUserHeader>
     </S.UserHeaderContainer>
   );
 };

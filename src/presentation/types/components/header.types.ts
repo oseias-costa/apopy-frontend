@@ -10,6 +10,8 @@ export type ActionMenuHeader =
     | { type: 'userChange' } 
     | { type: 'resetState' }
 
+export type ActionMenuHeaderType =  { type: string }
+
 export const initialStateMenuHeader = { notification: false, message: false, user: false }
 
 export type IconMenuType = {
