@@ -21,5 +21,7 @@ export const ContainerContentLayout = styled.div`
 
   @media (max-width: 740px) {
     margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
   }
 `;

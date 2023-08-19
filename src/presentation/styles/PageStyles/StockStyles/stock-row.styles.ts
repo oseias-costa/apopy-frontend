@@ -1,12 +1,10 @@
 import { styled } from "styled-components";
-import {
-  CategoryRowContainer,
-} from "../CategoryStyles/category-row.styles";
+import { CategoryRowContainer } from "../CategoryStyles/category-row.styles";
 import { CategoryContainer } from "../CategoryStyles/category.styles";
 
 export const StockContainerPage = styled(CategoryContainer)`
-    width: auto;
-`
+  width: auto;
+`;
 
 export const StockContainer = styled.div`
   background-color: #fff;
@@ -36,7 +34,7 @@ export const StockRowText = styled.div`
 export const StockRowTextHeader = styled.div`
   font-weight: 400;
   color: #828282;
-  width: 100%
+  width: 100%;
 `;
 
 export const Adjuste = styled.div`

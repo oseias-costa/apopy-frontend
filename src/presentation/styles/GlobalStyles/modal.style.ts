@@ -63,7 +63,7 @@ export const InputModal = styled.input<{ error?: boolean; disabled?: boolean }>`
   padding: ${(props) => (props.error ? "7px" : "8px")};
 
   @media (max-width: 740px) {
-    width: 80%;
+    width: 93%;
   }
 `;
 
@@ -105,6 +105,11 @@ export const InputNumbersContent = styled.div`
 
 export const ProductContainerFlex = styled.div`
   display: flex;
+
+  @media (max-width: 740px) {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 `;
 
 export const PlaceholderInputModal = styled.p`

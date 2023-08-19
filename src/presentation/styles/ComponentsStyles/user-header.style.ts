@@ -26,9 +26,10 @@ export const UserIconCircle = styled.p`
 `;
 
 export const UserNameText = styled.p`
-  color: var(--color-gray-placeholder);
+  color: var(--color-gray-text);
   font-size: 11pt;
   text-overflow: ellipsis;
+  font-weight: 600;
 `;
 
 export const UserEmailText = styled.p`
@@ -38,7 +39,6 @@ export const UserEmailText = styled.p`
   margin-bottom: 30px;
 `;
 
-
 export const ButtonUserHeader = styled.button<{ disabled: boolean }>`
   display: flex;
   align-items: center;
@@ -46,12 +46,12 @@ export const ButtonUserHeader = styled.button<{ disabled: boolean }>`
   width: 100%;
   background-color: ${(props) =>
     props.disabled ? "#828282" : "var(--color-blue-light)"};
-  height: 34px;
+  height: 24px;
   color: #fff;
   border-radius: 3px;
   border: transparent;
   text-align: center;
-  font-size: 14px;
+  font-size: 12px;
   font-family: var(--font-primary);
   font-weight: 500;
   transition: 0.2s linear;

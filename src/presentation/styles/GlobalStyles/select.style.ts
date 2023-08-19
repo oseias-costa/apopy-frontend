@@ -5,6 +5,9 @@ export const ContainerSelect = styled.div`
   min-width: 200px;
   margin-left: 2px;
   margin-right: 2px;
+  @media (max-width: 740px) {
+    min-width: 310px;
+  }
 `;
 
 export const Select = styled.div<{ isActive: boolean }>`
