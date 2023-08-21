@@ -7,7 +7,7 @@ export const ProductContainer = styled.div`
   padding-bottom: 20px;
   padding-top: 5px;
   display: block;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
 
 export const ProductRowContainer = styled.tr`

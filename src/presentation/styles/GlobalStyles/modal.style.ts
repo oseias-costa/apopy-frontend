@@ -5,6 +5,11 @@ export const ModalContent = styled.div`
   display: flex;
   flex-direction: column;
   max-height: 500px;
+
+  @media(max-width: 740px){
+    width: 304px;
+    overflow-x: auto;
+  }
 `;
 
 export const ModalContentText = styled.p`
@@ -63,7 +68,7 @@ export const InputModal = styled.input<{ error?: boolean; disabled?: boolean }>`
   padding: ${(props) => (props.error ? "7px" : "8px")};
 
   @media (max-width: 740px) {
-    width: 93%;
+    width: 280px;
   }
 `;
 
@@ -96,11 +101,23 @@ export const ButtonModal = styled.button<{ disabled: boolean }>`
   &:hover {
     background-color: ${(props) => (props.disabled ? "#828282" : "#026773")};
   }
+
+  @media(max-width: 740px){
+    width: 300px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
 `;
 
 export const InputNumbersContent = styled.div`
   display: flex;
   justify-content: space-between;
+
+  @media(max-width: 740px){
+    flex-wrap: wrap;
+  }
 `;
 
 export const ProductContainerFlex = styled.div`

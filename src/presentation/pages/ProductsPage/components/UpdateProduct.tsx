@@ -52,11 +52,13 @@ export const UpdateProduct: React.FC<ProductStateProps> = ({
   }, [state]);
 
   async function handleCreateProduct() {
+    setProductComponentState({ isEmpty: true, loading: true })
     const update = await updateProductUseCase({ ...state });
 
     if (update.status === 200) {
       dispatch(updateProduct(update.data?.data.updateProduct));
       setState(initialStateProducts);
+      setProductComponentState({ isEmpty: true, loading: false })
     }
   }
 

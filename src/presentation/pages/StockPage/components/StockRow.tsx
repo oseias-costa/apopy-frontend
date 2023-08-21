@@ -10,7 +10,7 @@ interface StockStateProps {
 }
 
 export const StockRow: React.FC<StockStateProps> = ({stockList, setStockState}) => {
-    const stockItems = stockList.map((item: Stock) => {
+    const stockItems = stockList?.map((item: Stock) => {
         return(
             <S.TableRow key={item._id}>
                 <S.TableRowItem position="left">{item.product}</S.TableRowItem>

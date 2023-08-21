@@ -6,7 +6,9 @@ export const ContainerSelect = styled.div`
   margin-left: 2px;
   margin-right: 2px;
   @media (max-width: 740px) {
-    min-width: 310px;
+    min-width: 300px;
+    margin-left: 0px;
+    margin-right: 0px;
   }
 `;
 

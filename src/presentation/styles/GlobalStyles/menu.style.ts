@@ -17,6 +17,7 @@ export const MenuContainer = styled.div`
     height: 20px;
     width: 100%;
     background-color: #fff;
+    z-index: 1000;
   }
 `;
 

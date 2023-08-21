@@ -22,7 +22,7 @@ export const CreateCategory: React.FC<CategoryStateProps> = ({ state, setState }
   } ,[state])
   
   async function handleCreateCategory() {
-    setCreateCategoryState({ isEmpty: false, loading: true })
+    setCreateCategoryState({ isEmpty: true, loading: true })
     const req = await createCategoryUseCase(state.name);
 
     if (req.status === 200) {

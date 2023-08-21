@@ -36,7 +36,7 @@ export const DeleteCategory : React.FC<CategoryStateProps> = ({ state, setState 
           onChange={(e) => setState({ ...state, name: e.target.value })}
           disabled={true}
         />
-        <S.ButtonModal disabled={false} onClick={handleDeleteCategory}>
+        <S.ButtonModal disabled={isLoading} onClick={handleDeleteCategory}>
         { isLoading ? <SpinnerIcon /> : 'Excluir Categoria' }
           </S.ButtonModal>
       </S.ModalContent>

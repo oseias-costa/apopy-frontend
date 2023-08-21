@@ -15,7 +15,7 @@ export const UserIcon = ({
   const sizeName = name?.split(" ").length - 1;
 
   return (
-    <HeaderMenuUser onClick={onClick} isCliked={isCliked}>
+    <HeaderMenuUser onClick={onClick} isCliked={Boolean(isCliked)}>
       <Abbreviation>
         {name?.split(" ")[0][0]}
         {name?.split(" ")[sizeName][0]}

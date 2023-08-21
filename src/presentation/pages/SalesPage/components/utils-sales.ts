@@ -1,6 +1,6 @@
 import { Sale } from "../../../../domain/entities/sale";
 import { Stock } from "../../../../domain/entities/stock";
-import { NewSale, SaleState } from "../../../types/pages/sale.types";
+import { InitialFilterSale, NewSale, SaleState } from "../../../types/pages/sale.types";
 import { StockState } from "../../../types/pages/stock.types";
 
 interface VariablesSales {
@@ -103,3 +103,97 @@ export const formatDate = (date: string): string => {
 
   return `${dd}/${mm}/${yy}`
 }
+
+
+export const uniqueDataSales = (sale: Sale[]) => {
+  let category: string[] = []
+  let product: string[] = []
+  let suplier: string[] = [] 
+  let month: string[] = []
+  let year: string[] = []
+  for (let saleItem of sale){
+      const monthConverted = convertMonth(new Date(saleItem.date).getMonth())
+      const yearConverted: string = new Date(saleItem.date).getFullYear()?.toString()
+
+      suplier.includes(saleItem.suplier) ? null : suplier.push(saleItem.suplier)
+      product.includes(saleItem.product) ? null : product.push(saleItem.product)
+      category.includes(saleItem.category) ? null : category.push(saleItem.category)
+      month.includes(monthConverted) ? null : month.push(monthConverted)
+      year.includes(yearConverted) ? null : year.push(yearConverted)
+  }
+  return  { category, product, suplier, month, year }
+}
+
+export const filterSales = (sale: Sale[], filteredSale: InitialFilterSale) =>  {
+  let list: Sale[] = []
+
+  for (let i = 0; i < sale.length; i++) {
+    const monthConverted = convertMonth(new Date(sale[i].date).getMonth())
+    const yearConverted: string = new Date(sale[i].date).getFullYear()?.toString()
+
+     const verifyFilter = sale[i].category.includes(filteredSale.category) &&
+     sale[i].suplier.includes(filteredSale.suplier) &&
+     sale[i].product.includes(filteredSale.product) &&
+     monthConverted.includes(filteredSale.month) &&
+     yearConverted.includes(filteredSale.year)
+
+      if(verifyFilter){
+          list.push(sale[i])
+      }
+  }
+  return list
+}
+
+interface ConvertMonthToString {
+  (month: number): string
+}
+
+const convertMonth: ConvertMonthToString = (month) => {
+  let result = ''
+  for(let i = 0; i < months.length; i++){
+    if(months[i].monthNumber === month){
+       result = months[i].month?.toString()!
+      }
+    }
+    return result
+}
+
+const months = [
+  {
+    monthNumber: 0,
+    month: 'Janeiro'
+  },
+  {
+    monthNumber: 1,
+    month: 'Fevereiro'},
+  {
+    monthNumber: 2,
+    month: 'Março'},
+  {
+    monthNumber: 3,
+    month: 'Abril'},
+  {
+    monthNumber: 4,
+    month: 'Maio'},
+  {
+    monthNumber: 5,
+    month: 'Junho'},
+  {
+    monthNumber: 6,
+    month: 'Julho'},
+  {
+    monthNumber: 7,
+    month: 'Agosto'},
+  {
+    monthNumber: 8,
+    month: 'Setembro'},
+  {
+    monthNumber: 9,
+    month: 'Outubro'},
+  {
+    monthNumber: 10,
+    month0: 'Novembro'},
+  {
+    monthNumber: 11,
+    month1: 'Dezembro'}
+]

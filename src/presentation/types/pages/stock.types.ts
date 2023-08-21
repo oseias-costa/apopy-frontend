@@ -46,6 +46,23 @@ export const initialStockStateCreate: Stock = {
   description: "",
 };
 
+export interface InitialFilterStock {
+  openFilter: boolean,
+  product: string,
+  category: string,
+  subcategory: string,
+  suplier: string
+}
+
+export const initialFilterStockState: InitialFilterStock = { 
+   openFilter: false,
+   product: '',
+   category: '',
+   subcategory: '',
+   suplier: ''
+  }
+
+
 export interface StockStateProps {
   setStockState: React.Dispatch<React.SetStateAction<StockState>>;
   stockState: StockState;

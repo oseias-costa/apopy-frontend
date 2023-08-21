@@ -67,6 +67,7 @@ export const ReverseToStock: React.FC<ReverseToStockProps> = ({saleState, setSal
                     />
                 </S.ProductContainerFlex>
                 <InputNumberModalWithLabel 
+                    label='Quantidade'
                     value={saleState.quantity} 
                     disabled={true}
                 />

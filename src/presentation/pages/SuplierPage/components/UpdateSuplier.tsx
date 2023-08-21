@@ -7,6 +7,7 @@ import { SuplierComponentState, suplierInitialState, SuplierStateProps } from ".
 import * as S from "../../../styles/GlobalStyles/modal.style";
 import { CloseIcon } from "../../../assets/icons/CloseIcon";
 import { RootState } from "../../../redux/store";
+import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
 
 export const UpdateSuplier: React.FC<SuplierStateProps> = ({ state, setState }) => {
   const dispatch = useDispatch();

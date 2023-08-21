@@ -51,3 +51,23 @@ export const initialStateNewSale: NewSale = {
   percentage: 0,
   createAt: "",
 };
+
+export interface InitialFilterSale {
+  openFilter: boolean,
+  product: string,
+  category: string,
+  subcategory: string,
+  suplier: string,
+  month: string,
+  year: string
+}
+
+export const initialFilterStockSale: InitialFilterSale = { 
+   openFilter: false,
+   product: '',
+   category: '',
+   subcategory: '',
+   suplier: '',
+   month: '',
+   year: ''
+  }

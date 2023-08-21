@@ -32,7 +32,7 @@ export const UpdateCategory: React.FC<CategoryStateProps> = ({ state, setState }
   }, [state])
 
   async function handleUpdateCategory() {
-    setUpdateCategoryState({isLoading: true, dataIsDiferent: false})
+    setUpdateCategoryState({isLoading: true, dataIsDiferent: true})
     const req = await updateCategoryUseCase(state._id, state.name);
 
     if (req.status === 200) {

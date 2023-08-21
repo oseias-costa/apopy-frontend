@@ -28,12 +28,13 @@ export const DeleteProduct: React.FC<ProductStateProps> = ({
     });
 
   async function handleDeleteProduct() {
-    const deleteItem = await deleteProductUseCase(state._id);
     setProductComponentState({ isEmpty: true, loading: true });
+    const deleteItem = await deleteProductUseCase(state._id);
     if (deleteItem.status === 200) {
       dispatch(deleteProduct(deleteItem.data?.data.deleteProduct));
       setState(initialStateProducts);
     }
+    setProductComponentState({ isEmpty: false, loading: false });
   }
 
   return (
@@ -73,11 +74,11 @@ export const DeleteProduct: React.FC<ProductStateProps> = ({
               onChange={(e) => setState({ ...state, name: e.target.value })}
             />
           </S.ProductContainerFlex>
-          <S.ButtonModal disabled={false} onClick={() => handleDeleteProduct()}>
+          <S.ButtonModal disabled={productComponentState.loading } onClick={() => handleDeleteProduct()}>
             {productComponentState.loading ? (
               <SpinnerIcon />
-            ) : (
-              "Excluir Produto"
+              ) : (
+                "Excluir Produto"
             )}
           </S.ButtonModal>
         </S.ModalContent>

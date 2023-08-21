@@ -8,7 +8,7 @@ export const CategoryContainer = styled.div`
   height: auto;
   padding-bottom: 30px;
   padding-top: 10px;
-  overflow-y: scroll;
+  overflow-y: auto;
 `;
 
 export const CategoryTitle = styled.div`
