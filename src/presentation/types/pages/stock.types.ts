@@ -47,21 +47,24 @@ export const initialStockStateCreate: Stock = {
 };
 
 export interface InitialFilterStock {
-  openFilter: boolean,
-  product: string,
-  category: string,
-  subcategory: string,
-  suplier: string
+  openFilter: boolean;
+  product: string;
+  category: string;
+  subcategory: string;
+  suplier: string;
+  month: string;
+  year: string;
 }
 
-export const initialFilterStockState: InitialFilterStock = { 
-   openFilter: false,
-   product: '',
-   category: '',
-   subcategory: '',
-   suplier: ''
-  }
-
+export const initialFilterStockState: InitialFilterStock = {
+  openFilter: false,
+  product: "",
+  category: "",
+  subcategory: "",
+  suplier: "",
+  month: "",
+  year: "",
+};
 
 export interface StockStateProps {
   setStockState: React.Dispatch<React.SetStateAction<StockState>>;
@@ -70,35 +73,35 @@ export interface StockStateProps {
 
 export function UpdateStockItemData(updateStockItem: Stock): Stock {
   return {
-        _id: updateStockItem._id,
-        product: updateStockItem.product,
-        category : updateStockItem.category,
-        subcategory: updateStockItem.subcategory,
-        suplier: updateStockItem.suplier,
-        quantity: updateStockItem.quantity,
-        costPrice: updateStockItem.costPrice,
-        total: updateStockItem.total,
-        description: updateStockItem.description,
-  }
-} 
-
-export interface ProductComponentState {
-  isEmpty: boolean,
-  loading: boolean
+    _id: updateStockItem._id,
+    product: updateStockItem.product,
+    category: updateStockItem.category,
+    subcategory: updateStockItem.subcategory,
+    suplier: updateStockItem.suplier,
+    quantity: updateStockItem.quantity,
+    costPrice: updateStockItem.costPrice,
+    total: updateStockItem.total,
+    description: updateStockItem.description,
+  };
 }
 
-export const initialCreateProduct: ProductCreateState  = {
+export interface ProductComponentState {
+  isEmpty: boolean;
+  loading: boolean;
+}
+
+export const initialCreateProduct: ProductCreateState = {
   name: "",
   category: "",
   subcategory: "",
   suplier: "",
   _id: "",
-}
+};
 
 export interface ProductCreateState {
-  name: string,
-  category: string,
-  subcategory: string,
-  suplier: string,
-  _id: string,
+  name: string;
+  category: string;
+  subcategory: string;
+  suplier: string;
+  _id: string;
 }
