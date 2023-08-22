@@ -1,14 +1,16 @@
-import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUser } from "../../../presentation/redux/slice/userSlice";
 import { getDashboardUseCase } from "../../../application/dashboard.usecase";
 import { useEffect } from "react";
 import { RootState } from "../../redux/store";
 import { fetchDashboardData } from "../../redux/slice/dashboardSlice";
 import * as S from "../../styles/PageStyles/DashboardStyles/dashboard.styles";
+import { datachart } from "./components/data-example";
+import { MyResponsiveBar } from "./components/ChartSales";
+import { DollarIcon } from "./components/DollarIcon";
+import { ProductsIcon } from "./components/ProductsIcon";
+import { BoxesIcon } from "./components/BoxesIcon";
 
 export const Dashboard = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const dashboardData = useSelector((state: RootState) => state.dashboard)
 
@@ -17,27 +19,39 @@ export const Dashboard = () => {
         dispatch(fetchDashboardData(res.data.data.dashboard)))
   },[])
 
-  function handleLogout() {
-    localStorage.removeItem("apopyToken");
-    dispatch(fetchUser({}));
-  }
-
   return (
+    <>
     <S.DashboardContainer>
-      <S.DashboarNumber>
-        <p>Total em Estoque</p>
-        <h2>{dashboardData.totalValue}</h2>
-      </S.DashboarNumber>
-      <S.DashboarNumber>
-        <p>Total de Produtos</p>
-        <h2>{dashboardData.products}</h2>
-      </S.DashboarNumber>
-      <S.DashboarNumber>
-        <p>Total de itens no Estoque</p>
-        <h2>{dashboardData.totalItems}</h2>
-      </S.DashboarNumber>
-
-      <button onClick={() => handleLogout()}>Logout</button>
+      <S.DashboarItem>
+        <S.DashboardNumberBlock>
+          <S.DashboardSubTitle>Estoque</S.DashboardSubTitle>
+          <S.DashboardNumber>R$ {dashboardData.totalValue}</S.DashboardNumber>
+          <S.DashboardItemText>Total em Estoque</S.DashboardItemText>
+        </S.DashboardNumberBlock>
+        <DollarIcon />
+      </S.DashboarItem>
+      <S.DashboarItem>
+        <S.DashboardNumberBlock>
+      <S.DashboardSubTitle>Produtos</S.DashboardSubTitle>
+        <S.DashboardNumber>R$ {dashboardData.products}</S.DashboardNumber>
+        <S.DashboardItemText>Total de Produtos</S.DashboardItemText>
+        </S.DashboardNumberBlock>
+        <ProductsIcon />
+      </S.DashboarItem>
+      <S.DashboarItem>
+        <S.DashboardNumberBlock>
+      <S.DashboardSubTitle>Quantidade</S.DashboardSubTitle>
+        <S.DashboardNumber>{dashboardData.totalItems}</S.DashboardNumber>
+        <S.DashboardItemText>Itens no Estoque</S.DashboardItemText>
+        </S.DashboardNumberBlock>
+        <BoxesIcon />
+      </S.DashboarItem>
     </S.DashboardContainer>
+    <S.ChartContainer>
+      <S.ChartResponsive >
+      <MyResponsiveBar data={datachart} />
+      </S.ChartResponsive>
+    </S.ChartContainer>
+    </>
   );
 };

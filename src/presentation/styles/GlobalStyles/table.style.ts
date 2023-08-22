@@ -14,16 +14,19 @@ export const Table = styled.table`
 
 export const TableRow = styled.tr`
   width: auto;
+
+  &:hover{
+    background-color: var(--color-gray-hover);
+  }
 `;
 
 export const TableRowItem = styled.td<{ position?: string }>`
-  font-size: 14px;
+  font-size: 13px;
   color: var(--color-gray-text);
   padding-left: 18px;
   padding-right: 18px;
-  padding-top: 10px;
-  padding-bottom: 10px;
   text-align: ${(props) => props.position};
+  border-bottom: 1px solid #E7E7E7;
 `;
 
 export const TableThead = styled.thead`
@@ -31,8 +34,8 @@ export const TableThead = styled.thead`
 `;
 
 export const TableRowTh = styled.th<{ position?: string }>`
-  background-color: #e5e4e2;
-  font-size: 15px;
+  /* background-color: #e5e4e2; */
+  font-size: 14px;
   color: var(--color-gray-text);
   padding-left: 18px;
   padding-right: 18px;
@@ -41,4 +44,14 @@ export const TableRowTh = styled.th<{ position?: string }>`
   font-weight: 500;
   color: #828282;
   text-align: ${(props) => props.position};
+  border-bottom: 1px solid #E7E7E7;
 `;
+
+export const TableProfitItem = styled.p<{profit: boolean}>`
+  /* background-color: #f1adb5; */
+  background-color: ${props => props.profit ? '#8DDFEE' : '#ffe1e1' }; 
+  border-radius: 3px;
+  padding: 2px;
+  font-size: 12px;
+  color: ${props => props.profit ? '012E40' : '#fa5e5e'}; 
+`

@@ -10,8 +10,9 @@ export const SalePanelContainer = styled.div`
 
 export const SalePanelItem = styled.div`
   padding: 15px;
-  background-color: #d9d9d9;
-  background-color: #e5e4e2;
+  /* background-color: #d9d9d9;
+  background-color: #e5e4e2; */
+  background-color: var(--color-gray-hover);
   margin: 4px;
   min-width: 100px;
   border-radius: 4px;
