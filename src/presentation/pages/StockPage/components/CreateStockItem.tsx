@@ -18,26 +18,27 @@ import { InputModalWithLabel } from "../../../components/global/Input/InputModal
 import { InputNumberModalWithLabel } from "../../../components/global/Input/InputNumberModalWithLabel";
 import { verifyFieldsStock } from "./stock-utils";
 
-export const CreateStockItem: React.FC<StockStateProps> = ({ stockState, setStockState }) => {
+export const CreateStockItem: React.FC<StockStateProps> = ({
+  stockState,
+  setStockState,
+}) => {
   const [newStockItem, setNewStockItem] = useState<Stock>(
     initialStockStateCreate
   );
   const dispatch = useDispatch();
-  const [stockComponentState, setStockComponentState] = useState<ProductComponentState>({
+  const [stockComponentState, setStockComponentState] =
+    useState<ProductComponentState>({
       isEmpty: false,
       loading: false,
     });
 
-    console.log(newStockItem)
-
   useEffect(() => {
-    if(verifyFieldsStock(newStockItem)){
+    if (verifyFieldsStock(newStockItem)) {
       setStockComponentState({ isEmpty: false, loading: false });
     } else {
       setStockComponentState({ isEmpty: true, loading: false });
     }
-
-  },[newStockItem])
+  }, [newStockItem]);
 
   async function handleCreateStockItem() {
     setStockComponentState({ isEmpty: true, loading: true });
@@ -93,7 +94,7 @@ export const CreateStockItem: React.FC<StockStateProps> = ({ stockState, setStoc
               setNewStockItem({
                 ...newStockItem,
                 quantity: Number(e.target.value),
-                total: Number(newStockItem.costPrice * Number(e.target.value))
+                total: Number(newStockItem.costPrice * Number(e.target.value)),
               })
             }
           />
@@ -105,7 +106,7 @@ export const CreateStockItem: React.FC<StockStateProps> = ({ stockState, setStoc
               setNewStockItem({
                 ...newStockItem,
                 costPrice: Number(e.target.value),
-                total: Number(e.target.value) * newStockItem.quantity
+                total: Number(e.target.value) * newStockItem.quantity,
               })
             }
             second={true}
