@@ -6,7 +6,6 @@ export const CategorySelect: React.FC<any> = ({
   product,
   setProduct,
   disabled,
-  placeholder,
 }) => {
   const [selectState, setSelectState] = useState({
     category: "",

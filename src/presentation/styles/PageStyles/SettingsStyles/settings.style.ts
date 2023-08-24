@@ -1,4 +1,5 @@
 import { styled } from "styled-components";
+import { ButtonModal } from "../../GlobalStyles/modal.style";
 
 export const SettingsContainer = styled.div`
   background-color: #fff;
@@ -7,5 +8,9 @@ export const SettingsContainer = styled.div`
   padding: 20px;
   display: block;
   overflow-y: auto;
+`
+
+export const ButtonSettings = styled(ButtonModal)`
+  width: 200px;
 `
 

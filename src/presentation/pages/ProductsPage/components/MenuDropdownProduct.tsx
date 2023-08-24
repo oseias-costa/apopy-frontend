@@ -3,7 +3,7 @@ import * as S from "../../../styles/PageStyles/CategoryStyles/category-row.style
 import { MenuDropdownProps, MenuState, PositionItem } from "../../../types/pages/products.types";
 import { useState } from "react";
 
-export const MenuDropdownProduct: React.FC<MenuDropdownProps> = ({state, item, setState}) => {
+export const MenuDropdownProduct: React.FC<MenuDropdownProps> = ({ item, setState}) => {
 
   const [positionItem, setPositionItem] = useState<PositionItem>();
   const [ menuState, setMenuState] = useState<MenuState>({
@@ -14,9 +14,9 @@ export const MenuDropdownProduct: React.FC<MenuDropdownProps> = ({state, item, s
     return(
         <S.ContainerDropMenu>
         <S.DropMenu
-        height={document.body.scrollHeight}
-        display={menuState.item === item?._id}
-        onClick={() => setMenuState({openMenu: false, item: "" })}
+          height={document.body.scrollHeight}
+          display={menuState.item === item?._id}
+          onClick={() => setMenuState({openMenu: false, item: "" })}
         >
         <S.DropMenuContent
           left={positionItem?.pageX}

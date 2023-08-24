@@ -1,17 +1,15 @@
-import { ProductInterface } from "../../../types/pages/products.types";
+import { ProductInterface, ProductState } from "../../../types/pages/products.types";
 import { MenuDropdownProduct } from "./MenuDropdownProduct";
-import { Product } from "../../../../domain/entities/product";
 import * as S from "../../../styles/GlobalStyles/table.style";
+import { SetStateAction } from "react";
 
 interface ProductRowProps {
   productsList: ProductInterface[];
-  state: Product;
-  setState: (state: Product) => void;
+  setState: React.Dispatch<SetStateAction<ProductState>>;
 }
 
 export const ProductRow: React.FC<ProductRowProps> = ({
   productsList,
-  state,
   setState,
 }) => {
   const products = productsList?.map((item: ProductInterface) => {
@@ -21,7 +19,9 @@ export const ProductRow: React.FC<ProductRowProps> = ({
         <S.TableRowItem>{item?.subcategory}</S.TableRowItem>
         <S.TableRowItem>{item?.suplier}</S.TableRowItem>
         <S.TableRowItem>{item?.name}</S.TableRowItem>
-        <MenuDropdownProduct state={state} item={item} setState={setState} />
+        <S.TableRowItem>
+          <MenuDropdownProduct item={item} setState={setState} />
+        </S.TableRowItem>
       </S.TableRow>
     );
   });

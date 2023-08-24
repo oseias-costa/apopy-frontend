@@ -1,3 +1,4 @@
+import React, { SetStateAction } from "react";
 import { Product } from "../../../domain/entities/product";
 
 export interface ProductInterface {
@@ -18,8 +19,7 @@ export type ProductCreate = {
 }
 
 export interface MenuDropdownProps {
-  state: ProductState,
-  setState: () => void
+  setState: React.Dispatch<SetStateAction<ProductState>>,
   item: Product;
 }
 
