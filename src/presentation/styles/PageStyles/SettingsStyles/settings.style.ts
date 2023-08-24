@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 import { ButtonModal } from "../../GlobalStyles/modal.style";
+import { InputModalWithLabel } from "../../../components/global/Input/InputModalWithLabel";
 
 export const SettingsContainer = styled.div`
   background-color: #fff;
@@ -8,9 +9,19 @@ export const SettingsContainer = styled.div`
   padding: 20px;
   display: block;
   overflow-y: auto;
-`
+`;
 
 export const ButtonSettings = styled(ButtonModal)`
-  width: 200px;
-`
+  min-width: 200px;
+  width: auto;
 
+  @media (max-width: 740px) {
+    width: 298px;
+    margin-left: 2px;
+    margin-right: 2px;
+  }
+`;
+
+export const InputSettings = styled(InputModalWithLabel)`
+  width: 280px;
+`;

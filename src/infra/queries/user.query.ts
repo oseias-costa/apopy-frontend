@@ -22,3 +22,11 @@ export const REGISTER = `
         }
     }
 `
+
+export const DELETE_USER = `
+    mutation Mutation {
+        deleteUser {
+            _id  
+        }
+    }
+`
