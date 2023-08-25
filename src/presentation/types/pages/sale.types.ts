@@ -1,3 +1,6 @@
+import { Dispatch, SetStateAction } from "react";
+import { Sale } from "../../../domain/entities/sale";
+
 export interface SaleState {
   _id: string;
   stockId: string;
@@ -71,3 +74,16 @@ export const initialFilterStockSale: InitialFilterSale = {
    month: '',
    year: ''
   }
+
+  export interface FilterStateProps {
+    sales: Sale[];
+    filterState: any;
+    setFilterState: React.Dispatch<SetStateAction<InitialFilterSale>>;
+    positionButton: any;
+  }
+
+  export interface MenuDropDownSaleProps{
+    item: Sale;
+    setState: Dispatch<React.SetStateAction<SaleState>>
+  }
+  

@@ -2,11 +2,7 @@ import { useRef, useState } from "react";
 import { useGetCategories } from "../../../hooks/useGetCategories";
 import * as S from "../../../styles/GlobalStyles/select.style";
 
-export const CategorySelect: React.FC<any> = ({
-  product,
-  setProduct,
-  disabled,
-}) => {
+export const CategorySelect: React.FC<any> = ({ product, setProduct, disabled }) => {
   const [selectState, setSelectState] = useState({
     category: "",
     isClicked: false,

@@ -1,10 +1,10 @@
 import { useDispatch } from "react-redux";
-import { createCategoryUseCase } from "../../../../application/category/get-categories.usecase";
+import { createCategoryUseCase } from "../../../../application/categories.usecase";
 import { createCategory } from "../../../redux/slice/categorySlice";
 import { Modal } from "../../../components/global/Modal";
 import { CloseIcon } from "../../../assets/icons/CloseIcon";
 import { useEffect, useState } from "react";
-import { CategoryStateProps, CreateCategoryState, initialCategoryValue } from "./category.types";
+import { CategoryStateProps, CreateCategoryState, initialCategoryValue } from "../../../types/pages/category.types";
 import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
 import * as S from "../../../styles/GlobalStyles/modal.style";
 
@@ -41,7 +41,7 @@ export const CreateCategory: React.FC<CategoryStateProps> = ({ state, setState }
         </S.TitleModal>
         <S.ModalContentText>Crie uma nova categoria, exemplo: Poltrona, Estofado...</S.ModalContentText>
         <S.InputModal
-          placeholder="Digite aqui a nova Categoria"
+          placeholder="Digite"
           error={false}
           value={state?.name}
           onChange={(e) => setState({ ...state, name: e.target.value })}

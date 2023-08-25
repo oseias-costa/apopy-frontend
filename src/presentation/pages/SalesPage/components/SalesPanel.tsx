@@ -1,4 +1,3 @@
-import { styled } from "styled-components";
 import { Sale } from "../../../../domain/entities/sale";
 import { Eye } from "../../../assets/icons/Eye";
 import { useState } from "react";

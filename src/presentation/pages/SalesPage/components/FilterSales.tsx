@@ -2,19 +2,9 @@ import { SetStateAction } from "react";
 import { Sale } from "../../../../domain/entities/sale";
 import { CloseIcon } from "../../../assets/icons/CloseIcon";
 import * as S from "../../../styles/PageStyles/StockStyles/filter-stock.styles";
-import {
-  InitialFilterSale,
-  initialFilterStockSale,
-} from "../../../types/pages/sale.types";
+import {  FilterStateProps, initialFilterStockSale } from "../../../types/pages/sale.types";
 import { FilterType } from "../../StockPage/components/FilterType";
 import { uniqueDataSales } from "./utils-sales";
-
-interface FilterStateProps {
-  sales: Sale[];
-  filterState: any;
-  setFilterState: React.Dispatch<SetStateAction<InitialFilterSale>>;
-  positionButton: any;
-}
 
 export const FilterSales: React.FC<FilterStateProps> = ({
   sales,
@@ -25,13 +15,7 @@ export const FilterSales: React.FC<FilterStateProps> = ({
   const dataFilters = uniqueDataSales(sales);
   type TypesFilter = "category" | "suplier" | "product" | "month" | "year";
 
-  const FilterItem = ({
-    title,
-    type,
-  }: {
-    title: string;
-    type: TypesFilter;
-  }) => {
+  const FilterItem = ({ title, type }: { title: string; type: TypesFilter }) => {
     return (
       <S.FilterTypeContainer>
         <S.FilterTypeTitle>{title}</S.FilterTypeTitle>

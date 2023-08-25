@@ -1,20 +1,12 @@
-import { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { loginUseCase } from "../../../application/acess/login.usecase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "../../redux/slice/userSlice";
-import {
-  Container,
-  FormContainer,
-  IconLogo,
-  Text,
-  Link,
-  InputLogin,
-  ButtonLogin,
-} from "../../styles/PageStyles/acess.styles";
+import * as S from "../../styles/PageStyles/acess.styles";
 import Logo from "../../assets/logo/apopy-logo.svg";
-import { Spinner } from "./Spinner";
 import { ErrorLogin } from "./ErrorLogin";
+import { SpinnerIcon } from "../../assets/icons/SpinnerIcon";
 
 export function Login() {
   const navigate = useNavigate();
@@ -23,18 +15,17 @@ export function Login() {
   const dispatch = useDispatch();
   const user = useSelector((state: any) => state.user.user);
 
-  async function handleLogin(e) {
+  async function handleLogin(e: FormEvent) {
     e.preventDefault();
     setLoginState({ error: "", loading: true });
     const req = await loginUseCase(login.email, login.password);
-    console.log(req);
+    
     if (req.data.data.loginUser) {
       localStorage.setItem(
         "apopyToken",
         JSON.stringify("Bearer " + req.data.data.loginUser.token)
       );
       dispatch(fetchUser(req.data.data.loginUser));
-
       navigate("/");
       setLoginState({ ...loginState, loading: false });
     }
@@ -43,38 +34,42 @@ export function Login() {
       setLoginState({ error: "Email ou Senha incorreta", loading: false });
     }
   }
-
+  
   if (user) {
     return navigate("/");
   }
 
   return (
-    <Container>
-      <IconLogo src={Logo} alt="Logo Apopy" />
-      <FormContainer>
-        <Text>Entrar</Text>
+    <S.Container>
+      <S.IconLogo src={Logo} alt="Logo Apopy" />
+      <S.FormContainer>
+        <S.Text>Entrar</S.Text>
         {loginState.error ? <ErrorLogin /> : null}
-        <InputLogin
+        <S.InputLoginWithLabel
+          label='Email'
           type="text"
           value={login.email}
-          onChange={(e) => setLogin({ ...login, email: e.target.value })}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
+            setLogin({ ...login, email: (e.target as HTMLInputElement).value })}
           placeholder="Email"
         />
-        <InputLogin
+        <S.InputLoginWithLabel
+          label='Senha'
           type="password"
           value={login.password}
-          onChange={(e) => setLogin({ ...login, password: e.target.value })}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
+            setLogin({ ...login, password: e.target.value })}
           placeholder="Senha"
         />
-        <ButtonLogin
+        <S.ButtonLogin
           type="submit"
           onClick={(e) => handleLogin(e)}
-          disabled={!loginState.loading}
+          disabled={loginState.loading}
         >
-          {loginState.loading ? <Spinner /> : "Login"}
-        </ButtonLogin>
-        <Link>Recuperar a senha</Link>
-      </FormContainer>
-    </Container>
+          {loginState.loading ?  <SpinnerIcon /> : "Login"}
+        </S.ButtonLogin>
+        <S.Link>Recuperar a senha</S.Link>
+      </S.FormContainer>
+    </S.Container>
   );
 }

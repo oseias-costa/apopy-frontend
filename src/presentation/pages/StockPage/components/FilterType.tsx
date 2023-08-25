@@ -1,6 +1,5 @@
 import { SetStateAction } from "react"
 import * as S from "../../../styles/PageStyles/StockStyles/filter-stock.styles"
-import { InitialFilterStock } from "../../../types/pages/stock.types"
 
 interface FilterType {
     arr: string[], 

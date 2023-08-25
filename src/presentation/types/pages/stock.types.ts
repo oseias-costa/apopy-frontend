@@ -1,4 +1,4 @@
-import React from "react";
+import React, { SetStateAction } from "react";
 import { Stock } from "../../../domain/entities/stock";
 
 export interface MenuDropdownStockProps {
@@ -104,4 +104,22 @@ export interface ProductCreateState {
   subcategory: string;
   suplier: string;
   _id: string;
+}
+
+export interface FilterType {
+  arr: string[], 
+  type: string, 
+  filterState: any, 
+  setFilterState: React.Dispatch<SetStateAction<any>>
+}
+
+export interface ProductSelectProps {
+  newStockItem: Stock;
+  setNewStockItem: React.Dispatch<React.SetStateAction<Stock>>;
+  disabled?: boolean;
+}
+
+export interface StockStateProps {
+    stockState: StockState;
+    setStockState: React.Dispatch<React.SetStateAction<StockState>>;
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { registerUseCase } from "../../../application/acess/register.usecase";
@@ -30,7 +30,7 @@ export const Register = () => {
   const navigate = useNavigate();
   const user = useSelector((state: any) => state.user?.user);
 
-  async function handleRegister(e) {
+  async function handleRegister(e: FormEvent) {
     e.preventDefault();
     const req = await registerUseCase({
       name: register.name,

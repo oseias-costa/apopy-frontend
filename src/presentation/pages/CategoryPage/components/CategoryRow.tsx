@@ -1,30 +1,16 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import * as S from "../../../styles/PageStyles/CategoryStyles/category-row.styles";
 import { DootsIcon } from "./DootsIcon";
 import { SubcategoryRow } from "./SubcategoryRow";
+import { CategoryInterface } from '../../../../domain/entities/category'
+import { CategoryRowProps, HandleSetCategory, MenuCategoryState } from "../../../types/pages/category.types";
 
-interface MenuCategoryState {
-  openMenu: boolean;
-  item: string;
-}
-
-interface CategoryData {
-  _id: string;
-  name: string;
-  openModal: boolean;
-}
-
-type HandleSetCategory = (
-  item: { _id: string; name: string },
-  data: Partial<CategoryData>
-) => void;
-
-export const CategoryRow = ({ state, setCategoryState }) => {
+export const CategoryRow: React.FC<CategoryRowProps> = ({ state, setCategoryState }) => {
   const [menuCategory, setMenuCategory] = useState<MenuCategoryState>({
     openMenu: false,
     item: "",
   });
-  const [positionCategory, setPositionCategory] = useState();
+  const [positionCategory, setPositionCategory] = useState({ pageX: 0, pageY: 0});
 
   const handleSetCategory: HandleSetCategory = (item, data) => {
     return setCategoryState({
@@ -36,7 +22,7 @@ export const CategoryRow = ({ state, setCategoryState }) => {
   };
 
   const listCategories = state?.map(
-    (item: { _id: string; name: string; subcategory: string[] }) => {
+    (item: CategoryInterface) => {
       return (
         <>
           <S.CategoryRowContainer key={item?._id}>
@@ -52,12 +38,22 @@ export const CategoryRow = ({ state, setCategoryState }) => {
               >
                 <S.DropMenuButtons>
                   <S.ButtonUpdate
-                    onClick={() => handleSetCategory(item, { type: "update" })}
+                    onClick={() => 
+                      handleSetCategory(item, { 
+                        type: "update", 
+                        newSubcategory: '', 
+                        oldSubcategory: '' 
+                    })}
                   >
                     Editar
                   </S.ButtonUpdate>
                   <S.ButtonUpdate
-                    onClick={() => handleSetCategory(item, { type: "delete" })}
+                    onClick={() => 
+                      handleSetCategory(item, { 
+                        type: "delete",  
+                        newSubcategory: '', 
+                        oldSubcategory: '' 
+                    })}
                   >
                     Excluir
                   </S.ButtonUpdate>
@@ -67,6 +63,7 @@ export const CategoryRow = ({ state, setCategoryState }) => {
                     handleSetCategory(item, {
                       type: "createSubcategory",
                       newSubcategory: "",
+                      oldSubcategory: ''
                     })
                   }
                 >
@@ -75,7 +72,7 @@ export const CategoryRow = ({ state, setCategoryState }) => {
               </S.DropMenuContent>
             </S.DropMenu>
             <DootsIcon
-              onClick={(e) => {
+              onClick={(e: React.MouseEvent<HTMLDivElement>) => {
                 setMenuCategory({openMenu: !menuCategory, item: item?._id });
                 setPositionCategory(e);
               }}
@@ -86,5 +83,5 @@ export const CategoryRow = ({ state, setCategoryState }) => {
       );
     }
   );
-  return listCategories;
+  return <>{listCategories}</>
 };

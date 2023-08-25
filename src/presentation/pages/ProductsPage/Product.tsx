@@ -5,9 +5,10 @@ import { ProductRow } from "./components/ProductRow";
 import { ProductModal } from "./components/ProductModal";
 import { useGetProducts } from "../../hooks/useGetProducts";
 import { initialStateProducts, ProductState } from "../../types/pages/products.types";
+import { LoadingComponent } from "../../components/global/Loading/LoadingComponent";
 
 export const Product = () => {
-  const { products } = useGetProducts();
+  const { products, loading } = useGetProducts();
   const [ state, setState ] = useState<ProductState>(initialStateProducts);
 
   return (
@@ -20,7 +21,11 @@ export const Product = () => {
             Adicionar
         </S.ButtonCreateItem>
       </S.TitleWithButton>
-      <ProductRow productsList={products} state={state} setState={setState}  />
+      { loading ? (
+         <LoadingComponent />
+      ):(
+      <ProductRow productsList={products} setState={setState}  />
+      )}
       <ProductModal state={state} setState={setState} />
     </ProductContainer>
   );

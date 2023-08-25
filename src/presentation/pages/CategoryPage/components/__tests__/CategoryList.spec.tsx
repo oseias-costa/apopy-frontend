@@ -1,7 +1,7 @@
 import configureStore from "redux-mock-store";
 import { Provider } from "react-redux";
 import { render, screen } from "@testing-library/react";
-import { CategoryList } from "../CategoryList";
+import { Category } from "../../Category";
 
 const mockStore = configureStore([]);
 
@@ -15,7 +15,7 @@ describe("Render CategoryList Component", () => {
 
     return render(
       <Provider store={store}>
-        <CategoryList />
+        <Category />
       </Provider>
     );
   }

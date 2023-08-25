@@ -15,5 +15,5 @@ export const ProductModal: React.FC<ProductStateProps> = ({state, setState}) => 
         delete: <DeleteProduct state={state} setState={setState} />
     }
     
-    return typeModal[state.type]
+    return <>{typeModal[state?.type]}</>
 }

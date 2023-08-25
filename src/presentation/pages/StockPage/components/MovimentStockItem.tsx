@@ -9,10 +9,7 @@ import {
 } from "../../../types/pages/stock.types";
 import { TransferToSale } from "../../SalesPage/components/TransferToSale";
 
-export const MovimentStockItem: React.FC<StockStateProps> = ({
-  stockState,
-  setStockState,
-}) => {
+export const MovimentStockItem: React.FC<StockStateProps> = ({stockState, setStockState }) => {
 
   return (
     <Modal state={stockState} setState={setStockState}>

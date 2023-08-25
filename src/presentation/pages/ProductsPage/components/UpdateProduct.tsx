@@ -13,7 +13,7 @@ import { updateProduct } from "../../../redux/slice/productSlice";
 import { updateProductUseCase } from "../../../../application/product.usecase";
 import * as S from "../../../styles/GlobalStyles/modal.style";
 import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ProductComponentState } from "../../../types/pages/stock.types";
 import {
   verifyIfHaveEmptyFields,
@@ -23,10 +23,7 @@ import { RootState } from "../../../redux/store";
 import { CloseIcon } from "../../../assets/icons/CloseIcon";
 import { InputModalWithLabel } from "../../../components/global/Input/InputModalWithLabel";
 
-export const UpdateProduct: React.FC<ProductStateProps> = ({
-  state,
-  setState,
-}) => {
+export const UpdateProduct: React.FC<ProductStateProps> = ({ state, setState }) => {
   const dispatch = useDispatch();
   const { supliers } = useGetSuplier();
   const { categories } = useGetCategories();
@@ -86,7 +83,7 @@ export const UpdateProduct: React.FC<ProductStateProps> = ({
                 <InputModalWithLabel
                   label="Produto"
                   value={state?.name}
-                  onChange={(e) => setState({ ...state, name: e.target.value })}
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => setState({ ...state, name: e.target.value })}
                 />
               </S.ProductContainerFlex>
               <S.ButtonModal

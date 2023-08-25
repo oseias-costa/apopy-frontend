@@ -1,11 +1,12 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import * as S from "../../../styles/PageStyles/CategoryStyles/subcategory-row.styles";
 import { DootsIconSubcategory } from "./DootsIconSubcategory";
 import { DropMenuContent } from "../../../styles/PageStyles/CategoryStyles/category-row.styles";
+import { SubcategoryRowProps } from "../../../types/pages/category.types";
 
-export const SubcategoryRow = ({ item, handleSetCategory }) => {
+export const SubcategoryRow: React.FC<SubcategoryRowProps> = ({ item, handleSetCategory }) => {
   const [menuSubcategory, setMenuSubcategory] = useState("");
-  const [menuPosition, setMenuPosition] = useState("");
+  const [menuPosition, setMenuPosition] = useState({ pageX: 0, pageY: 0});
 
   const subcategory = item?.subcategory?.map((sub, index) => {
     return (
@@ -35,6 +36,7 @@ export const SubcategoryRow = ({ item, handleSetCategory }) => {
                 handleSetCategory(item, {
                   type: "deleteSubcategory",
                   oldSubcategory: sub,
+                  newSubcategory: ''
                 })
               }
             >
@@ -43,7 +45,7 @@ export const SubcategoryRow = ({ item, handleSetCategory }) => {
           </DropMenuContent>
         </S.DropMenuSubcategory>
         <DootsIconSubcategory
-          onClick={(e) => {
+          onClick={(e: React.MouseEvent<HTMLDivElement>) => {
             setMenuSubcategory(sub);
             setMenuPosition(e);
           }}

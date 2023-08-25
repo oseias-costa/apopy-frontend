@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { ChangeEventHandler, useEffect, useState } from "react";
 import { Modal } from "../../../components/global/Modal";
 import {
   initialStateProducts,
@@ -28,10 +28,8 @@ export const CreateProduct: React.FC<ProductStateProps> = ({
   setState,
 }) => {
   const dispatch = useDispatch();
-  const [product, setProduct] =
-    useState<ProductCreateState>(initialCreateProduct);
-  const [productComponentState, setProductComponentState] =
-    useState<ProductComponentState>({
+  const [product, setProduct] = useState<ProductCreateState>(initialCreateProduct);
+  const [productComponentState, setProductComponentState] = useState<ProductComponentState>({
       isEmpty: true,
       loading: false,
     });
@@ -86,7 +84,7 @@ export const CreateProduct: React.FC<ProductStateProps> = ({
                 <InputModalWithLabel
                   label="Produto"
                   value={product?.name}
-                  onChange={(e) =>
+                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     setProduct({ ...product, name: e.target.value })
                   }
                   placeholder="Digite o nome do produto"

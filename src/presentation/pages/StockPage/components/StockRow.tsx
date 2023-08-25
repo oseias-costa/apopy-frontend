@@ -1,15 +1,10 @@
 import React from "react";
 import { Stock } from "../../../../domain/entities/stock"
 import * as S from "../../../styles/GlobalStyles/table.style";
-import { StockState } from "../../../types/pages/stock.types";
 import { MenuDropdownStock } from "./MenuDropdownStock";
+import { StockRowProps } from "./stock-utils";
 
-interface StockStateProps {
-    stockList: Stock[];
-    setStockState: React.Dispatch<React.SetStateAction<StockState>>
-}
-
-export const StockRow: React.FC<StockStateProps> = ({stockList, setStockState}) => {
+export const StockRow: React.FC<StockRowProps> = ({stockList, setStockState}) => {
     const stockItems = stockList?.map((item: Stock) => {
         return(
             <S.TableRow key={item._id}>

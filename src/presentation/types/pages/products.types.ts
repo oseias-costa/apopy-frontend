@@ -45,7 +45,7 @@ export interface ProductState {
 
 export type ProductStateProps = {
   state: ProductState,
-  setState: (state: ProductState) => void
+  setState: React.Dispatch<SetStateAction<ProductState>>
 }
 
 export const initialStateProducts = {

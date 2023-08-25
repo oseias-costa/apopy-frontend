@@ -28,7 +28,7 @@ export async function updateProductUseCase({
     name,
     category,
     subcategory,
-    suplier,
+    suplier
   });
 }
 

@@ -1,15 +1,8 @@
 import { useRef, useState } from "react";
 import { Product } from "../../../../domain/entities/product";
-import { Stock } from "../../../../domain/entities/stock";
 import { useGetProducts } from "../../../hooks/useGetProducts";
 import * as S from "../../../styles/GlobalStyles/select.style";
-import { initialStockStateCreate } from "../../../types/pages/stock.types";
-
-interface ProductSelectProps {
-  newStockItem: Stock;
-  setNewStockItem: React.Dispatch<React.SetStateAction<Stock>>;
-  disabled?: boolean;
-}
+import { ProductSelectProps } from "../../../types/pages/stock.types";
 
 export const ProductSelect: React.FC<ProductSelectProps> = ({
   newStockItem,

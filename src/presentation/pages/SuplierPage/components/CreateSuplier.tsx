@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux";
-import { createSuplierUseCase } from "../../../../application/suplier/add-suplier.usecase";
 import { createSuplier } from "../../../redux/slice/suplierSlice";
 import { Modal } from "../../../components/global/Modal";
 import { SuplierComponentState, suplierInitialState, SuplierStateProps } from "../../../types/pages/suplier.types";
@@ -7,6 +6,7 @@ import { useEffect, useState } from "react";
 import * as S from "../../../styles/GlobalStyles/modal.style";
 import { CloseIcon } from "../../../assets/icons/CloseIcon";
 import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
+import { createSuplierUseCase } from "../../../../application/suplier.usecase";
 
 export const CreateSuplier: React.FC<SuplierStateProps> = ({ state, setState }) => {
   const dispatch = useDispatch();

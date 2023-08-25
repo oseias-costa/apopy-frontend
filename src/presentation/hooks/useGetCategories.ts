@@ -1,21 +1,24 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { RootState } from "../redux/store";
-import { getCategoriesUseCase } from "../../application/category/get-categories.usecase";
+import { getCategoriesUseCase } from "../../application/categories.usecase";
 import { fetchCategories } from "../redux/slice/categorySlice";
+import { CategoryInterface } from "../../domain/entities/category";
 
 export function useGetCategories() {
   const dispatch = useDispatch();
-  const state = getCategoriesUseCase();
-  const categories = useSelector(
-    (state: RootState) => state.category?.categories
-  );
+  const categories: CategoryInterface[] = useSelector((state: RootState) => state.category?.categories);
+  const [ loading, setLoading ] = useState(true)
 
   useEffect(() => {
     if (categories.length === 0) {
-      state.then((res) => dispatch(fetchCategories(res.data.data.categories)));
+      getCategoriesUseCase().then((res) => {
+        dispatch(fetchCategories(res.data.data.categories))
+        setLoading(false)
+      });
     }
+    setLoading(false)
   }, []);
 
-  return { categories };
+  return { categories, loading };
 }

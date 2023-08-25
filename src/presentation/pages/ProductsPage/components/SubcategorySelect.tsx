@@ -2,11 +2,7 @@ import { useRef, useState } from "react";
 import { useGetCategories } from "../../../hooks/useGetCategories";
 import * as S from "../../../styles/GlobalStyles/select.style";
 
-export const SubcategorySelect: React.FC<any> = ({
-  product,
-  setProduct,
-  disabled,
-}) => {
+export const SubcategorySelect: React.FC<any> = ({ product, setProduct, disabled }) => {
   const { categories } = useGetCategories();
   const selectWidth = useRef<any>(null);
   const [selectState, setSelectState] = useState({

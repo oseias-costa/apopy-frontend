@@ -15,9 +15,10 @@ import { ReverseToStock } from "./components/ReverseToStock";
 import { SalesRow } from "./components/SalesRow";
 import { filterSales } from "./components/utils-sales";
 import { SalesPanel } from "./components/SalesPanel";
+import { LoadingComponent } from "../../components/global/Loading/LoadingComponent";
 
 export const Sales = () => {
-  const { sales } = useGetSales();
+  const { sales, loading } = useGetSales();
   const [filteredSales, setFilteredSales] = useState(initialFilterStockSale);
   const refButtonFilter = useRef(null);
   const [saleState, setSaleState] = useState<SaleState>(initialSaleState);
@@ -49,7 +50,11 @@ export const Sales = () => {
         setFilterState={setFilteredSales}
         positionButton={refButtonFilter}
       />
+      { loading ? (
+         <LoadingComponent />
+      ):(
       <SalesRow sales={salesAfterFilter} setSaleState={setSaleState} />
+      )}
       <ReverseToStock saleState={saleState} setSaleState={setSaleState} />
     </SalesContainerPage>
   );

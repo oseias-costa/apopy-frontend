@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { SetStateAction, useRef, useState } from "react";
 import { Product } from "../../../../domain/entities/product";
 import { Suplier } from "../../../../domain/entities/suplier";
 import { useGetSuplier } from "../../../hooks/useGetSupliers";
@@ -6,15 +6,11 @@ import * as S from "../../../styles/GlobalStyles/select.style";
 
 interface SuplierSelectProps {
   product: Product;
-  setProduct: (product: Product) => void;
+  setProduct: React.Dispatch<SetStateAction<Product>>;
   disabled?: boolean;
 }
 
-export const SuplierSelect: React.FC<SuplierSelectProps> = ({
-  product,
-  setProduct,
-  disabled,
-}) => {
+export const SuplierSelect: React.FC<SuplierSelectProps> = ({ product, setProduct, disabled }) => {
   const { supliers } = useGetSuplier();
   const selectWidth = useRef<any>(null);
   const [selectState, setSelectState] = useState({

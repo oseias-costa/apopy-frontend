@@ -15,7 +15,7 @@ export async function createSuplierGateway({ name }: { name: string }) {
   return await httpClient(CREATE_SUPLIER, variables) 
 }
 
-export default async function updateSuplierGateway(
+export async function updateSuplierGateway(
   { _id, name }: { _id: string; name: string }) {
 
   const variables = {

@@ -2,21 +2,12 @@ import { DootsIcon } from "../../CategoryPage/components/DootsIcon";
 import * as S from "../../../styles/PageStyles/CategoryStyles/category-row.styles";
 import { MenuState, PositionItem } from "../../../types/pages/products.types";
 import React, { Dispatch, useState } from "react";
-import { Sale } from "../../../../domain/entities/sale";
-import { SaleState } from "../../../types/pages/sale.types";
-
-interface MenuDropDownSaleProps{
-  item: Sale;
-  setState: Dispatch<React.SetStateAction<SaleState>>
-}
+import { MenuDropDownSaleProps } from "../../../types/pages/sale.types";
 
 export const MenuDropDownSales: React.FC<MenuDropDownSaleProps> = ({item, setState}) => {
 
   const [positionItem, setPositionItem] = useState<PositionItem>();
-  const [ menuState, setMenuState] = useState<MenuState>({
-      openMenu: false,
-      item: "",
-    });
+  const [ menuState, setMenuState] = useState<MenuState>({ openMenu: false, item: "" });
 
     return(
         <>
@@ -42,7 +33,7 @@ export const MenuDropDownSales: React.FC<MenuDropDownSaleProps> = ({item, setSta
           onClick={(e: React.MouseEvent<HTMLHeadingElement>) => {
             setMenuState({openMenu: !menuState, item: item?._id });
             setPositionItem(e);
-              }}
+          }}
         />
         </>
     )

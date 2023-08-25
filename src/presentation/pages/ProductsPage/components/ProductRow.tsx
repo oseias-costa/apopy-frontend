@@ -8,10 +8,7 @@ interface ProductRowProps {
   setState: React.Dispatch<SetStateAction<ProductState>>;
 }
 
-export const ProductRow: React.FC<ProductRowProps> = ({
-  productsList,
-  setState,
-}) => {
+export const ProductRow: React.FC<ProductRowProps> = ({ productsList, setState }) => {
   const products = productsList?.map((item: ProductInterface) => {
     return (
       <S.TableRow>

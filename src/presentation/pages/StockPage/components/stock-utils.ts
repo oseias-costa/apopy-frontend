@@ -1,5 +1,5 @@
 import { Stock } from "../../../../domain/entities/stock";
-import { InitialFilterStock } from "../../../types/pages/stock.types";
+import { InitialFilterStock, StockState } from "../../../types/pages/stock.types";
 
 export const verifyFieldsStock: (newStockItem: Stock) => boolean = (newStockItem) => {
     const category = newStockItem.category.length >= 3
@@ -23,7 +23,7 @@ export const uniqueData = (stock: Stock[]) => {
     return  { category, product, suplier }
 }
 
-export const filterStock = (stock: Stock[], filteredStock: InitialFilterStock) =>  {
+export const filterStock = (stock: Stock[], filteredStock: InitialFilterStock): Stock[] =>  {
     let list: Stock[] = []
     for (let i = 0; i < stock.length; i++) {
        const verifyFilter = stock[i].category.includes(filteredStock.category) &&
@@ -36,3 +36,8 @@ export const filterStock = (stock: Stock[], filteredStock: InitialFilterStock) =
     }
     return list
 }
+
+export interface StockRowProps {
+    setStockState: React.Dispatch<React.SetStateAction<StockState>>;
+    stockList: Stock[];
+  }

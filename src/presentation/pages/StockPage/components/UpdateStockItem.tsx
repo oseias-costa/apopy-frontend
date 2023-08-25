@@ -18,10 +18,7 @@ import { InputModalWithLabel } from "../../../components/global/Input/InputModal
 import { InputNumberModalWithLabel } from "../../../components/global/Input/InputNumberModalWithLabel";
 import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
 
-export const UpdateStockItem: React.FC<StockStateProps> = ({
-  stockState,
-  setStockState,
-}) => {
+export const UpdateStockItem: React.FC<StockStateProps> = ({ stockState, setStockState }) => {
   const [ updateStockItem, setUpdateStockItem ] = useState<Stock>(stockState);
   const dispatch = useDispatch()
   const [stockComponentState, setStockComponentState] = useState<ProductComponentState>({

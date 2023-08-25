@@ -1,4 +1,4 @@
-import { SetStateAction, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { CloseIcon } from "../../assets/icons/CloseIcon";
 import { Modal } from "../../components/global/Modal";
 import * as S from "../../styles/GlobalStyles/modal.style";
@@ -6,15 +6,10 @@ import {
   ButtonSettings,
   InputSettings,
 } from "../../styles/PageStyles/SettingsStyles/settings.style";
-import { DeleteUserState } from "./Settings";
 import { deleteMyAccountUseCase } from "../../../application/acess/register.usecase";
 import { useDispatch } from "react-redux";
 import { fetchUser, initialUserState } from "../../redux/slice/userSlice";
-
-interface DeleteUserProps {
-  state: DeleteUserState;
-  setState: React.Dispatch<SetStateAction<DeleteUserState>>;
-}
+import { DeleteUserProps } from "../../types/pages/settings.types";
 
 export const DeleteUser: React.FC<DeleteUserProps> = ({ state, setState }) => {
   const dispatch = useDispatch();

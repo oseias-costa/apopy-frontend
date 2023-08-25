@@ -9,15 +9,12 @@ import { DollarIcon } from "./components/DollarIcon";
 import { ProductsIcon } from "./components/ProductsIcon";
 import { BoxesIcon } from "./components/BoxesIcon";
 import { salesMonthChartData } from "./components/dashboard-utils";
-import { Loading } from "../../components/global/Loading/Loading";
 
 export const Dashboard = () => {
   const dispatch = useDispatch();
   const dashboardData = useSelector((state: RootState) => state.dashboard);
   const sales = useSelector((state: RootState) => state.sale.sales);
   const data = salesMonthChartData(sales, 7);
-
-  console.log(JSON.stringify(sales));
 
   useEffect(() => {
     getDashboardUseCase().then((res) =>

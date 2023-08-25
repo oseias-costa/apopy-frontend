@@ -1,6 +1,9 @@
 import { styled } from "styled-components";
+import { InputModalWithLabel } from "../../components/global/Input/InputModalWithLabel";
 import { Button } from "../GlobalStyles/button.style";
 import { Input } from "../GlobalStyles/input.style";
+import { ButtonModal } from "../GlobalStyles/modal.style";
+import { ButtonCreateItem } from "../GlobalStyles/titleWithButton.style";
 
 export const Container = styled.section`
   background-color: #012e40;
@@ -70,11 +73,11 @@ export const InputLogin = styled(Input)<{ error: boolean }>`
   }
 `;
 
-export const ButtonLogin = styled(Button)`
-  @media (max-width: 740px) {
-    width: 80%;
-  }
-`;
+// export const ButtonLogin = styled(Button)`
+//   @media (max-width: 740px) {
+//     width: 80%;
+//   }
+// `;
 
 export const ContainerErrorLogin = styled("div")`
   border: 1px solid #bf1f2c;
@@ -118,3 +121,17 @@ export const RenderError = styled.p<{ error: boolean }>`
   text-align: center;
   border-radius: 3px;
 `;
+
+
+export const InputLoginWithLabel = styled(InputModalWithLabel)`
+  width: 200px;
+`
+
+export const ButtonLogin = styled(ButtonModal)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 33px;
+  width: 218px;
+  margin: 0;
+`

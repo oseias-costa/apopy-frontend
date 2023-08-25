@@ -1,13 +1,6 @@
-// install (please try to align the version of installed @nivo packages)
-//yarn add @nivo/bar
 import { ResponsiveBar } from "@nivo/bar";
 
-// make sure parent container have a defined height when using
-// responsive component, otherwise height will be 0 and
-// no chart will be rendered.
-// website examples showcase many properties,
-// you'll often use just a few of them.
-export const MyResponsiveBar = ({ data /* see data tab */ }) => (
+export const MyResponsiveBar = ({ data } :{ data : { sales: number, date: string}[]}) => (
   <ResponsiveBar
     data={data}
     keys={["sales"]}

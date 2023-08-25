@@ -1,12 +1,12 @@
 import { useDispatch } from "react-redux";
 import { removeSuplier } from "../../../redux/slice/suplierSlice";
-import { deleteSuplierUseCase } from "../../../../application/suplier/delete-suplier.usecase";
 import { Modal } from "../../../components/global/Modal";
 import { SuplierComponentState, suplierInitialState, SuplierStateProps } from "../../../types/pages/suplier.types";
 import * as S from "../../../styles/GlobalStyles/modal.style";
 import { CloseIcon } from "../../../assets/icons/CloseIcon";
 import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
 import { useState } from "react";
+import { deleteSuplierUseCase } from "../../../../application/suplier.usecase";
 
 export const DeleteSuplier: React.FC<SuplierStateProps> = ({state,setState}) => {
   const dispatch = useDispatch();

@@ -1,6 +1,5 @@
 import { styled } from "styled-components";
 import Logo from "../../../assets/logo/logo-menu.svg";
-import { SpinnerLoading } from "./SpinnerLoading";
 
 export const Loading = ({ disabled }: { disabled: boolean }) => {
   return (
@@ -14,7 +13,7 @@ export const Loading = ({ disabled }: { disabled: boolean }) => {
 };
 
 const LoadingContainer = styled.div<{ disabled: boolean }>`
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255);
   width: 100%;
   height: 100%;
   position: fixed;
