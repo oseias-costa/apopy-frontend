@@ -13,7 +13,7 @@ import {
 import { transferStockToSale } from "../../../redux/slice/stockSlice";
 import * as S from "../../../styles/GlobalStyles/modal.style";
 import { InputNumberModalWithLabel } from "../../../components/global/Input/InputNumberModalWithLabel";
-import { Spinner } from "../../LoginPage/Spinner";
+import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
 
 export const TransferToSale: React.FC<StockStateProps> = ({
   stockState,
@@ -39,13 +39,16 @@ export const TransferToSale: React.FC<StockStateProps> = ({
   },[ stockState, newSale ])
 
   async function handleTransferSale() {
+    setTransferToSaleState({...transferToSaleState, isEmpty: true, isLoading: true })
     const transferSaleReq = await transferSaleUseCase(saleVariables);
 
     if (transferSaleReq.status === 200) {
       dispatch(transferSale(transferSaleReq.data.data.transferSale));
       dispatch(transferStockToSale(originStockMoviment(stockState, newSale)));
       setStockState(initialSaleState);
+      setTransferToSaleState({...transferToSaleState, isEmpty: false, isLoading: false })
     }
+    setTransferToSaleState({...transferToSaleState, isEmpty: false, isLoading: false })
   }
 
   return (
@@ -80,7 +83,7 @@ export const TransferToSale: React.FC<StockStateProps> = ({
         </S.InputNumbersContent>
       <S.ButtonModal disabled={transferToSaleState.isEmpty} onClick={handleTransferSale}>
         { transferToSaleState.isLoading ? (
-          <Spinner />
+          <SpinnerIcon />
         ) : (
           'Nova Venda'
         )} 

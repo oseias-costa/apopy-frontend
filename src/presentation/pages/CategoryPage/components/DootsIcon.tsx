@@ -17,3 +17,4 @@ export const DootsIcon= ({onClick}:{onClick: React.MouseEventHandler}) => {
     </div>
   )
 }
+  

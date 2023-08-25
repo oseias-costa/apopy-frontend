@@ -42,7 +42,7 @@ export const CreateStockItem: React.FC<StockStateProps> = ({
 
   async function handleCreateStockItem() {
     setStockComponentState({ isEmpty: true, loading: true });
-    const create = await createStockUseCase(newStockItem);
+    const create = await createStockUseCase({ ...newStockItem, costPrice: newStockItem.costPrice});
 
     if (create.status === 200) {
       dispatch(createStock(create.data.data.createStockItem));

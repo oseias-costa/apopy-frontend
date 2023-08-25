@@ -106,7 +106,8 @@ export const Terms = styled.p`
 
 export const TermsLink = styled.a`
   cursor: pointer;
-  color: #049dd9;
+  font-size: 13px;
+  color: var(--color-blue-light);
 `;
 
 export const RenderError = styled.p<{ error: boolean }>`
@@ -127,10 +128,37 @@ export const InputLoginWithLabel = styled(InputModalWithLabel)`
   width: 200px;
 `
 
-export const ButtonLogin = styled(ButtonModal)`
+export const ButtonLogin = styled(ButtonModal)<{ disabled: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: ${(props) =>
+    props.disabled ? "#828282" : "var(--color-blue-light)"};
+  height: 34px;
+  color: #fff;
+  border-radius: 3px;
+  border: transparent;
+  text-align: center;
+  font-size: 14px;
+  font-family: var(--font-primary);
+  font-weight: 500;
+  transition: 0.2s linear;
+  cursor: pointer;
+  margin-left: 2px;
+  margin-right: 2px;
+
+  &:hover {
+    background-color: ${(props) => (props.disabled ? "#828282" : "#026773")};
+  }
+
+  @media(max-width: 740px){
+    width: 300px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
   height: 33px;
   width: 218px;
   margin: 0;

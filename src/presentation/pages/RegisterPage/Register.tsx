@@ -17,21 +17,24 @@ import {
 } from "../../styles/PageStyles/acess.styles";
 import Logo from "../../assets/logo/apopy-logo.svg";
 import { registerError } from "./erros";
+import { SpinnerIcon } from "../../assets/icons/SpinnerIcon";
 
 export const Register = () => {
   const [register, setRegister] = useState<RegisterUser>({
     name: "",
     email: "",
-    password: "0",
+    password: "",
     phone: "",
   });
   const [error, setError] = useState({ error: "", msg: "" });
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state: any) => state.user?.user);
+  const [loading, setLoading] = useState(false);
 
   async function handleRegister(e: FormEvent) {
     e.preventDefault();
+    setLoading(true)
     const req = await registerUseCase({
       name: register.name,
       email: register.email,
@@ -46,17 +49,18 @@ export const Register = () => {
       );
       dispatch(fetchUser(req.data.data.user));
 
-      return navigate("/dashboard");
+      return navigate(0);
     }
 
     if (req.data.errors) {
       const err = req.data.errors[0].message;
       registerError(err, setError);
     }
+    setLoading(false)
   }
 
   if (user) {
-    return navigate("/dashboard");
+    return navigate("/");
   }
 
   return (
@@ -92,6 +96,7 @@ export const Register = () => {
         <InputLogin
           error={error.error === "password" ? 1 : 0}
           placeholder="Senha"
+          type='password'
           onChange={(e) => {
             setRegister({ ...register, password: e.target.value });
             setError({ error: "", msg: "" });
@@ -102,8 +107,16 @@ export const Register = () => {
           <TermsLink>Termos</TermsLink> e{" "}
           <TermsLink>Política de Privacidade</TermsLink>.
         </Terms>
-        <ButtonLogin type="submit" onClick={(e) => handleRegister(e)}>
-          Cadastrar
+        <ButtonLogin 
+          type="submit" 
+          onClick={(e) => handleRegister(e)}
+          disabled={ !Boolean(!loading 
+            && register.email !== ""
+            && register.name !== ""
+            && register.password !== ""
+            && register.phone !== "") }
+        >
+        { loading ?  <SpinnerIcon /> : "Cadastrar" }       
         </ButtonLogin>
         <Terms>
           Já tem conta?{" "}

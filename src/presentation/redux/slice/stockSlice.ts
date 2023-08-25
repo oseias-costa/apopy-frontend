@@ -63,7 +63,8 @@ export const stockSlice = createSlice({
       if(itemStock){
         state.stock = state.stock.map((item) => {
           if (item._id === action.payload._id) {
-            item = action.payload
+            item.quantity = item.quantity + action.payload.quantity
+            item.total = item.quantity  * item.costPrice
           }
           return item
         })

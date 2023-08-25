@@ -50,7 +50,7 @@ export function Login() {
           type="text"
           value={login.email}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
-            setLogin({ ...login, email: (e.target as HTMLInputElement).value })}
+            setLogin({ ...login, email: (e.target as HTMLInputElement).value.toLowerCase() })}
           placeholder="Email"
         />
         <S.InputLoginWithLabel
@@ -68,7 +68,10 @@ export function Login() {
         >
           {loginState.loading ?  <SpinnerIcon /> : "Login"}
         </S.ButtonLogin>
-        <S.Link>Recuperar a senha</S.Link>
+        <S.Terms>
+          Não tem conta?{" "}
+          <S.TermsLink onClick={() => navigate("/registrar")}>Registrar</S.TermsLink>
+        </S.Terms>
       </S.FormContainer>
     </S.Container>
   );

@@ -13,8 +13,8 @@ import { salesMonthChartData } from "./components/dashboard-utils";
 export const Dashboard = () => {
   const dispatch = useDispatch();
   const dashboardData = useSelector((state: RootState) => state.dashboard);
-  const sales = useSelector((state: RootState) => state.sale.sales);
-  const data = salesMonthChartData(sales, 7);
+  const salesList = useSelector((state: RootState) => state.sale.sales);
+  const data = salesMonthChartData(salesList, 7);
 
   useEffect(() => {
     getDashboardUseCase().then((res) =>
@@ -28,7 +28,7 @@ export const Dashboard = () => {
         <S.DashboarItem>
           <S.DashboardNumberBlock>
             <S.DashboardSubTitle>Estoque</S.DashboardSubTitle>
-            <S.DashboardNumber>R$ {dashboardData.totalValue}</S.DashboardNumber>
+            <S.DashboardNumber>R$ {dashboardData.totalValue.toFixed(2)}</S.DashboardNumber>
             <S.DashboardItemText>Total em Estoque</S.DashboardItemText>
           </S.DashboardNumberBlock>
           <DollarIcon />
@@ -36,7 +36,7 @@ export const Dashboard = () => {
         <S.DashboarItem>
           <S.DashboardNumberBlock>
             <S.DashboardSubTitle>Produtos</S.DashboardSubTitle>
-            <S.DashboardNumber>R$ {dashboardData.products}</S.DashboardNumber>
+            <S.DashboardNumber> {dashboardData.products}</S.DashboardNumber>
             <S.DashboardItemText>Total de Produtos</S.DashboardItemText>
           </S.DashboardNumberBlock>
           <ProductsIcon />

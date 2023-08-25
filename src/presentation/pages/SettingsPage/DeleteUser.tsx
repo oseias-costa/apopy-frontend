@@ -41,7 +41,7 @@ export const DeleteUser: React.FC<DeleteUserProps> = ({ state, setState }) => {
           <CloseIcon onClick={() => setState({ ...state, openModal: false })} />
         </S.TitleModal>
         <S.ModalContentText>
-          Seus dados serão perdidos, essa ação não poderá ser desfeita.
+          Seus dados serão excluídos, essa ação não poderá ser desfeita.
         </S.ModalContentText>
         <InputSettings
           label="Coloque seu email"

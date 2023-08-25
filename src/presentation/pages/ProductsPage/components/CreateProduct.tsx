@@ -67,8 +67,10 @@ export const CreateProduct: React.FC<ProductStateProps> = ({
           </S.TitleModal>
           {verify ? (
             <div>
-              Você precisa criar categorias e adicionar fornecedores para criar
-              produtos.
+              <S.ModalContentText>
+                Você precisa criar categorias e adicionar fornecedores para criar
+                produtos.
+              </S.ModalContentText>
             </div>
           ) : (
             <>

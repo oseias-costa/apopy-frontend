@@ -20,6 +20,8 @@ export const IconSvg = styled.svg`
   transition: 0.2s linear;
   cursor: pointer;
   border-radius: 50px;
+  position: relative;
+  top: 1px;
 
   &:hover {
     background-color: #cecaca;

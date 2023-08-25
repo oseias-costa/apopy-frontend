@@ -8,6 +8,7 @@ interface FilterTagProps {
 export const FilterTag: React.FC<FilterTagProps> = ({ filteredStock, setFilteredStock}) => {
 
     const filteredList =  [
+        { type: 'category', content: filteredStock.category }, 
         { type: 'product', content: filteredStock.product }, 
         { type: 'suplier', content: filteredStock.suplier },
         { type: 'month', content: filteredStock.month},

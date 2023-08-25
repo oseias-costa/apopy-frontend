@@ -1,5 +1,3 @@
-import { SetStateAction } from "react";
-import { Sale } from "../../../../domain/entities/sale";
 import { CloseIcon } from "../../../assets/icons/CloseIcon";
 import * as S from "../../../styles/PageStyles/StockStyles/filter-stock.styles";
 import {  FilterStateProps, initialFilterStockSale } from "../../../types/pages/sale.types";
