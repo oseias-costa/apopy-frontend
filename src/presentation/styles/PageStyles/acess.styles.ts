@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import { InputModalWithLabel } from "../../components/global/Input/InputModalWithLabel";
+import { InputModalWithLabel } from "../../pages/Layout/components/InputModalWithLabel";
 import { Button } from "../GlobalStyles/button.style";
 import { Input } from "../GlobalStyles/input.style";
 import { ButtonModal } from "../GlobalStyles/modal.style";

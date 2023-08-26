@@ -39,7 +39,7 @@ export const Menu = () => {
       <MenuBlock isOpen={openMenu} id="MenuBackground">
         <MenuBlockMobile>
           <MenuItem
-            isSelected={pathSelected("/dashboard")}
+            isSelected={pathSelected("/")}
             onClick={() => setOpenMenu(!openMenu)}
           >
             <DashboardIcon isSelected={pathSelected("/")} />

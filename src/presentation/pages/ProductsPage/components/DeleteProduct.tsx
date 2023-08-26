@@ -14,7 +14,7 @@ import { CloseIcon } from "../../../assets/icons/CloseIcon";
 import React, { useState } from "react";
 import { ProductComponentState } from "../../../types/pages/stock.types";
 import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
-import { InputModalWithLabel } from "../../../components/global/Input/InputModalWithLabel";
+import { InputModalWithLabel } from "../../Layout/components/InputModalWithLabel";
 
 export const DeleteProduct: React.FC<ProductStateProps> = ({ state, setState }) => {
   const dispatch = useDispatch();

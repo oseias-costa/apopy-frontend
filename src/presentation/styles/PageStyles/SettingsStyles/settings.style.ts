@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 import { ButtonModal } from "../../GlobalStyles/modal.style";
-import { InputModalWithLabel } from "../../../components/global/Input/InputModalWithLabel";
+import { InputModalWithLabel } from "../../../pages/Layout/components/InputModalWithLabel";
 
 export const SettingsContainer = styled.div`
   background-color: #fff;

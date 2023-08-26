@@ -14,8 +14,8 @@ import { updateStock } from "../../../redux/slice/stockSlice";
 import * as S from "../../../styles/GlobalStyles/modal.style";
 import { CloseIcon } from "../../../assets/icons/CloseIcon";
 import { ProductSelect } from "./ProductSelect";
-import { InputModalWithLabel } from "../../../components/global/Input/InputModalWithLabel";
-import { InputNumberModalWithLabel } from "../../../components/global/Input/InputNumberModalWithLabel";
+import { InputModalWithLabel } from "../../Layout/components/InputModalWithLabel";
+import { InputNumberModalWithLabel } from "../../Layout/components/InputNumberModalWithLabel"; 
 import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
 
 export const UpdateStockItem: React.FC<StockStateProps> = ({ stockState, setStockState }) => {

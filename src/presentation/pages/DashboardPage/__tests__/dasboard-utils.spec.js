@@ -1,4 +1,4 @@
-import { salesMonthChartData } from "../../DashboardPage/components/dashboard-utils";
+import { salesMonthChartData } from "../components/dashboard-utils";
 describe('salesMonthChartData function', () => {
     test('Shold convert to a dataSales', () => {
         const sales = [

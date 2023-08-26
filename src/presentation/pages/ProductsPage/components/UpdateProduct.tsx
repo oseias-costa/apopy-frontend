@@ -21,7 +21,7 @@ import {
 } from "./utils-product";
 import { RootState } from "../../../redux/store";
 import { CloseIcon } from "../../../assets/icons/CloseIcon";
-import { InputModalWithLabel } from "../../../components/global/Input/InputModalWithLabel";
+import { InputModalWithLabel } from "../../Layout/components/InputModalWithLabel";
 
 export const UpdateProduct: React.FC<ProductStateProps> = ({ state, setState }) => {
   const dispatch = useDispatch();

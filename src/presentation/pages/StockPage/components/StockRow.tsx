@@ -12,9 +12,9 @@ export const StockRow: React.FC<StockRowProps> = ({stockList, setStockState}) =>
                 <S.TableRowItem position="left">{item.category}</S.TableRowItem>
                 <S.TableRowItem position="left">{item.subcategory}</S.TableRowItem>
                 <S.TableRowItem position="left">{item.suplier}</S.TableRowItem>
-                <S.TableRowItem position="right">R$ {item.costPrice}</S.TableRowItem>
+                <S.TableRowItem position="right">R$ {item.costPrice.toFixed(2)}</S.TableRowItem>
                 <S.TableRowItem position="center">{item.quantity}</S.TableRowItem>
-                <S.TableRowItem position="right">R$ {item.total}</S.TableRowItem>
+                <S.TableRowItem position="right">R$ {item.total.toFixed(2)}</S.TableRowItem>
                 <S.TableRowItem position="left">{item.description}</S.TableRowItem>
                 <S.TableRowItem position="center">
                     <MenuDropdownStock item={item} setState={setStockState}  />

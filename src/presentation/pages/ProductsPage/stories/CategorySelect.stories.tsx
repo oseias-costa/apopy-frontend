@@ -1,8 +1,8 @@
-import { CategorySelect } from "../../pages/ProductsPage/components/CategorySelect";
+import { CategorySelect } from "../components/CategorySelect";
 import { Meta, StoryObj } from '@storybook/react'
 import { useState } from "react";
 import { Provider } from "react-redux";
-import { store } from "../../redux/store";
+import { store } from "../../../redux/store";
 
 const meta: Meta<typeof CategorySelect> = {
     title: 'CategorySelect',

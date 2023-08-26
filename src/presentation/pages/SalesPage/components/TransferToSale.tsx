@@ -12,7 +12,7 @@ import {
 } from "../../../types/pages/sale.types";
 import { transferStockToSale } from "../../../redux/slice/stockSlice";
 import * as S from "../../../styles/GlobalStyles/modal.style";
-import { InputNumberModalWithLabel } from "../../../components/global/Input/InputNumberModalWithLabel";
+import { InputNumberModalWithLabel } from "../../Layout/components/InputNumberModalWithLabel"; 
 import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
 
 export const TransferToSale: React.FC<StockStateProps> = ({

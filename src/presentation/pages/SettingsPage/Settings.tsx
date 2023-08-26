@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { User } from "../../../domain/entities/user";
-import { InputModalWithLabel } from "../../components/global/Input/InputModalWithLabel";
+import { InputModalWithLabel } from "../Layout/components/InputModalWithLabel";
 import { RootState } from "../../redux/store";
 import { TitleSection } from "../../styles/GlobalStyles/titleWithButton.style";
 import {

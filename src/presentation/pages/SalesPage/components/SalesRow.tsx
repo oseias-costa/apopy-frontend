@@ -16,10 +16,10 @@ export const SalesRow: React.FC<SalesStateProp> = (props) => {
             <S.TableRow key={item._id}>
                 <S.TableRowItem position="left">{item.product}</S.TableRowItem>
                 <S.TableRowItem position="left">{`${item.category} ${item.subcategory} ${item.suplier}`}</S.TableRowItem>
-                <S.TableRowItem position="right">{`R$ ${item.costPrice}`}</S.TableRowItem>
-                <S.TableRowItem position="right">{`R$ ${item.price}`}</S.TableRowItem>
+                <S.TableRowItem position="right">{`R$ ${item.costPrice.toFixed(2)}`}</S.TableRowItem>
+                <S.TableRowItem position="right">{`R$ ${item.price.toFixed(2)}`}</S.TableRowItem>
                 <S.TableRowItem position="center">{item.quantity}</S.TableRowItem>
-                <S.TableRowItem position="right">{`R$ ${item.total}`}</S.TableRowItem>
+                <S.TableRowItem position="right">{`R$ ${item.total.toFixed(2)}`}</S.TableRowItem>
                 <S.TableRowItem position="center">
                     <S.TableProfitItem profit={Number((item.percentage * 100).toFixed(1)) > 0}>{(item.percentage * 100).toFixed(1)} %</S.TableProfitItem>
                 </S.TableRowItem>

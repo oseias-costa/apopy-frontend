@@ -21,7 +21,7 @@ import * as S from "../../../styles/GlobalStyles/modal.style";
 import { CloseIcon } from "../../../assets/icons/CloseIcon";
 import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
 import { verifyIfHaveEmptyFields } from "./utils-product";
-import { InputModalWithLabel } from "../../../components/global/Input/InputModalWithLabel";
+import { InputModalWithLabel } from "../../Layout/components/InputModalWithLabel";
 
 export const CreateProduct: React.FC<ProductStateProps> = ({
   state,

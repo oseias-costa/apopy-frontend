@@ -1,9 +1,9 @@
-import { ProductRow } from "../../pages/ProductsPage/components/ProductRow"; 
+import { ProductRow } from "../../../pages/ProductsPage/components/ProductRow"; 
 import { Meta, StoryObj } from "@storybook/react";
 import { Provider } from "react-redux";
-import { store } from "../../redux/store";
+import { store } from "../../../redux/store";
 import { useState } from 'react'
-import { initialStateProducts } from "../../types/pages/products.types";
+import { initialStateProducts } from "../../../types/pages/products.types";
 
 const meta: Meta<typeof ProductRow> = {
     component: ProductRow
