@@ -19,7 +19,7 @@ import Logo from "../../assets/logo/apopy-logo.svg";
 import { registerError } from "./erros";
 import { SpinnerIcon } from "../../assets/icons/SpinnerIcon";
 
-export const Register = () => {
+export const Register: React.FC = () => {
   const [register, setRegister] = useState<RegisterUser>({
     name: "",
     email: "",
@@ -34,7 +34,7 @@ export const Register = () => {
 
   async function handleRegister(e: FormEvent) {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
     const req = await registerUseCase({
       name: register.name,
       email: register.email,
@@ -56,7 +56,7 @@ export const Register = () => {
       const err = req.data.errors[0].message;
       registerError(err, setError);
     }
-    setLoading(false)
+    setLoading(false);
   }
 
   if (user) {
@@ -96,7 +96,7 @@ export const Register = () => {
         <InputLogin
           error={error.error === "password" ? 1 : 0}
           placeholder="Senha"
-          type='password'
+          type="password"
           onChange={(e) => {
             setRegister({ ...register, password: e.target.value });
             setError({ error: "", msg: "" });
@@ -107,16 +107,20 @@ export const Register = () => {
           <TermsLink>Termos</TermsLink> e{" "}
           <TermsLink>Política de Privacidade</TermsLink>.
         </Terms>
-        <ButtonLogin 
-          type="submit" 
+        <ButtonLogin
+          type="submit"
           onClick={(e) => handleRegister(e)}
-          disabled={ !Boolean(!loading 
-            && register.email !== ""
-            && register.name !== ""
-            && register.password !== ""
-            && register.phone !== "") }
+          disabled={
+            !(
+              !loading &&
+              register.email !== "" &&
+              register.name !== "" &&
+              register.password !== "" &&
+              register.phone !== ""
+            )
+          }
         >
-        { loading ?  <SpinnerIcon /> : "Cadastrar" }       
+          {loading ? <SpinnerIcon /> : "Cadastrar"}
         </ButtonLogin>
         <Terms>
           Já tem conta?{" "}
