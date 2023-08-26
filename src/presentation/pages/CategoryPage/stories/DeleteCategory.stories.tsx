@@ -3,39 +3,39 @@ import { useState } from 'react'
 import { Provider } from 'react-redux'
 import { store } from '../../../redux/store'
 import { initialCategoryValue } from '../../../types/pages/category.types'
-import { UpdateCategory } from '../components/UpdateCategory'
+import { DeleteCategory } from '../components/DeleteCategory'
 
-const meta: Meta<typeof UpdateCategory> = {
-    title: 'Design System/Category/UpdateCategory',
-    component: UpdateCategory
+const meta: Meta<typeof DeleteCategory> = {
+    title: 'Design System/Category/DeleteCategory',
+    component: DeleteCategory
 }
 
 export default meta
-type Story = StoryObj<typeof UpdateCategory>
+type Story = StoryObj<typeof DeleteCategory>
 
 
-const UpdateCategoryWithSameValue = () => {
+const DeleteCategoryWithSameValue = () => {
     const [ categoryState, setCategoryState ] = useState({ ...initialCategoryValue, _id: '002', openModal: true, name: 'Nova Categoria'})
 
     return (
         <Provider store={store}>
-            <UpdateCategory setState={setCategoryState} state={categoryState}  />
+            <DeleteCategory setState={setCategoryState} state={categoryState}  />
         </Provider>)
 }
 
-const UpdateCategoryWithCompletedField= () => {
+const DeleteCategoryWithCompletedField= () => {
     const [ categoryState, setCategoryState ] = useState({ ...initialCategoryValue,  _id: '002', openModal: true, name: 'Nova Categoria'})
 
     return (
         <Provider store={store}>
-            <UpdateCategory setState={setCategoryState} state={categoryState}  />
+            <DeleteCategory setState={setCategoryState} state={categoryState}  />
         </Provider>)
 }
 
 export const Primary: Story = {
-    render: () => <UpdateCategoryWithSameValue />
+    render: () => <DeleteCategoryWithSameValue />
 }
 
 export const Secundary: Story = {
-    render: () => <UpdateCategoryWithCompletedField />
+    render: () => <DeleteCategoryWithCompletedField />
 }
