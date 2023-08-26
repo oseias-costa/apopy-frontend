@@ -8,7 +8,7 @@ import Logo from "../../assets/logo/apopy-logo.svg";
 import { ErrorLogin } from "./ErrorLogin";
 import { SpinnerIcon } from "../../assets/icons/SpinnerIcon";
 
-export function Login() {
+export const Login: React.FC = () => {
   const navigate = useNavigate();
   const [loginState, setLoginState] = useState({ loading: false, error: "" });
   const [login, setLogin] = useState({ email: "", password: "" });
@@ -19,7 +19,7 @@ export function Login() {
     e.preventDefault();
     setLoginState({ error: "", loading: true });
     const req = await loginUseCase(login.email, login.password);
-    
+
     if (req.data.data.loginUser) {
       localStorage.setItem(
         "apopyToken",
@@ -34,7 +34,7 @@ export function Login() {
       setLoginState({ error: "Email ou Senha incorreta", loading: false });
     }
   }
-  
+
   if (user) {
     return navigate("/");
   }
@@ -46,19 +46,24 @@ export function Login() {
         <S.Text>Entrar</S.Text>
         {loginState.error ? <ErrorLogin /> : null}
         <S.InputLoginWithLabel
-          label='Email'
+          label="Email"
           type="text"
           value={login.email}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
-            setLogin({ ...login, email: (e.target as HTMLInputElement).value.toLowerCase() })}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setLogin({
+              ...login,
+              email: (e.target as HTMLInputElement).value.toLowerCase(),
+            })
+          }
           placeholder="Email"
         />
         <S.InputLoginWithLabel
-          label='Senha'
+          label="Senha"
           type="password"
           value={login.password}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => 
-            setLogin({ ...login, password: e.target.value })}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setLogin({ ...login, password: e.target.value })
+          }
           placeholder="Senha"
         />
         <S.ButtonLogin
@@ -66,13 +71,15 @@ export function Login() {
           onClick={(e) => handleLogin(e)}
           disabled={loginState.loading}
         >
-          {loginState.loading ?  <SpinnerIcon /> : "Login"}
+          {loginState.loading ? <SpinnerIcon /> : "Login"}
         </S.ButtonLogin>
         <S.Terms>
           Não tem conta?{" "}
-          <S.TermsLink onClick={() => navigate("/registrar")}>Registrar</S.TermsLink>
+          <S.TermsLink onClick={() => navigate("/registrar")}>
+            Registrar
+          </S.TermsLink>
         </S.Terms>
       </S.FormContainer>
     </S.Container>
   );
-}
+};
