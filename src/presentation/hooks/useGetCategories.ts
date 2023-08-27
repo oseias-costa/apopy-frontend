@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { RootState } from "../redux/store";
 import { getCategoriesUseCase } from "../../application/categories.usecase";
 import { fetchCategories } from "../redux/slice/categorySlice";
-import { CategoryInterface } from "../../domain/entities/category";
+import { CategoryInterface } from "../../domain/category";
 
 export function useGetCategories() {
   const dispatch = useDispatch();

@@ -69,7 +69,7 @@ export const InputLogin = styled(Input)<{ error: boolean }>`
   border: ${(props) => (props.error ? "2px solid #BF1F2C" : "")};
   padding: ${(props) => (props.error ? "7px" : "8px")};
   @media (max-width: 740px) {
-    width: 80%;
+    width: 200px;
   }
 `;
 
@@ -146,20 +146,18 @@ export const ButtonLogin = styled(ButtonModal)<{ disabled: boolean }>`
   cursor: pointer;
   margin-left: 2px;
   margin-right: 2px;
+  width: 218px;
 
   &:hover {
     background-color: ${(props) => (props.disabled ? "#828282" : "#026773")};
   }
 
   @media(max-width: 740px){
-    width: 300px;
     padding-top: 10px;
     padding-bottom: 10px;
-    margin-left: 0px;
-    margin-right: 0px;
+    height: 33px;
+    width: 218px;
+    margin: 0;
   }
 
-  height: 33px;
-  width: 218px;
-  margin: 0;
 `

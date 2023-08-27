@@ -33,17 +33,40 @@ export const DashboardNumber = styled.h2`
     font-weight: 500;
     color: #4C4A51;
     padding-bottom: 8px;
+
+    @media(max-width: 1040px){
+        font-size: 24px;
+    }
+`
+
+export const Real = styled.p`
+    display: inline-block;
+    font-weight: 500;
+    color: #4C4A51;
+    font-size: 14px;
+
+    @media(max-width: 1040px){
+        font-size: 10px;
+    }
 `
 
 export const DashboardSubTitle = styled.p`
     color: var(--color-blue-light);
     padding-bottom: 18px;
+
+    @media(max-width: 1040px){
+        font-size: 11px;
+    }
 `
 
 export const DashboardItemText = styled.p`
     color: #92929F;
     font-size: 15px;
     font-weight: 100;
+
+    @media(max-width: 740px){
+
+    }
 `
 
 export const DashboardNumberBlock = styled.div`
@@ -51,6 +74,13 @@ export const DashboardNumberBlock = styled.div`
         flex-direction: column;
         align-items: space-between;
         padding-right: 50px;
+
+        @media(max-width: 1040px){
+            padding-right: 20px;
+        }
+        @media(max-width: 740px){
+            padding-right: 50px;
+        }
 `
 
 export const ChartContainer = styled.div`

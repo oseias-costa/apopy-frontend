@@ -15,7 +15,7 @@ import { ReverseToStock } from "./components/ReverseToStock";
 import { SalesRow } from "./components/SalesRow";
 import { filterSales } from "./components/utils-sales";
 import { SalesPanel } from "./components/SalesPanel";
-import { LoadingComponent } from "../../components/global/Loading/LoadingComponent";
+import { LoadingComponent } from "../Layout/components/Loading/LoadingComponent";
 
 export const Sales = () => {
   const { sales, loading } = useGetSales();

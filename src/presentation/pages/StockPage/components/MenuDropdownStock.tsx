@@ -27,7 +27,7 @@ export const MenuDropdownStock: React.FC<MenuDropdownStockProps> = ({item, setSt
               <S.ButtonUpdate
                 onClick={() => setState({...item, type: "moviment", openModal: true })}
               >
-                Movimentar
+                Nova venda
               </S.ButtonUpdate>
               <S.ButtonUpdate
                 onClick={() => setState({...item, type: "update", openModal: true })}

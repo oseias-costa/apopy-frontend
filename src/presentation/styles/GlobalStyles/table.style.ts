@@ -23,8 +23,8 @@ export const TableRow = styled.tr`
 export const TableRowItem = styled.td<{ position?: string }>`
   font-size: 13px;
   color: var(--color-gray-text);
-  padding-left: 18px;
-  padding-right: 18px;
+  padding-left: 12px;
+  padding-right: 12px;
   text-align: ${(props) => props.position};
   border-bottom: 1px solid #E7E7E7;
 `;

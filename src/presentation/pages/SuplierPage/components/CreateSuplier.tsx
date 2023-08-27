@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { createSuplier } from "../../../redux/slice/suplierSlice";
-import { Modal } from "../../../components/global/Modal";
+import { Modal } from "../../Layout/components/Modal";
 import { SuplierComponentState, suplierInitialState, SuplierStateProps } from "../../../types/pages/suplier.types";
 import { useEffect, useState } from "react";
 import * as S from "../../../styles/GlobalStyles/modal.style";

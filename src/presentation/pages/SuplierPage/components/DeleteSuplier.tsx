@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
 import { removeSuplier } from "../../../redux/slice/suplierSlice";
-import { Modal } from "../../../components/global/Modal";
+import { Modal } from "../../Layout/components/Modal";
 import { SuplierComponentState, suplierInitialState, SuplierStateProps } from "../../../types/pages/suplier.types";
 import * as S from "../../../styles/GlobalStyles/modal.style";
 import { CloseIcon } from "../../../assets/icons/CloseIcon";

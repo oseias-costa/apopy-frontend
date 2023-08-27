@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Stock } from "../../../../domain/entities/stock";
-import { Modal } from "../../../components/global/Modal";
+import { Stock } from "../../../../domain/stock"; 
+import { Modal } from "../../Layout/components/Modal";
 import {
   initialStockState,
   initialStockStateCreate,
@@ -71,7 +71,7 @@ export const DeleteStockItem: React.FC<StockStateProps> = ({ stockState, setStoc
             type="number"
             disabled={true}
             placeholder="Total"
-            value={deleteStockItem.total}
+            value={deleteStockItem.total.toFixed(2)}
           />
        </S.InputNumbersContent>
         <InputModalWithLabel label='Descrição'

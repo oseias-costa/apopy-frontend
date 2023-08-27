@@ -1,5 +1,5 @@
 import { styled } from "styled-components";
-import Logo from "../../../assets/logo/logo-menu.svg";
+import Logo from "../../../../assets/logo/logo-menu.svg";
 
 export const Loading = ({ disabled }: { disabled: boolean }) => {
   return (

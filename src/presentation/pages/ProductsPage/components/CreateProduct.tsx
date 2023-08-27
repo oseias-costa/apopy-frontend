@@ -1,5 +1,5 @@
 import { ChangeEventHandler, useEffect, useState } from "react";
-import { Modal } from "../../../components/global/Modal";
+import { Modal } from "../../Layout/components/Modal";
 import {
   initialStateProducts,
   ProductStateProps,

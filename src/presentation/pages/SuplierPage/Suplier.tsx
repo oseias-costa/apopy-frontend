@@ -7,7 +7,7 @@ import { ButtonCreateItem, TitleSection, TitleWithButton } from "../../styles/Gl
 import { SuplierRow } from "./components/SuplierRow";
 import { useGetSuplier } from "../../hooks/useGetSupliers";
 import { suplierInitialState, SuplierState } from "../../types/pages/suplier.types";
-import { LoadingComponent } from "../../components/global/Loading/LoadingComponent";
+import { LoadingComponent } from "../Layout/components/Loading/LoadingComponent";
 
 interface typeModal {
   [key: string]: React.ReactNode;

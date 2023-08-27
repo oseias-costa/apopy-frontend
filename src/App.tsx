@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import { userUseCase } from "./application/acess/login.usecase";
+import { userUseCase } from "./application/login.usecase";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser } from "./presentation/redux/slice/userSlice";
 import { GlobalStyle } from "./presentation/styles/GlobalStyles/global.styles";
-import { Loading } from "./presentation/components/global/Loading/Loading";
+import { Loading } from "./presentation/pages/Layout/components/Loading/Loading";
 import { RootState } from "./presentation/redux/store";
 
 function App() {

@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { updateSubcategoryUseCase } from "../../../../application/subcategory.usecase";
 import { updateSubcategory } from "../../../redux/slice/categorySlice";
-import { Modal } from "../../../components/global/Modal";
+import { Modal } from "../../Layout/components/Modal";
 import { CategoryStateProps, initialCategoryValue } from "../../../types/pages/category.types";
 import { useEffect, useState } from "react";
 import * as S from "../../../styles/GlobalStyles/modal.style";

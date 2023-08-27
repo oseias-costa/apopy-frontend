@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { registerUseCase } from "../../../application/acess/register.usecase";
+import { registerUseCase } from "../../../application/register.usecase";
 import { RegisterUser } from "../../../domain/entities/user";
 import { fetchUser } from "../../redux/slice/userSlice";
 import {

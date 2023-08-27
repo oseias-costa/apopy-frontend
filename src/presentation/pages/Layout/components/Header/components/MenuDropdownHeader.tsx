@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { DropMenuHeaderBody, MenuDropdownHeaderContainer } from "../../../../styles/GlobalStyles/header.style";
+import { DropMenuHeaderBody, MenuDropdownHeaderContainer } from "../../../../../styles/GlobalStyles/header.style";
 
 type MenuDropProps = {
   distanceFromRight: string;

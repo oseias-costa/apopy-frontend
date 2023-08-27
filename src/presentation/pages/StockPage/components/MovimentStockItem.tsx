@@ -1,7 +1,7 @@
 import { CloseIcon } from "../../../assets/icons/CloseIcon";
 import { InputNumberModalWithLabel } from "../../Layout/components/InputNumberModalWithLabel"; 
 import { InputModalWithLabel } from "../../Layout/components/InputModalWithLabel";
-import { Modal } from "../../../components/global/Modal";
+import { Modal } from "../../Layout/components/Modal";
 import * as S from "../../../styles/GlobalStyles/modal.style";
 import {
   initialStockState,
@@ -52,7 +52,7 @@ export const MovimentStockItem: React.FC<StockStateProps> = ({stockState, setSto
             label="Total"
             disabled={true}
             second={true}
-            value={`R$ ${stockState.total}`}
+            value={`R$ ${stockState.total.toFixed(2)}`}
           />
           <InputNumberModalWithLabel
             label="Preço de Custo"

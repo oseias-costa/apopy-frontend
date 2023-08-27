@@ -1,4 +1,4 @@
-import { MenuDropdownHeaderContainer, NotificationDropMenuContainer } from "../../../../styles/GlobalStyles/header.style"
+import { MenuDropdownHeaderContainer, NotificationDropMenuContainer } from "../../../../../styles/GlobalStyles/header.style"
 
 type MenuDropProps = {
     distanceFromRight: string;

@@ -4,16 +4,16 @@ import {
   TextName,
   TextWelcome,
   HeaderMenu
-} from "../../../styles/GlobalStyles/header.style";
+} from "../../../../styles/GlobalStyles/header.style";
 import { BellIcon } from "./components/Bell.icon";
 import { MessageIcon } from "./components/Message.icon";
 import { UserIcon } from "./components/User.icon";
 import { MenuDropdownHeader } from "./components/MenuDropdownHeader";
 import React, { useReducer } from "react";
-import { ActionMenuHeader, ActionMenuHeaderType, initialStateMenuHeader, StateMenuHeader } from "../../../types/components/header.types";
+import { ActionMenuHeader, ActionMenuHeaderType, initialStateMenuHeader, StateMenuHeader } from "../../../../types/components/header.types";
 import { UserHeader } from "./components/UserHeader";
-import { MessageHeaderMenu, MessageHeaderMenuContent, MessageHeaderMenuTitle } from "../../../styles/ComponentsStyles/notification-header.style";
-import { RootState } from "../../../redux/store";
+import { MessageHeaderMenu, MessageHeaderMenuContent, MessageHeaderMenuTitle } from "../../../../styles/ComponentsStyles/notification-header.style";
+import { RootState } from "../../../../redux/store";
 
 export const Header = () => {
 

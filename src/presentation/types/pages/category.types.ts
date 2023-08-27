@@ -1,5 +1,5 @@
 import { SetStateAction } from "react";
-import { CategoryInterface } from "../../../domain/entities/category";
+import { CategoryInterface } from "../../../domain/category";
 
 export interface CategoryState {
   _id: string;

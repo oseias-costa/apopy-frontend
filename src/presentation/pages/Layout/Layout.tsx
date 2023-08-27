@@ -1,6 +1,6 @@
 import { Outlet, useLocation } from "react-router-dom";
-import { Header } from "../../components/global/Header/Header";
-import { Menu } from "../../components/global/Menu/Menu";
+import { Header } from "./components/Header/Header";
+import { Menu } from "./components/Menu/Menu";
 import { Main } from "../../styles/GlobalStyles/layout.style";
 import { ContainerContentLayout, ContentMain } from "../../styles/PageStyles/layout.styles";
 import { Dashboard } from "../DashboardPage/Dashboard";

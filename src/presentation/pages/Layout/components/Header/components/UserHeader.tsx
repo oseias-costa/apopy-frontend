@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUser, initialUserState } from "../../../../redux/slice/userSlice";
-import { RootState } from "../../../../redux/store";
-import * as S from "../../../../styles/ComponentsStyles/user-header.style";
-import { ButtonModal } from "../../../../styles/GlobalStyles/modal.style";
+import { fetchUser, initialUserState } from "../../../../../redux/slice/userSlice";
+import { RootState } from "../../../../../redux/store";
+import * as S from "../../../../../styles/ComponentsStyles/user-header.style";
+import { ButtonModal } from "../../../../../styles/GlobalStyles/modal.style";
 
 export const UserHeader = () => {
   const dispatch = useDispatch();

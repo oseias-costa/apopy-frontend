@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { User } from "../../../domain/entities/user";
+import { User } from "../../../domain/user"; 
 import { InputModalWithLabel } from "../Layout/components/InputModalWithLabel";
 import { RootState } from "../../redux/store";
 import { TitleSection } from "../../styles/GlobalStyles/titleWithButton.style";
@@ -21,13 +21,16 @@ export const Settings = () => {
   const user = useSelector((state: RootState) => state.user.user);
   const [settingsState, setSettingsState] = useState({
     openModal: false,
-    user: initialUserState.user,
+    user: initialUserState.user
   });
-  const createAccountDate =
-    user?.createAt && new Date(Number(user?.createAt)).toString();
+  const [ dateAccount, setAccountDate ] = useState('')
+
+  const createAccountDate = new Date(Number(user?.createAt)).toString();
 
   useEffect(() => {
     setSettingsState({ openModal: false, user: user });
+    const createAccountDate = formatDate(new Date(Number(user?.createAt)).toString());
+    setAccountDate(createAccountDate)
   }, [user]);
 
   return (
@@ -42,7 +45,7 @@ export const Settings = () => {
       />
       <InputModalWithLabel
         label="Data de Criação"
-        value={createAccountDate ? formatDate(createAccountDate) : ""}
+        value={user?.createAt ? formatDate(new Date(Number(user?.createAt)).toString()) : ''}
         disabled={true}
       />
 

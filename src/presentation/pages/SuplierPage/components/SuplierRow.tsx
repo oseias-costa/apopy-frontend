@@ -1,8 +1,15 @@
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
+import { Suplier } from "../../../../domain/entities/suplier";
 import * as S from "../../../styles/PageStyles/CategoryStyles/category-row.styles";
+import { SuplierState } from "../../../types/pages/suplier.types";
 import { DootsIcon } from "../../CategoryPage/components/DootsIcon";
 
-export const SuplierRow = ({ data, setSuplierState }) => {
+interface SuplierRowProps {
+  data: Suplier[];
+  setSuplierState: React.Dispatch<SetStateAction<SuplierState>>
+}
+
+export const SuplierRow: React.FC<SuplierRowProps> = ({ data, setSuplierState }) => {
   const [menuSuplier, setMenuSuplier] = useState({
     openMenu: false,
     item: ""
@@ -10,7 +17,7 @@ export const SuplierRow = ({ data, setSuplierState }) => {
 
   const [positionSuplier, setPositionSuplier] = useState(null);
 
-  const supliersList = data?.map((item) => {
+  const supliersList = data?.map((item: Suplier) => {
     return (
       <S.CategoryRowContainer key={item._id}>
         <S.CategoryRowText>{item.name}</S.CategoryRowText>
@@ -61,5 +68,5 @@ export const SuplierRow = ({ data, setSuplierState }) => {
     );
   });
 
-  return supliersList;
+  return <>{supliersList}</>
 };

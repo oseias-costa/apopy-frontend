@@ -1,7 +1,7 @@
 import {
   Abbreviation,
   HeaderMenuUser,
-} from "../../../../styles/GlobalStyles/header.style";
+} from "../../../../../styles/GlobalStyles/header.style";
 
 export const UserIcon = ({
   name,

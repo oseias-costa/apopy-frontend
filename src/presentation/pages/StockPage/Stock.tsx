@@ -11,7 +11,7 @@ import { ButtonOpenFilter } from "../../styles/PageStyles/StockStyles/filter-sto
 import { FilterTag } from "./components/FilterTag";
 import { FilterTagsList } from "../../styles/PageStyles/StockStyles/filter-tag";
 import { StockPanel } from "./components/StockPanel";
-import { LoadingComponent } from "../../components/global/Loading/LoadingComponent";
+import { LoadingComponent } from "../Layout/components/Loading/LoadingComponent";
 
 export const Stock = () => {
   const refButtonFilter = useRef(null);

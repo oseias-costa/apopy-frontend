@@ -8,8 +8,12 @@ export const Eye = ({
   isVisible: boolean;
   setIsVisible: React.Dispatch<SetStateAction<boolean>>;
 }) => {
+
   return (
-    <IconContainer onClick={() => setIsVisible(!isVisible)}>
+    <IconContainer onClick={() => {
+      localStorage.setItem('apopyVisibleAccount', `${!isVisible}`)
+      setIsVisible(!isVisible)
+    }}>
       <EyeIcon
         width="20"
         height="20"

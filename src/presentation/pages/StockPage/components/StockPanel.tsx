@@ -1,13 +1,15 @@
 import { Eye } from "../../../assets/icons/Eye";
 import { useState } from "react";
 import * as S from "../../../styles/PageStyles/SaleStyles/salePanel.style";
-import { Stock } from "../../../../domain/entities/stock";
+import { Stock } from "../../../../domain/stock"; 
 
 export const StockPanel: React.FC<{ stock: Stock[]; className: string }> = ({
   stock,
   className,
 }) => {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const getVisibleAccount = localStorage.getItem('apopyVisibleAccount')
+  const setVisibleAccount = getVisibleAccount === 'true' ? true : false
+  const [isVisible, setIsVisible] = useState<boolean>(setVisibleAccount);
   const total = stock.reduce((acc, val) => acc + val.total, 0);
 
   return (

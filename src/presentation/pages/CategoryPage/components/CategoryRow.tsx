@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import * as S from "../../../styles/PageStyles/CategoryStyles/category-row.styles";
 import { DootsIcon } from "./DootsIcon";
 import { SubcategoryRow } from "./SubcategoryRow";
-import { CategoryInterface } from '../../../../domain/entities/category'
+import { CategoryInterface } from '../../../../domain/category'
 import { CategoryRowProps, HandleSetCategory, MenuCategoryState } from "../../../types/pages/category.types";
 
 export const CategoryRow: React.FC<CategoryRowProps> = ({ state, setCategoryState }) => {

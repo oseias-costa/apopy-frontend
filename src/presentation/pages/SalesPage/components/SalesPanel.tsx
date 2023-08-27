@@ -1,10 +1,12 @@
-import { Sale } from "../../../../domain/entities/sale";
+import { Sale } from "../../../../domain/sale"; 
 import { Eye } from "../../../assets/icons/Eye";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import * as S from "../../../styles/PageStyles/SaleStyles/salePanel.style";
 
 export const SalesPanel: React.FC<{ sales: Sale[] }> = ({ sales }) => {
-  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const getVisibleAccount = localStorage.getItem('apopyVisibleAccount')
+  const setVisibleAccount = getVisibleAccount === 'true' ? true : false
+  const [isVisible, setIsVisible] = useState<boolean>(setVisibleAccount);
   const total = sales.reduce((acc, val) => acc + val.total, 0);
 
   return (

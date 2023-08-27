@@ -5,7 +5,7 @@ import { CloseIcon } from "../../../assets/icons/CloseIcon";
 import { SpinnerIcon } from "../../../assets/icons/SpinnerIcon";
 import { InputModalWithLabel } from "../../Layout/components/InputModalWithLabel";
 import { InputNumberModalWithLabel } from "../../Layout/components/InputNumberModalWithLabel";
-import { Modal } from "../../../components/global/Modal";
+import { Modal } from "../../Layout/components/Modal";
 import { reverseSale } from "../../../redux/slice/saleSlice";
 import { reverseToStock } from "../../../redux/slice/stockSlice";
 import * as S from "../../../styles/GlobalStyles/modal.style";

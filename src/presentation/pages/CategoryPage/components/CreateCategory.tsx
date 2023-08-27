@@ -1,7 +1,7 @@
 import { useDispatch } from "react-redux";
 import { createCategoryUseCase } from "../../../../application/categories.usecase";
 import { createCategory } from "../../../redux/slice/categorySlice";
-import { Modal } from "../../../components/global/Modal";
+import { Modal } from "../../Layout/components/Modal";
 import { CloseIcon } from "../../../assets/icons/CloseIcon";
 import { useEffect, useState } from "react";
 import { CategoryStateProps, CreateCategoryState, initialCategoryValue } from "../../../types/pages/category.types";

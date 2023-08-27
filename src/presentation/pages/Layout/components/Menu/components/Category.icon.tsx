@@ -1,4 +1,4 @@
-import { IconMenu } from "../../../../styles/GlobalStyles/menu.style";
+import { IconMenu } from "../../../../../styles/GlobalStyles/menu.style";
 
 export function CategoryIcon({isSelected} : {isSelected: boolean}) {
   return (

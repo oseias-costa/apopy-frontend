@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { LinkMenu, MenuItem } from "../../../../styles/GlobalStyles/menu.style";
+import { LinkMenu, MenuItem } from "../../../../../styles/GlobalStyles/menu.style";
 
 
 export const MenuLinkItem = ({path, content, Icon}: 

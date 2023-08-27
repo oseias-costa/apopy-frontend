@@ -1,8 +1,8 @@
-import { RegisterUser } from "../../domain/entities/user";
+import { RegisterUser } from "../domain/entities/user";
 import {
   deleteMyAccountGateway,
   registerGateway,
-} from "../../infra/gateways/user.gateway";
+} from "../infra/gateways/user.gateway";
 
 export async function registerUseCase({
   name,

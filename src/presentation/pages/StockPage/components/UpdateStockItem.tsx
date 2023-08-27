@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Stock } from "../../../../domain/entities/stock";
-import { Modal } from "../../../components/global/Modal";
+import { Modal } from "../../Layout/components/Modal";
 import {
   initialStockState,
   initialStockStateCreate,

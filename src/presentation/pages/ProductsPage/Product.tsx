@@ -5,7 +5,7 @@ import { ProductRow } from "./components/ProductRow";
 import { ProductModal } from "./components/ProductModal";
 import { useGetProducts } from "../../hooks/useGetProducts";
 import { initialStateProducts, ProductState } from "../../types/pages/products.types";
-import { LoadingComponent } from "../../components/global/Loading/LoadingComponent";
+import { LoadingComponent } from "../Layout/components/Loading/LoadingComponent";
 
 export const Product = () => {
   const { products, loading } = useGetProducts();

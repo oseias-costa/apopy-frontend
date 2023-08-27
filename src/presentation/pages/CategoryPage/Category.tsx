@@ -5,7 +5,7 @@ import * as S from "../../styles/GlobalStyles/titleWithButton.style";
 
 import { CategoryState, initialCategoryValue } from "../../types/pages/category.types";
 import { useGetCategories } from "../../hooks/useGetCategories";
-import { LoadingComponent } from "../../components/global/Loading/LoadingComponent";
+import { LoadingComponent } from "../Layout/components/Loading/LoadingComponent";
 import { CategoryCallModal } from "./components/CategoryCallModal";
 
 export const Category = () => {

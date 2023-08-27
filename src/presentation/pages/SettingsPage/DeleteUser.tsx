@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { CloseIcon } from "../../assets/icons/CloseIcon";
-import { Modal } from "../../components/global/Modal";
+import { Modal } from "../Layout/components/Modal";
 import * as S from "../../styles/GlobalStyles/modal.style";
 import {
   ButtonSettings,
   InputSettings,
 } from "../../styles/PageStyles/SettingsStyles/settings.style";
-import { deleteMyAccountUseCase } from "../../../application/acess/register.usecase";
+import { deleteMyAccountUseCase } from "../../../application/register.usecase";
 import { useDispatch } from "react-redux";
 import { fetchUser, initialUserState } from "../../redux/slice/userSlice";
 import { DeleteUserProps } from "../../types/pages/settings.types";

@@ -1,17 +1,8 @@
-import {
-  ImgLogo,
-  ImgLogoMobile,
-  ButtonMenuMobile,
-  MenuContainer,
-  MenuItem,
-  LinkMenu,
-  MenuBlock,
-  MenuBlockMobile,
-} from "../../../styles/GlobalStyles/menu.style";
+import * as S from "../../../../styles/GlobalStyles/menu.style";
 import { useLocation } from "react-router-dom";
-import Logo from "../../../assets/logo/logo-menu.svg";
-import LogoMobile from "../../../assets/logo/logo-menu-mobile.svg";
-import Hamburguer from "../../../assets/icons/hamburguer.svg";
+import Logo from "../../../../assets/logo/logo-menu.svg";
+import LogoMobile from "../../../../assets/logo/logo-menu-mobile.svg";
+import Hamburguer from "../../../../assets/icons/hamburguer.svg";
 import { DashboardIcon } from "./components/Dashboard.icon";
 import { CategoryIcon } from "./components/Category.icon";
 import { ProductIcon } from "./components/Product.icon";
@@ -25,99 +16,99 @@ export const Menu = () => {
   const [openMenu, setOpenMenu] = useState(false);
   const location = useLocation();
   const pathSelected = (path: string) => Boolean(location?.pathname === path);
-
+  
   return (
-    <MenuContainer>
-      <ImgLogo src={Logo} />
-      <ImgLogoMobile src={LogoMobile} />
-      <ButtonMenuMobile
+    <S.MenuContainer>
+      <S.ImgLogo src={Logo} />
+      <S.ImgLogoMobile src={LogoMobile} />
+      <S.ButtonMenuMobile
         isOpen={openMenu}
         onClick={() => setOpenMenu(!openMenu)}
       >
         <img src={Hamburguer} />
-      </ButtonMenuMobile>
-      <MenuBlock isOpen={openMenu} id="MenuBackground">
-        <MenuBlockMobile>
-          <MenuItem
+      </S.ButtonMenuMobile>
+      <S.MenuBlock isOpen={openMenu} id="MenuBackground">
+        <S.MenuBlockMobile>
+          <S.MenuItem
             isSelected={pathSelected("/")}
             onClick={() => setOpenMenu(!openMenu)}
           >
             <DashboardIcon isSelected={pathSelected("/")} />
-            <LinkMenu to="/" isSelected={pathSelected("/")}>
+            <S.LinkMenu to="/" isSelected={pathSelected("/")}>
               Dashboard
-            </LinkMenu>
-          </MenuItem>
-          <MenuItem
+            </S.LinkMenu>
+          </S.MenuItem>
+          <S.MenuItem
             isSelected={pathSelected("/categorias")}
             onClick={() => setOpenMenu(!openMenu)}
           >
             <CategoryIcon isSelected={pathSelected("/categorias")} />
-            <LinkMenu to="/categorias" isSelected={pathSelected("/categorias")}>
+            <S.LinkMenu to="/categorias" isSelected={pathSelected("/categorias")}>
               Categorias
-            </LinkMenu>
-          </MenuItem>
-          <MenuItem
+            </S.LinkMenu>
+          </S.MenuItem>
+          <S.MenuItem
             isSelected={pathSelected("/fornecedores")}
             onClick={() => setOpenMenu(!openMenu)}
           >
             <SuplierIcon isSelected={pathSelected("/fornecedores")} />
-            <LinkMenu
+            <S.LinkMenu
               to="/fornecedores"
               isSelected={pathSelected("/fornecedores")}
             >
               Fornecedores
-            </LinkMenu>
-          </MenuItem>
-          <MenuItem
+            </S.LinkMenu>
+          </S.MenuItem>
+          <S.MenuItem
               isSelected={pathSelected("/produtos")}
               onClick={() => setOpenMenu(!openMenu)}
             >
               <ProductIcon isSelected={pathSelected("/produtos")} />
-              <LinkMenu
+              <S.LinkMenu
                 to="/produtos"
                 isSelected={pathSelected("/produtos")}
               >
                 Produtos
-              </LinkMenu>
-            </MenuItem>
-          <MenuItem
+              </S.LinkMenu>
+            </S.MenuItem>
+          <S.MenuItem
               isSelected={pathSelected("/estoque")}
               onClick={() => setOpenMenu(!openMenu)}
             >
               <ProductsIcon isSelected={pathSelected("/estoque")} />
-              <LinkMenu
+              <S.LinkMenu
                 to="/estoque"
                 isSelected={pathSelected("/estoque")}
               >
                 Estoque
-              </LinkMenu>
-            </MenuItem>
-          <MenuItem
+              </S.LinkMenu>
+            </S.MenuItem>
+          <S.MenuItem
               isSelected={pathSelected("/vendas")}
               onClick={() => setOpenMenu(!openMenu)}
             >
               <SaleIcon isSelected={pathSelected("/vendas")} />
-              <LinkMenu
+              <S.LinkMenu
                 to="/vendas"
                 isSelected={pathSelected("/vendas")}
               >
                 Vendas
-              </LinkMenu>
-            </MenuItem>
-          <MenuItem
+              </S.LinkMenu>
+            </S.MenuItem>
+          <S.MenuItem
               isSelected={pathSelected("/configuracoes")}
               onClick={() => setOpenMenu(!openMenu)}
             >
               <SettingsIcon isSelected={pathSelected("/configuracoes")} />
-              <LinkMenu
+              <S.LinkMenu
                 to="/configuracoes"
                 isSelected={pathSelected("/configuracoes")}
               >
                 Configurações
-              </LinkMenu>
-            </MenuItem>
-        </MenuBlockMobile>
-      </MenuBlock>
-    </MenuContainer>
+              </S.LinkMenu>
+            </S.MenuItem>
+        </S.MenuBlockMobile>
+      </S.MenuBlock>
+    </S.MenuContainer>
   );
 };
