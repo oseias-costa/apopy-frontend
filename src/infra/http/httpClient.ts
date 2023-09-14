@@ -4,7 +4,8 @@ export async function httpClient(query: string, variables: any) {
   const token: string | null = localStorage.getItem("apopyToken");
 
   const data = axios({
-    url: "https://apopy-api.onrender.com/graphql",
+    // url: "https://apopy-api.onrender.com/graphql",
+    url: "https://vast-pear-shrimp-gear.cyclic.app/graphql",
     method: "post",
     data: {
       query: `${query}`,
