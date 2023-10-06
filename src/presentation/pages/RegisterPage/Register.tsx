@@ -1,8 +1,8 @@
 import { FormEvent, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, redirect } from "react-router-dom";
 import { registerUseCase } from "../../../application/register.usecase";
-import { RegisterUser } from "../../../domain/entities/user";
+import { RegisterUser } from "../../../domain/user"; 
 import { fetchUser } from "../../redux/slice/userSlice";
 import {
   ButtonLogin,
@@ -49,7 +49,7 @@ export const Register: React.FC = () => {
       );
       dispatch(fetchUser(req.data.data.user));
 
-      return navigate('/');
+      return redirect('/');
     }
 
     if (req.data.errors) {
