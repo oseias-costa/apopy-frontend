@@ -49,7 +49,7 @@ export const Register: React.FC = () => {
       );
       dispatch(fetchUser(req.data.data.user));
 
-      return navigate(0);
+      return navigate('/');
     }
 
     if (req.data.errors) {
