@@ -15,7 +15,7 @@ export const Dashboard = () => {
   const dispatch = useDispatch();
   const dashboardData = useSelector((state: RootState) => state.dashboard);
   const { sales } = useGetSales()
-  const data = salesMonthChartData(sales, 7);
+  const data = salesMonthChartData(sales, 9);
 
   useEffect(() => {
     getDashboardUseCase().then((res) =>

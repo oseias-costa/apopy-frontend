@@ -45,7 +45,7 @@ export const MyResponsiveBar = ({ data } :{ data : { sales: number, date: string
       tickSize: 5,
       tickPadding: 5,
       tickRotation: 0,
-      legend: "Vendas Agosto",
+      legend: "Vendas Outubro",
       legendPosition: "middle",
       legendOffset: 32,
     }}
@@ -53,7 +53,7 @@ export const MyResponsiveBar = ({ data } :{ data : { sales: number, date: string
       tickSize: 5,
       tickPadding: 5,
       tickRotation: 0,
-      legend: "Vendas Agosto",
+      legend: "Vendas Outubro",
       legendPosition: "middle",
       legendOffset: -40,
     }}
