@@ -14,12 +14,12 @@ import { useGetSales } from "../../hooks/useGetSales";
 export const Dashboard = () => {
   const dispatch = useDispatch();
   const dashboardData = useSelector((state: RootState) => state.dashboard);
-  const { sales } = useGetSales()
-  const data = salesMonthChartData(sales, 9);
+  const { sales } = useGetSales();
+  const data = salesMonthChartData(sales, 3);
 
   useEffect(() => {
     getDashboardUseCase().then((res) =>
-      dispatch(fetchDashboardData(res.data.data.dashboard))
+      dispatch(fetchDashboardData(res.data.data.dashboard)),
     );
   }, []);
 
@@ -29,7 +29,10 @@ export const Dashboard = () => {
         <S.DashboarItem>
           <S.DashboardNumberBlock>
             <S.DashboardSubTitle>Estoque</S.DashboardSubTitle>
-            <S.DashboardNumber><S.Real>R$ </S.Real>{dashboardData.totalValue.toFixed(2)}</S.DashboardNumber>
+            <S.DashboardNumber>
+              <S.Real>R$ </S.Real>
+              {dashboardData.totalValue.toFixed(2)}
+            </S.DashboardNumber>
             <S.DashboardItemText>Total em Estoque</S.DashboardItemText>
           </S.DashboardNumberBlock>
           <DollarIcon />
